@@ -1,0 +1,19 @@
+<% layout("layout/boilerplate") %> 
+
+<div class="row">
+    <div class="col-6">
+        <div id="coverPicture">
+            <img src="<%= img.url%>" alt=""> 
+        </div>
+
+
+
+        <div class="card md-3">
+            <div class="card-body">
+                <h4 class="card-title"><%= book.title%> </h4>
+                <p class="card-text"><%= book.description %> </p>
+            </div>
+            <div class="card-footer text-muted"><%= book.uploadTime %> </div>
+        </div>
+    </div>
+</div>
