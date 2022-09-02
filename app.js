@@ -71,7 +71,7 @@ app.get(
 	"/uploads",
 	catchAsync(async (req, res) => {
 		const book = await Upload.find({});
-		console.log(book);
+		// console.log(book);
 		res.render("books/browse", { book });
 	})
 );
