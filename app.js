@@ -87,7 +87,7 @@ app.get("/books/release", (req, res) => {
 });
 
 // Rendering form create
-app.get("/books/new", (req, res) => {
+app.get("/uploads/new", (req, res) => {
 	res.render("books/new", { genre });
 });
 app.post(
@@ -98,8 +98,6 @@ app.post(
 		const book = new Upload(req.body.book);
 
 		await book.save();
-		console.log(req.body);
-		// console.log(req);
 		res.redirect(`/uploads/${book._id}`);
 	})
 );
@@ -110,8 +108,6 @@ app.get(
 	catchAsync(async (req, res) => {
 		const book = await Upload.findById(req.params.id);
 
-		console.log(book);
-		// console.log(book)
 		res.render("books/show", { book });
 	})
 );
