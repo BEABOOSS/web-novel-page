@@ -11,7 +11,7 @@
 			</div>
 
 			<div class="input-group mb-3">
-				<input type="file" name="book[coverPicture]" class="form-control" id="coverPicture"/>
+				<input type="file" name="book[coverPicture]" class="form-control" id="coverPicture" />
 				<label class="input-group-text" for="book[coverPicture]">Upload</label>
 			</div>
 
@@ -21,7 +21,8 @@
 				<input class="form-control" list="datalistOptions" id="genres" name="book[genres]" placeholder="Type to search..." />
 				<datalist id="datalistOptions">
 					<% for (let keys of genre) {%>
-					<option value="<%= keys%>"><% } %></option>
+					<option value="<%= keys%>"></option>
+					<% } %>
 				</datalist>
 			</div>
 

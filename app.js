@@ -40,17 +40,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 // SETTING UP MULTER
-// const storage = multer.diskStorage({
-// 	destination: (req, file, cb) => {
-// 		cb(null, "uploads");
-// 	},
-// 	filename: (req, file, cb) => {
-// 		const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-// 		cb(null, file.fieldname + "-" + uniqueSuffix);
-// 	},
-// });
+const storage = multer.diskStorage({
+	destination: (req, file, cb) => {
+		cb(null, "uploadings");
+	},
+	filename: (req, file, cb) => {
+		const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+		cb(null, file.fieldname + "-" + uniqueSuffix);
+	},
+});
 
-// const upload = multer({ storage: storage });
+const upload = multer({ storage: storage });
 
 const validateBook = (req, res, next) => {
 	const { error } = uploadSchema.validate(req.body);
@@ -83,10 +83,13 @@ app.get("/books/new", (req, res) => {
 app.post(
 	"/uploads",
 
+	upload.single("book[coverPicture]"),
 	catchAsync(async (req, res, next) => {
-		const book = new Upload(req.body);
-		console.log(book);
-		// await book.save();
+		const book = new Upload(req.body.book);
+
+		await book.save();
+		console.log(req.body);
+		// console.log(req);
 		res.redirect("books/browse");
 	})
 );
@@ -96,9 +99,9 @@ app.get(
 	"/books/:id",
 	catchAsync(async (req, res) => {
 		const { _id } = req.params;
-		const book = await Upload.findById(_id);
+		const book = await Upload.find({});
 
-		res.render("books/browse", { book });
+		res.render("books/show", { book });
 	})
 );
 

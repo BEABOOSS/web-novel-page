@@ -15,7 +15,10 @@ const ImageSchema = new Schema({
 // const opts = { toJSON: { virtuals: true } };
 
 const UploadSchema = new Schema({
-	title: String,
+	title: {
+		name: String,
+		type: String,
+	},
 	description: String,
 	genres: String,
 	uploadTime: {
