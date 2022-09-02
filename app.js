@@ -66,6 +66,16 @@ app.get("/", (req, res) => {
 	res.render("books/home");
 });
 
+// showing the books
+app.get(
+	"/uploads",
+	catchAsync(async (req, res) => {
+		const book = await Upload.find({});
+		console.log(book);
+		res.render("books/browse", { book });
+	})
+);
+
 // QUICK SEARCH
 app.get("/books/quickSearch", (req, res) => {
 	res.render("books/quickSearch");
@@ -90,27 +100,19 @@ app.post(
 		await book.save();
 		console.log(req.body);
 		// console.log(req);
-		res.redirect("books/browse");
+		res.redirect(`/uploads/${book._id}`);
 	})
 );
 
 // showing the book aka all chapters
 app.get(
-	"/books/:id",
+	"/uploads/:id",
 	catchAsync(async (req, res) => {
-		const { _id } = req.params;
-		const book = await Upload.find({});
+		const book = await Upload.findById(req.params.id);
 
+		console.log(book);
+		// console.log(book)
 		res.render("books/show", { book });
-	})
-);
-
-// showing the books
-app.get(
-	"/books/browse",
-	catchAsync(async (req, res) => {
-		const book = await Upload.find({});
-		res.render("books/browse", { book });
 	})
 );
 
