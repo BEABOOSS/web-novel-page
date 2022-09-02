@@ -39,7 +39,6 @@ const UploadSchema = new Schema({
 	],
 });
 
-
 UploadSchema.post("findOneAndDelete", async function (doc) {
 	if (doc) {
 		await Review.deleteMany({

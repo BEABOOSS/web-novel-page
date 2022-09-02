@@ -4,29 +4,27 @@ const sanitizeHTML = require("sanitize-html");
 const extension = (joi) => ({
 	type: "string",
 	base: joi.string(),
-	message: {
-		"string.escapeHTML": "{{#label} must not include HTML!",
-	},
+	// message: {
+	// 	"string.escapeHTML": "{{#label} must not include HTML!",
+	// },
 	rules: {
 		escapeHTML: {
 			validate(value, helpers) {
-				// escape symbols only(e.g. &, <)
-				const filtered = sanitizeHTML(value, {
+				const clean = sanitizeHtml(value, {
 					allowedTags: [],
 					allowedAttributes: {},
 				});
-				// show error if html was present/removed
-				if (clean !== filtered) return helpers.error("string.escapeHTML");
+				if (clean !== value) return helpers.error("string.escapeHTML", { value });
+				return clean;
 			},
 		},
 	},
 });
 const Joi = BaseJoi.extend(extension);
 
-module.exports.uploadSchema = Joi.Object({
+module.exports.uploadSchema = Joi.object({
 	book: Joi.object({
 		title: Joi.string().required().escapeHTML(),
-		// coverPicture: Joi.string().required(),
 		genres: Joi.string().required().escapeHTML(),
 		description: Joi.string().required().escapeHTML(),
 		chapters: Joi.array().items(
@@ -41,7 +39,7 @@ module.exports.uploadSchema = Joi.Object({
 
 module.exports.reviewSchema = Joi.object({
 	review: Joi.object({
-		rating: Joi.number().required().min().max(5),
+		rating: Joi.number().required().min(1).max(5),
 		body: Joi.string().required().escapeHTML(),
 	}).required(),
 });

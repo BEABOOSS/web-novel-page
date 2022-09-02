@@ -8,13 +8,15 @@ const ejsMate = require("ejs-mate");
 const path = require("path");
 const mongoose = require("mongoose");
 const multer = require("multer");
-const mongoSanitize = require("express-mongo-sanitize");
+// const mongoSanitize = require("express-mongo-sanitize");
 const Upload = require("./models/upload");
-const methodOverride = require('method-override');
+const methodOverride = require("method-override");
+const { uploadSchema } = require("./schemas");
 
-const { cloudinary } = require("./cloudinary");
+// const { cloudinary } = require("./cloudinary");
 const { genre } = require("./seeds/genres");
 const catchAsync = require("./utils/catchAsync");
+const ExpressError = require("./utils/ExpressError");
 
 // connect to mongo and sends back error if something goes wrong
 mongoose
@@ -26,9 +28,8 @@ mongoose
 		console.log("OHHH NOO MONGO CONNECTION ERROR!!!");
 		console.log(err);
 	});
+
 const app = express();
-
-
 
 // Setting templating engine to EJS
 app.engine("ejs", ejsMate);
@@ -36,7 +37,7 @@ app.set("views", path.join(__dirname, "/views"));
 app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
-app.use(methodOverride('_method'));
+app.use(methodOverride("_method"));
 
 // SETTING UP MULTER
 // const storage = multer.diskStorage({
@@ -51,8 +52,15 @@ app.use(methodOverride('_method'));
 
 // const upload = multer({ storage: storage });
 
-
-
+const validateBook = (req, res, next) => {
+	const { error } = uploadSchema.validate(req.body);
+	if (error) {
+		const msg = error.details.map((el) => el.message).join(",");
+		throw new ExpressError(msg, 400);
+	} else {
+		next();
+	}
+};
 
 app.get("/", (req, res) => {
 	res.render("books/home");
@@ -68,40 +76,42 @@ app.get("/books/release", (req, res) => {
 	res.render("books/release");
 });
 
-
 // Rendering form create
 app.get("/books/new", (req, res) => {
 	res.render("books/new", { genre });
 });
-app.post("/uploads", catchAsync(async (req, res) => {
-	const book = new Upload(req.body.book);
-	console.log(req.body)
-	await book.save();
-	res.redirect("books/browse");
-}));
+app.post(
+	"/uploads",
 
-
-
-
-
+	catchAsync(async (req, res, next) => {
+		const book = new Upload(req.body);
+		console.log(book);
+		// await book.save();
+		res.redirect("books/browse");
+	})
+);
 
 // showing the book aka all chapters
-app.get("/books/:id",catchAsync(async (req, res) => {
-	const {_id} = req.params;
-	const book = await Upload.findById(_id);
+app.get(
+	"/books/:id",
+	catchAsync(async (req, res) => {
+		const { _id } = req.params;
+		const book = await Upload.findById(_id);
 
-	res.render("books/browse", { book });
-}));
+		res.render("books/browse", { book });
+	})
+);
 
 // showing the books
-app.get("/books/browse", catchAsync(async (req, res) => {
-	const book = await Upload.find({});
-	res.render("books/browse", { book });
-}));
+app.get(
+	"/books/browse",
+	catchAsync(async (req, res) => {
+		const book = await Upload.find({});
+		res.render("books/browse", { book });
+	})
+);
 
 // getting a home routes
-
-
 
 // CONNECTING TO THE DATA BASE
 const port = process.env.PORT || "3000";
