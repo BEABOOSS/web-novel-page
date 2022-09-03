@@ -81,6 +81,19 @@ app.get("/books/quickSearch", (req, res) => {
 	res.render("books/quickSearch");
 });
 
+app.post(
+	"/books/show",
+	catchAsync(async (req, res, next) => {
+		let searchTerm = req.body.searchTerm;
+		let book = await Upload.find({ $text: { $search: searchTerm, $diacriticSensitive: true } });
+		if (book) {
+			return res.redirect(`/uploads/${book[0].id}`);
+		} else {
+			return res.redirect("/browse");
+		}
+	})
+);
+
 // NEW RELEASE
 app.get("/books/release", (req, res) => {
 	res.render("books/release");

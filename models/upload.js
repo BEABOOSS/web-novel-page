@@ -15,10 +15,7 @@ const ImageSchema = new Schema({
 // const opts = { toJSON: { virtuals: true } };
 
 const UploadSchema = new Schema({
-	title: {
-		name: String,
-		type: String,
-	},
+	title: String,
 	description: String,
 	genres: String,
 	uploadTime: {
@@ -51,5 +48,7 @@ UploadSchema.post("findOneAndDelete", async function (doc) {
 		});
 	}
 });
+
+UploadSchema.index({ title: "text", description: "text" });
 
 module.exports = new mongoose.model("Upload", UploadSchema);
