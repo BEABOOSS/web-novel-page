@@ -1,1 +1,42 @@
 <% layout("layout/boilerplate") %> 
+
+<div class="row">
+	<h1 class="text-center">New Story</h1>
+	<div class="col-md-6 offset-md-3">
+		<form action="/uploads" method="POST" class="needs-validation" enctype="multipart/form-data" novalidate>
+			<div class="input-group mb-3">
+				<!-- <span class="input-group-text" id="inputGroup-sizing-default">Title: </span> -->
+				<label for="book[title]" class="col-sm-2 col-form-label">Title</label>
+				<input type="text" id="title" placeholder="Name" name="book[title]" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+			</div>
+
+			<div class="input-group mb-3">
+				<input type="file" name="book[coverPicture]" class="form-control" id="coverPicture" />
+				<label class="input-group-text" for="book[coverPicture]">Upload</label>
+			</div>
+
+			<div class="input-group mb-3">
+				<!-- <label for="book[genres]" class="form-label">Datalist example: </label> -->
+				<label for="book[genres]" class="col-sm-2 col-form-label">Genres</label>
+				<input class="form-control" list="datalistOptions" id="genres" name="book[genres]" placeholder="Type to search..." />
+				<datalist id="datalistOptions">
+					<% for (let keys of genre) {%>
+					<option value="<%= keys%>"></option>
+					<% } %>
+				</datalist>
+			</div>
+
+			<div class="input-group">
+				<!-- <span class="input-group-text">With textarea</span> -->
+				<label for="book[description]" class="col-sm-2 col-form-label">Description </label>
+				<textarea class="form-control form-control-sm" aria-label="With textarea" id="description" name="book[description]" placeholder="Do the describing..."></textarea>
+			</div>
+
+			<div class="input-group mb-3">
+				<button class="btn btn-outline-secondary" type="submit" id="button-addon1">Submit</button>
+			</div>
+		</form>
+
+		<a href="/books/browse">Go Back To Browse</a>
+	</div>
+</div>

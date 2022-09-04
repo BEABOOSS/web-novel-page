@@ -3,7 +3,7 @@
 <div class="container">
 
 
-
+<!-- top half of  -->
 	<div class="">
 		<div class="row">
 			<div class="col-4">
@@ -16,25 +16,14 @@
 					<h1><%= book.title %></h1>
                     <p><span class="badge rounded-pill bg-dark"><%= book.genres %></span></p>
 				</div>
+				<div>
+					<h3>Synopsis</h3>
+					<p><%= book.description %> </p>
+				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- 
-	<div class="row">
-		<div class="col-6">
-			<div id="coverPicture">
-				<img src="https://pbs.twimg.com/profile_images/1559564502202519553/WbkAPyWB_400x400.jpg" alt="" />
-			</div>
+	
 
-			<div class="card md-3">
-				<div class="card-body">
-					<h4 class="card-title"><%= book.title%></h4>
-					<p class="card-text"><%= book.description %></p>
-					<p class="card-text"><%= book.genres %></p>
-				</div>
-				<div class="card-footer text-muted"><%= book.uploadTime %></div>
-			</div>
-		</div>
-	</div> -->
 </div>
