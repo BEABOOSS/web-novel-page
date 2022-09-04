@@ -157,9 +157,9 @@ app.post(
 	catchAsync(async (req, res, next) => {
 		const book = new Upload(req.body.book)
 		book.coverPicture = req.files.map((f)=> ({url: f.path, filename: f.filename}));
+		await book.save();
 		console.log(book)
-		// await book.save();
-		// res.redirect(`/uploads/${book._id}`);
+		res.redirect(`/uploads/${book._id}`);
 	})
 );
 
@@ -168,7 +168,6 @@ app.get(
 	"/uploads/:id",
 	catchAsync(async (req, res) => {
 		const book = await Upload.findById(req.params.id);
-
 		res.render("books/show", { book });
 	})
 );

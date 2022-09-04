@@ -22,10 +22,7 @@ const UploadSchema = new Schema({
 		type: Date,
 		default: Date.now,
 	},
-	coverPicture: {
-		url: String,
-		filename: String,
-	},
+	coverPicture: [ImageSchema],
 	chapters: [
 		{
 			name: String,
