@@ -50,11 +50,11 @@
 	<div class="row row-cols-1 row-cols-md-2 g4">
 		<% book.forEach( el => { %>
 		<div class="col">
-			<div class="card mb-3 shadow" style="max-width: 700px">
+			<div class="card mb-3 shadow" style="max-width: 600px; max-height: 210px;">
 				<div class="row g-0">
 					<div class="col-md-4">
 						<a class="link" href="/uploads/<%=el._id%>">
-							<img src="<%=el.coverPicture[0].url%>" class="img-fluid rounded" alt="..." />
+							<img src="<%=el.coverPicture[0].url%>" class="img-fluid rounded" style="max-width: 200px;max-height: 200px" alt="..." />
 						</a>
 					</div>
 					<div class="col-md-8">
