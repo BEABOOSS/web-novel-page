@@ -3,7 +3,7 @@
 <div class="container">
 
 
-<!-- top half of  -->
+	<!-- top half of  -->
 	<div class="">
 		<div class="row">
 			<div class="col-6">
@@ -28,17 +28,34 @@
 			
 		<div class="row">
 			<div class="col">
-				<div class="card">
+				<div class="">
 					<h1> Edit </h1>
-					<a href="/uploads/<%= book.id %>/edit">Edit</a>
+					<!-- <a href="/uploads/<%= book.id %>/edit">Edit</a> -->
 				</div>
 			</div>
 		</div>
-			
-		
-		
 	</div>
+	<div>
+		<div class="row">
+			<h1 class="text-center">Chapter Selection</h1>
+			<div class="col-md-6 offset-md-3">
+				<form action="/uploads/<%= book.id %>/chapters" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+					<div class="input-group mb-3">
+						<label for="chapter[name]" class="col-sm-2 col-form-label">Name</label>
+						<input type="text" id="chapter[name]" placeholder="Name" name="name" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+					</div>
+					<div class="input-group mb-3">
+						<label for="chpater[number]" class="col-sm-2 col-form-label">Number</label>
+						<input type="text" id="chapter[number]" placeholder="Number" name="number" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+					</div>
+					<div class="input-group mb-3">
+						<input type="file" id="chapter[image]" name="images" class="form-control" multiple />
+						<label for="chapter[image]" class="input-group-text">Upload</label>
+					</div>
 
-	
-
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
+

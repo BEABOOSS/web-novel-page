@@ -154,7 +154,7 @@ app.post(
 	catchAsync(async (req, res, next) => {
 		const book = new Upload(req.body.book);
 		book.coverPicture = req.files.map((f) => ({ url: f.path, filename: f.filename }));
-		book.chapters
+		book.chapters;
 		await book.save();
 		console.log(book);
 		res.redirect(`/uploads/${book._id}`);
