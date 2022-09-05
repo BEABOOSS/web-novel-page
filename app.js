@@ -126,6 +126,9 @@ app.get("/books/quickSearch", (req, res) => {
 	res.render("books/quickSearch");
 });
 
+
+
+// searching (navbar)
 app.post(
 	"/books/show",
 	catchAsync(async (req, res, next) => {
