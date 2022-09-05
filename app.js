@@ -140,6 +140,7 @@ app.post(
 
 // NEW RELEASE
 app.get("/books/release", (req, res) => {
+
 	res.render("books/release");
 });
 
@@ -164,12 +165,23 @@ app.post(
 // showing the book aka all chapters
 app.get(
 	"/uploads/:id",
-	upload.array("coverPicture"),
+	// upload.array("coverPicture"),
 	catchAsync(async (req, res) => {
 		const book = await Upload.findById(req.params.id);
+		console.log(book.chapterss[0].id)
 		res.render("books/show", { book });
 	})
 );
+// adding the new chapters
+// app.put("/uploads/:id", catchAsync(async(req, res)=> {
+
+// }));
+// chapter page
+app.get("/uploads/:id/:id", catchAsync(async(req, res) => {
+	// const book = await Upload.findById(req.params.id);
+	// console.log(book.chapterss[0].id)
+	// res.redirect("books/chapter", {book})
+}))
 
 // rendering Edit form
 app.get(

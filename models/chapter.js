@@ -14,14 +14,12 @@ const opts = { toJSON: { virtuals: true } };
 
 const ChapterSchema = new Schema(
 	{
-		chapter: {
-			name: String,
-			number: String,
-			images: [ImageSchema],
-			uploadTime: {
-				type: Date,
-				default: Date.now,
-			},
+		name: String,
+		number: String,
+		images: [ImageSchema],
+		uploadTime: {
+			type: Date,
+			default: Date.now,
 		},
 	},
 	opts

@@ -1,8 +1,6 @@
 <% layout("layout/boilerplate") %>
 <link rel="stylesheet" href="/public/stylesheet/show.css" />
 <div class="container">
-
-
 	<!-- top half of  -->
 	<div class="">
 		<div class="row">
@@ -14,22 +12,22 @@
 			<div class="col-4">
 				<div class="">
 					<h1><%= book.title %></h1>
-                    <p><span class="badge rounded-pill bg-dark"><%= book.genres %></span></p>
+					<p><span class="badge rounded-pill bg-dark"><%= book.genres %></span></p>
 				</div>
 				<div>
 					<h3>Synopsis</h3>
-					<p><%= book.description %> </p>
+					<p><%= book.description %></p>
 				</div>
 			</div>
 		</div>
 
 		<!-- if user has perm put the edit form -->
 		<!-- edit / delete -->
-			
+
 		<div class="row">
 			<div class="col">
 				<div class="">
-					<h1> Edit </h1>
+					<h1>Edit</h1>
 					<!-- <a href="/uploads/<%= book.id %>/edit">Edit</a> -->
 				</div>
 			</div>
@@ -42,20 +40,43 @@
 				<form action="/uploads/<%= book.id %>/chapters" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
 					<div class="input-group mb-3">
 						<label for="chapter[name]" class="col-sm-2 col-form-label">Name</label>
-						<input type="text" id="chapter[name]" placeholder="Name" name="name" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+						<input type="text" id="chapter[name]" placeholder="Name" name="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
 					</div>
 					<div class="input-group mb-3">
 						<label for="chpater[number]" class="col-sm-2 col-form-label">Number</label>
-						<input type="text" id="chapter[number]" placeholder="Number" name="number" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+						<input
+							type="text"
+							id="chapter[number]"
+							placeholder="Number"
+							name="number"
+							class="form-control"
+							aria-label="Sizing example input"
+							aria-describedby="inputGroup-sizing-default"
+						/>
 					</div>
 					<div class="input-group mb-3">
 						<input type="file" id="chapter[image]" name="images" class="form-control" multiple />
 						<label for="chapter[image]" class="input-group-text">Upload</label>
 					</div>
 
+					<div class="">
+						<% book.chapterss.forEach( el => { %>
+						<div class="card mb-1">
+							<div class="row g-0">
+								<div class="col-mb-8">
+									<div class="card-body">
+										<a href="/uploads/<%=book.id%>/<%= el.%>" class="text-decoration-none">
+											<h5 class="card-title"><%= el.name %></h5>
+										</a>
+										<p class="card-text text"><small class="text-muted"><%= el.uploadTime %></small></p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<% }) %>
+					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 </div>
-

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { array } = require("joi");
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 const Review = require("./review");
 const Chapter = require("./chapter");
 
@@ -18,20 +18,53 @@ ImageSchema.virtual("thumbnail").get(function () {
 
 const opts = { toJSON: { virtuals: true } };
 
+// const UploadSchema = new Schema(
+// 	{
+// 		title: String,
+// 		description: String,
+// 		status: String,
+// 		genres: String,
+// 		uploadTime: {
+// 			type: Date,
+// 			default: Date.now,
+// 		},
+// 		coverPicture: [ImageSchema],
+// 		chapterss: [
+// 			{
+// 				type: Schema.Types.ObjectId,
+// 				ref: "Chapter",
+// 			},
+// 		],
+// 		reviews: [
+// 			{
+// 				type: Schema.Types.ObjectId,
+// 				ref: "Review",
+// 			},
+// 		],
+// 	},
+// 	opts
+// );
+
 const UploadSchema = new Schema(
 	{
 		title: String,
 		description: String,
+		status: String,
 		genres: String,
 		uploadTime: {
 			type: Date,
 			default: Date.now,
 		},
 		coverPicture: [ImageSchema],
-		chapters: [
+		chapterss: [
 			{
-				type: Schema.Types.ObjectId,
-				ref: "Chapter",
+				name: String,
+				number: String,
+				images: [ImageSchema],
+				uploadTime: {
+					type: Date,
+					default: Date.now,
+				},
 			},
 		],
 		reviews: [
