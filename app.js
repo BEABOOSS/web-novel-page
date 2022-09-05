@@ -50,16 +50,10 @@ app.use(methodOverride("_method"));
 // 		cb(null, file.fieldname + "-" + uniqueSuffix);
 // 	},
 // });
-const {storage} = require("./cloudinary")
+const { storage } = require("./cloudinary");
 const upload = multer({ storage });
 
-const scriptSrcUrls = [
-	"https://stackpath.bootstrapcdn.com/",
-	"https://kit.fontawesome.com/",
-	"https://cdnjs.cloudflare.com/",
-	"https://cdn.jsdelivr.net/",
-	"https://res.cloudinary.com/dqdaf6ffk/",
-];
+const scriptSrcUrls = ["https://stackpath.bootstrapcdn.com/", "https://kit.fontawesome.com/", "https://cdnjs.cloudflare.com/", "https://cdn.jsdelivr.net/", "https://res.cloudinary.com/dqdaf6ffk/"];
 const styleSrcUrls = [
 	"https://kit-free.fontawesome.com/",
 	"https://stackpath.bootstrapcdn.com/",
@@ -95,7 +89,6 @@ app.use(
 	})
 );
 
-
 const validateBook = (req, res, next) => {
 	const { error } = uploadSchema.validate(req.body);
 	if (error) {
@@ -121,14 +114,15 @@ app.get(
 	})
 );
 
-// QUICK SEARCH
-app.get("/books/quickSearch", (req, res) => {
-	res.render("books/quickSearch");
-});
-
-
+// QUICK SEARCH Do be determined  DBT
+// app.get("/books/quickSearch", (req, res) => {
+// 	res.render("books/quickSearch");
+// });
 
 // searching (navbar)
+// app.get("books/show", catchAsync(async (req, res, next) => {
+// const result = await Uploads.aggregate([])
+// }));
 app.post(
 	"/books/show",
 	catchAsync(async (req, res, next) => {
@@ -139,7 +133,7 @@ app.post(
 		// } else {
 		// 	return res.redirect("/browse");
 		// }
-
+		// console.log(req.body)
 		return res.redirect(`/uploads/${book[0].id}`);
 	})
 );
@@ -158,10 +152,11 @@ app.post(
 
 	upload.array("coverPicture"),
 	catchAsync(async (req, res, next) => {
-		const book = new Upload(req.body.book)
-		book.coverPicture = req.files.map((f)=> ({url: f.path, filename: f.filename}));
+		const book = new Upload(req.body.book);
+		book.coverPicture = req.files.map((f) => ({ url: f.path, filename: f.filename }));
+		book.chapters
 		await book.save();
-		console.log(book)
+		console.log(book);
 		res.redirect(`/uploads/${book._id}`);
 	})
 );
@@ -169,20 +164,52 @@ app.post(
 // showing the book aka all chapters
 app.get(
 	"/uploads/:id",
+	upload.array("coverPicture"),
 	catchAsync(async (req, res) => {
 		const book = await Upload.findById(req.params.id);
 		res.render("books/show", { book });
 	})
 );
 
+// rendering Edit form
+app.get(
+	"/uploads/:id/edit",
+	catchAsync(async (req, res) => {
+		const book = await Upload.findById(req.params.id);
+		// if(!book){
+		// flash
+		// }
 
-// rendering Edit form 
-app.get("/uploads/:id/edit",catchAsync(async(req, res) => {
-	const {id} = req.params;
-	const book = await Upload.findByIdAndUpdate(id, {...req.body.campground});
-}))
+		res.render("books/edit", { book, genre });
+	})
+);
+// updating book
+app.put(
+	"/uploads/:id",
+	catchAsync(async (req, res) => {
+		const { id } = req.params;
+		const book = await Upload.findById(id, { ...req.body.campground });
+		const images = req.files.map((f) => ({ url: f.path, filename: f.filename }));
+		book.chapters.images.push(...images);
+		await book.save();
+		if (req.body.deleteImages) {
+			for (let filename of req.body.deleteImages) {
+				await cloudinary.uploader.destroy(filename);
+			}
+			await book.updateOne({ $pull: { chapters: { images: { filename: { $in: req.body.deleteImages } } } } });
+		}
+		res.redirect(`/uploads/${book._id}`);
+	})
+);
 
-
+app.delete(
+	"/uploads/:id",
+	catchAsync(async (req, res) => {
+		const { id } = req.params;
+		await Upload.findByIdAndDelete(id);
+		res.redirect("books/browse");
+	})
+);
 
 // CONNECTING TO THE DATA BASE
 const port = process.env.PORT || "3000";

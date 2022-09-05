@@ -6,12 +6,12 @@
 <!-- top half of  -->
 	<div class="">
 		<div class="row">
-			<div class="col-4">
+			<div class="col-6">
 				<div class="">
 					<img src="<%= book.coverPicture[0].url%>" class="img-fluid rounded shadow-lg" alt="" srcset="" />
 				</div>
 			</div>
-			<div class="col-8">
+			<div class="col-4">
 				<div class="">
 					<h1><%= book.title %></h1>
                     <p><span class="badge rounded-pill bg-dark"><%= book.genres %></span></p>
@@ -22,6 +22,21 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- if user has perm put the edit form -->
+		<!-- edit / delete -->
+			
+		<div class="row">
+			<div class="col">
+				<div class="card">
+					<h1> Edit </h1>
+					<a href="/uploads/<%= book.id %>/edit">Edit</a>
+				</div>
+			</div>
+		</div>
+			
+		
+		
 	</div>
 
 	
