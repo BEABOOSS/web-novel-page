@@ -119,10 +119,6 @@ app.get(
 // 	res.render("books/quickSearch");
 // });
 
-// searching (navbar)
-// app.get("books/show", catchAsync(async (req, res, next) => {
-// const result = await Uploads.aggregate([])
-// }));
 app.post(
 	"/books/show",
 	catchAsync(async (req, res, next) => {
@@ -140,7 +136,6 @@ app.post(
 
 // NEW RELEASE
 app.get("/books/release", (req, res) => {
-
 	res.render("books/release");
 });
 
@@ -168,7 +163,12 @@ app.get(
 	// upload.array("coverPicture"),
 	catchAsync(async (req, res) => {
 		const book = await Upload.findById(req.params.id);
-		console.log(book.chapterss[0].id)
+		// console.log(book.chapterss[0].id);
+		// console.log(book.chapterss[0].images);
+		// console.log(book.chapterss[1].id);
+		// console.log(book.chapterss[2].id);
+		// console.log(book.id);
+
 		res.render("books/show", { book });
 	})
 );
@@ -177,11 +177,14 @@ app.get(
 
 // }));
 // chapter page
-app.get("/uploads/:id/:id", catchAsync(async(req, res) => {
-	// const book = await Upload.findById(req.params.id);
-	// console.log(book.chapterss[0].id)
-	// res.redirect("books/chapter", {book})
-}))
+app.get(
+	"/uploads/:id/chapterss/:id",
+	catchAsync(async (req, res) => {
+		const book = await Upload.findById(req.params._id);
+		console.log()
+		res.render("books/chapter", { book });
+	})
+);
 
 // rendering Edit form
 app.get(
