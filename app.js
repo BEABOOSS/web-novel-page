@@ -104,6 +104,11 @@ app.get("/", (req, res) => {
 	res.render("books/home");
 });
 
+// rendering the register form
+app.get("/register", (req, res) => {
+	res.render("users/register");
+});
+
 // showing the books
 app.get(
 	"/uploads",
@@ -124,25 +129,25 @@ app.post(
 	catchAsync(async (req, res, next) => {
 		let searchTerm = req.body.searchTerm;
 		let book = await Upload.find({ $text: { $search: searchTerm, $diacriticSensitive: true } });
-		// if (book) {
-		// 	return res.redirect(`/uploads/${book[0].id}`);
-		// } else {
-		// 	return res.redirect("/browse");
-		// }
-		// console.log(req.body)
+
 		return res.redirect(`/uploads/${book[0].id}`);
 	})
 );
 
-// NEW RELEASE
+// NEW RELEASE tbh might scrap this 
 app.get("/books/release", (req, res) => {
 	res.render("books/release");
 });
 
+//
 // Rendering form create
+//
 app.get("/uploads/new", (req, res) => {
 	res.render("books/new", { genre });
 });
+
+//
+// POSTING the new book to the db 
 app.post(
 	"/uploads",
 
@@ -166,22 +171,18 @@ app.get(
 		const lastIdx = book.chapterss[book.chapterss.length - 1];
 		const lastValue = book.chapterss.length;
 		const revOrder = book.chapterss.slice().reverse();
-		
-		// console.log(lastIdx.number)
-		// console.log(lastValue)
-		// reOrder.forEach(x=> console.log(x.number))
-		
-		
+
 		res.render("books/show", { book, lastIdx, lastValue, revOrder });
 	})
 );
 
+// showing the actual chapter that shows the images
 app.get(
 	"/uploads/:id/chapterss-:number/",
 	catchAsync(async (req, res) => {
 		const book = await Upload.findById(req.params.id);
 		book.number = req.params.number;
-		// console.log(book.number)
+
 		res.render("books/chapter", { book });
 	})
 );
