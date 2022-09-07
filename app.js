@@ -13,6 +13,7 @@ const Upload = require("./models/upload");
 const methodOverride = require("method-override");
 const { uploadSchema } = require("./schemas");
 const helmet = require("helmet");
+const uploadRoutes = require("./routes/uploads");
 
 const { cloudinary } = require("./cloudinary");
 const { genre } = require("./seeds/genres");
@@ -51,7 +52,7 @@ app.use(methodOverride("_method"));
 // 	},
 // });
 const { storage } = require("./cloudinary");
-const upload = multer({ storage });
+// const upload = multer({ storage });
 
 const scriptSrcUrls = ["https://stackpath.bootstrapcdn.com/", "https://kit.fontawesome.com/", "https://cdnjs.cloudflare.com/", "https://cdn.jsdelivr.net/", "https://res.cloudinary.com/dqdaf6ffk/"];
 const styleSrcUrls = [
@@ -98,6 +99,9 @@ const validateBook = (req, res, next) => {
 		next();
 	}
 };
+// IMPORTING ROUTES
+// app.use("/", userRoutes);
+app.use("/uploads/", uploadRoutes);
 
 // getting a home routes
 app.get("/", (req, res) => {
@@ -109,39 +113,37 @@ app.get("/register", (req, res) => {
 	res.render("users/register");
 });
 
-// ** ADDED **
-// showing the books
-app.get(
-	"/uploads",
-	catchAsync(async (req, res) => {
-		const book = await Upload.find({});
-		// console.log(book);
-		res.render("books/browse", { book });
-	})
-);
+// // ** ADDED **
+// // showing the books
+// app.get(
+// 	"/uploads",
+// 	catchAsync(async (req, res) => {
+// 		const book = await Upload.find({});
+// 		// console.log(book);
+// 		res.render("books/browse", { book });
+// 	})
+// );
 
-// ** ADDED **
-app.post(
-	"/books/show",
-	catchAsync(async (req, res, next) => {
-		let searchTerm = req.body.searchTerm;
-		let book = await Upload.find({ $text: { $search: searchTerm, $diacriticSensitive: true } });
+// // ** ADDED **
+// app.post(
+// 	"/books/show",
+// 	catchAsync(async (req, res, next) => {
+// 		let searchTerm = req.body.searchTerm;
+// 		let book = await Upload.find({ $text: { $search: searchTerm, $diacriticSensitive: true } });
 
-		res.redirect(`/uploads/${book[0].id}`);
-	})
-);
-
-
+// 		res.redirect(`/uploads/${book[0].id}`);
+// 	})
+// );
 
 //
 // ** ADDED **Rendering form create
 //
-app.get("/uploads/new", (req, res) => {
-	res.render("books/new", { genre });
-});
+// app.get("/uploads/new", (req, res) => {
+// 	res.render("books/new", { genre });
+// });
 
 //
-// ** ADDED ** POSTING the new book to the db 
+// ** ADDED ** POSTING the new book to the db
 // app.post(
 // 	"/uploads",
 
@@ -156,73 +158,85 @@ app.get("/uploads/new", (req, res) => {
 // 	})
 // );
 
+// // ** ADDED **
+// // showing the book aka all chapters
+// app.get(
+// 	"/uploads/:id",
+// 	// upload.array("coverPicture"),
+// 	catchAsync(async (req, res) => {
+// 		const book = await Upload.findById(req.params.id);
+// 		const lastIdx = book.chapterss[book.chapterss.length - 1];
+// 		const lastValue = book.chapterss.length;
+// 		const revOrder = book.chapterss.slice().reverse();
 
-// ** ADDED ** 
-// showing the book aka all chapters
-app.get(
-	"/uploads/:id",
-	// upload.array("coverPicture"),
-	catchAsync(async (req, res) => {
-		const book = await Upload.findById(req.params.id);
-		const lastIdx = book.chapterss[book.chapterss.length - 1];
-		const lastValue = book.chapterss.length;
-		const revOrder = book.chapterss.slice().reverse();
+// 		res.render("books/show", { book, lastIdx, lastValue, revOrder });
+// 	})
+// );
 
-		res.render("books/show", { book, lastIdx, lastValue, revOrder });
-	})
-);
+// // ** ADDED **
+// // showing the actual chapter that shows the images
+// app.get(
+// 	"/uploads/:id/chapterss-:number/",
+// 	catchAsync(async (req, res) => {
+// 		const book = await Upload.findById(req.params.id);
+// 		book.number = req.params.number;
 
-// ** ADDED ** 
-// showing the actual chapter that shows the images
-app.get(
-	"/uploads/:id/chapterss-:number/",
-	catchAsync(async (req, res) => {
-		const book = await Upload.findById(req.params.id);
-		book.number = req.params.number;
+// 		res.render("books/chapter", { book });
+// 	})
+// );
 
-		res.render("books/chapter", { book });
-	})
-);
+// // ** ADDED **
+// // rendering Edit form
+// app.get(
+// 	"/uploads/:id/edit",
+// 	catchAsync(async (req, res) => {
+// 		const book = await Upload.findById(req.params.id);
 
+// 		res.render("books/edit", { book, genre });
+// 	})
+// );
+// // ** ADDED **
+// // updating book
+// app.put(
+// 	"/uploads/:id",
+// 	catchAsync(async (req, res) => {
+// 		const { id } = req.params;
+// 		const book = await Upload.findById(id, { ...req.body.campground });
+// 		const images = req.files.map((f) => ({ url: f.path, filename: f.filename }));
+// 		book.chapters.images.push(...images);
+// 		await book.save();
+// 		if (req.body.deleteImages) {
+// 			for (let filename of req.body.deleteImages) {
+// 				await cloudinary.uploader.destroy(filename);
+// 			}
+// 			await book.updateOne({ $pull: { chapters: { images: { filename: { $in: req.body.deleteImages } } } } });
+// 		}
+// 		res.redirect(`/uploads/${book._id}`);
+// 	})
+// );
+// // ** ADDED **
+// app.delete(
+// 	"/uploads/:id",
+// 	catchAsync(async (req, res) => {
+// 		const { id } = req.params;
+// 		await Upload.findByIdAndDelete(id);
+// 		res.redirect("books/browse");
+// 	})
+// );
 
-// ** ADDED ** 
-// rendering Edit form
-app.get(
-	"/uploads/:id/edit",
-	catchAsync(async (req, res) => {
-		const book = await Upload.findById(req.params.id);
+//* ==================
+//*  error middleware
+//* ==================
 
-		res.render("books/edit", { book, genre });
-	})
-);
-// ** ADDED ** 
-// updating book
-app.put(
-	"/uploads/:id",
-	catchAsync(async (req, res) => {
-		const { id } = req.params;
-		const book = await Upload.findById(id, { ...req.body.campground });
-		const images = req.files.map((f) => ({ url: f.path, filename: f.filename }));
-		book.chapters.images.push(...images);
-		await book.save();
-		if (req.body.deleteImages) {
-			for (let filename of req.body.deleteImages) {
-				await cloudinary.uploader.destroy(filename);
-			}
-			await book.updateOne({ $pull: { chapters: { images: { filename: { $in: req.body.deleteImages } } } } });
-		}
-		res.redirect(`/uploads/${book._id}`);
-	})
-);
-// ** ADDED ** 
-app.delete(
-	"/uploads/:id",
-	catchAsync(async (req, res) => {
-		const { id } = req.params;
-		await Upload.findByIdAndDelete(id);
-		res.redirect("books/browse");
-	})
-);
+app.all("*", (req, res, next) => {
+	next(new ExpressError("Page Not Found", 404));
+});
+
+app.use((err, req, res, next) => {
+	const { statusCode = 500 } = err;
+	if (!err.message) err.message = "OHh No, Something went wrong!";
+	res.status(statusCode).render("error", { err });
+});
 
 // CONNECTING TO THE DATA BASE
 const port = process.env.PORT || "3000";

@@ -27,3 +27,6 @@ router.get("/:id/edit", catchAsync(uploads.renderEditForm))
 
 
 router.get("/:id/chapterss-:number", catchAsync(uploads.chapterOfBook))
+
+
+module.exports = router;
