@@ -163,25 +163,17 @@ app.get(
 	// upload.array("coverPicture"),
 	catchAsync(async (req, res) => {
 		const book = await Upload.findById(req.params.id);
-		// console.log(book.chapterss[0].id);
-		// console.log(book.chapterss[0].images);
-		// console.log(book.chapterss[1].id);
-		// console.log(book.chapterss[2].id);
-		// console.log(book.id);
 
 		res.render("books/show", { book });
 	})
 );
-// adding the new chapters
-// app.put("/uploads/:id", catchAsync(async(req, res)=> {
 
-// }));
-// chapter page
 app.get(
-	"/uploads/:id/chapterss/:id",
+	"/uploads/:id/chapterss-:number/",
 	catchAsync(async (req, res) => {
-		const book = await Upload.findById(req.params._id);
-		console.log()
+		const book = await Upload.findById(req.params.id);
+		book.number = req.params.number;
+		// console.log(book.number)
 		res.render("books/chapter", { book });
 	})
 );
@@ -191,9 +183,6 @@ app.get(
 	"/uploads/:id/edit",
 	catchAsync(async (req, res) => {
 		const book = await Upload.findById(req.params.id);
-		// if(!book){
-		// flash
-		// }
 
 		res.render("books/edit", { book, genre });
 	})

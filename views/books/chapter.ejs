@@ -1,2 +1,12 @@
 <% layout("layout/boilerplate") %> 
-<h1><%= book %> </h1>
+<!-- <h1>1<%= book.chapterss[book.number]%> </h1> -->
+
+
+
+<% book.chapterss[book.number].images.forEach( el => {%>
+
+   <img src="<%= el.url%>" alt="" srcset="">
+   
+
+
+<% }) %> 

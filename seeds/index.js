@@ -39,99 +39,94 @@ const seedDB = async () => {
 			chapterss: [
 				{
 					name: "asdfhjklasdfjkhasdhjk 1 ",
+					number: 0,
 					images: [
 						{
-							url: "https://blogger.googleusercontent.com/img/a/AVvXsEiDMuEGSKP10Dn8WXoyFCGmlaveKnl5UEgiTyoGmNpkt3qmm0QxI3xScl5yIdYlXHBnZvsqa4ARvhIANbCjImxjnPG0OnvPdzHS__av6VJzJTH2TlFAc9QirYE68GLogPk3Jg9c07wB7vm8dj1SLVet6hUSf_VthsNJ-tVf4_3Krxm7ABquH5RS2qRVNQ=s7988",
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/02_1_paw5qh.jpg",
 							filename: "yup",
 						},
 						{
-							url: "https://blogger.googleusercontent.com/img/a/AVvXsEiDMuEGSKP10Dn8WXoyFCGmlaveKnl5UEgiTyoGmNpkt3qmm0QxI3xScl5yIdYlXHBnZvsqa4ARvhIANbCjImxjnPG0OnvPdzHS__av6VJzJTH2TlFAc9QirYE68GLogPk3Jg9c07wB7vm8dj1SLVet6hUSf_VthsNJ-tVf4_3Krxm7ABquH5RS2qRVNQ=s7988",
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090496/chapter1/03_ntt0zg.jpg",
 							filename: "yup",
 						},
 						{
-							url: "https://blogger.googleusercontent.com/img/a/AVvXsEiDMuEGSKP10Dn8WXoyFCGmlaveKnl5UEgiTyoGmNpkt3qmm0QxI3xScl5yIdYlXHBnZvsqa4ARvhIANbCjImxjnPG0OnvPdzHS__av6VJzJTH2TlFAc9QirYE68GLogPk3Jg9c07wB7vm8dj1SLVet6hUSf_VthsNJ-tVf4_3Krxm7ABquH5RS2qRVNQ=s7988",
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090496/chapter1/04_velcif.jpg",
 							filename: "yup",
 						},
 						{
-							url: "https://blogger.googleusercontent.com/img/a/AVvXsEiDMuEGSKP10Dn8WXoyFCGmlaveKnl5UEgiTyoGmNpkt3qmm0QxI3xScl5yIdYlXHBnZvsqa4ARvhIANbCjImxjnPG0OnvPdzHS__av6VJzJTH2TlFAc9QirYE68GLogPk3Jg9c07wB7vm8dj1SLVet6hUSf_VthsNJ-tVf4_3Krxm7ABquH5RS2qRVNQ=s7988",
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090496/chapter1/05_e5n9p6.jpg",
 							filename: "yup",
 						},
 						{
-							url: "https://blogger.googleusercontent.com/img/a/AVvXsEiDMuEGSKP10Dn8WXoyFCGmlaveKnl5UEgiTyoGmNpkt3qmm0QxI3xScl5yIdYlXHBnZvsqa4ARvhIANbCjImxjnPG0OnvPdzHS__av6VJzJTH2TlFAc9QirYE68GLogPk3Jg9c07wB7vm8dj1SLVet6hUSf_VthsNJ-tVf4_3Krxm7ABquH5RS2qRVNQ=s7988",
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090496/chapter1/06_i7ahkk.jpg",
 							filename: "yup",
 						},
 					],
 				},
 				{
 					name: "asdfhjklasdfjkhasdhjk 2 ",
+					number: 1,
 					images: [
 						{
-							url: "https://blogger.googleusercontent.com/img/a/AVvXsEiDMuEGSKP10Dn8WXoyFCGmlaveKnl5UEgiTyoGmNpkt3qmm0QxI3xScl5yIdYlXHBnZvsqa4ARvhIANbCjImxjnPG0OnvPdzHS__av6VJzJTH2TlFAc9QirYE68GLogPk3Jg9c07wB7vm8dj1SLVet6hUSf_VthsNJ-tVf4_3Krxm7ABquH5RS2qRVNQ=s7988",
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090496/chapter1/07_dvtlb3.jpg",
 							filename: "yup",
 						},
 						{
-							url: "https://blogger.googleusercontent.com/img/a/AVvXsEiDMuEGSKP10Dn8WXoyFCGmlaveKnl5UEgiTyoGmNpkt3qmm0QxI3xScl5yIdYlXHBnZvsqa4ARvhIANbCjImxjnPG0OnvPdzHS__av6VJzJTH2TlFAc9QirYE68GLogPk3Jg9c07wB7vm8dj1SLVet6hUSf_VthsNJ-tVf4_3Krxm7ABquH5RS2qRVNQ=s7988",
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090496/chapter1/08_pzaryw.jpg",
 							filename: "yup",
 						},
 						{
-							url: "https://blogger.googleusercontent.com/img/a/AVvXsEiDMuEGSKP10Dn8WXoyFCGmlaveKnl5UEgiTyoGmNpkt3qmm0QxI3xScl5yIdYlXHBnZvsqa4ARvhIANbCjImxjnPG0OnvPdzHS__av6VJzJTH2TlFAc9QirYE68GLogPk3Jg9c07wB7vm8dj1SLVet6hUSf_VthsNJ-tVf4_3Krxm7ABquH5RS2qRVNQ=s7988",
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090496/chapter1/09_of3q25.jpg",
 							filename: "yup",
 						},
 						{
-							url: "https://blogger.googleusercontent.com/img/a/AVvXsEiDMuEGSKP10Dn8WXoyFCGmlaveKnl5UEgiTyoGmNpkt3qmm0QxI3xScl5yIdYlXHBnZvsqa4ARvhIANbCjImxjnPG0OnvPdzHS__av6VJzJTH2TlFAc9QirYE68GLogPk3Jg9c07wB7vm8dj1SLVet6hUSf_VthsNJ-tVf4_3Krxm7ABquH5RS2qRVNQ=s7988",
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090496/chapter1/10_i0tljx.jpg",
 							filename: "yup",
 						},
 						{
-							url: "https://blogger.googleusercontent.com/img/a/AVvXsEiDMuEGSKP10Dn8WXoyFCGmlaveKnl5UEgiTyoGmNpkt3qmm0QxI3xScl5yIdYlXHBnZvsqa4ARvhIANbCjImxjnPG0OnvPdzHS__av6VJzJTH2TlFAc9QirYE68GLogPk3Jg9c07wB7vm8dj1SLVet6hUSf_VthsNJ-tVf4_3Krxm7ABquH5RS2qRVNQ=s7988",
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090496/chapter1/11_qtvd3z.jpg",
 							filename: "yup",
 						},
 						{
-							url: "https://blogger.googleusercontent.com/img/a/AVvXsEiDMuEGSKP10Dn8WXoyFCGmlaveKnl5UEgiTyoGmNpkt3qmm0QxI3xScl5yIdYlXHBnZvsqa4ARvhIANbCjImxjnPG0OnvPdzHS__av6VJzJTH2TlFAc9QirYE68GLogPk3Jg9c07wB7vm8dj1SLVet6hUSf_VthsNJ-tVf4_3Krxm7ABquH5RS2qRVNQ=s7988",
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090496/chapter1/12_y451mw.jpg",
 							filename: "yup",
 						},
 						{
-							url: "https://blogger.googleusercontent.com/img/a/AVvXsEiDMuEGSKP10Dn8WXoyFCGmlaveKnl5UEgiTyoGmNpkt3qmm0QxI3xScl5yIdYlXHBnZvsqa4ARvhIANbCjImxjnPG0OnvPdzHS__av6VJzJTH2TlFAc9QirYE68GLogPk3Jg9c07wB7vm8dj1SLVet6hUSf_VthsNJ-tVf4_3Krxm7ABquH5RS2qRVNQ=s7988",
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/13_bovxnq.jpg",
 							filename: "yup",
 						},
 					],
 				},
 				{
 					name: "asdfhjklasdfjkhasdhjk 3 ",
+					number: 2,
 					images: [
 						{
-							url: "https://blogger.googleusercontent.com/img/a/AVvXsEiDMuEGSKP10Dn8WXoyFCGmlaveKnl5UEgiTyoGmNpkt3qmm0QxI3xScl5yIdYlXHBnZvsqa4ARvhIANbCjImxjnPG0OnvPdzHS__av6VJzJTH2TlFAc9QirYE68GLogPk3Jg9c07wB7vm8dj1SLVet6hUSf_VthsNJ-tVf4_3Krxm7ABquH5RS2qRVNQ=s7988",
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/14_tbc4xy.jpg",
 							filename: "yup",
 						},
 						{
-							url: "https://blogger.googleusercontent.com/img/a/AVvXsEiDMuEGSKP10Dn8WXoyFCGmlaveKnl5UEgiTyoGmNpkt3qmm0QxI3xScl5yIdYlXHBnZvsqa4ARvhIANbCjImxjnPG0OnvPdzHS__av6VJzJTH2TlFAc9QirYE68GLogPk3Jg9c07wB7vm8dj1SLVet6hUSf_VthsNJ-tVf4_3Krxm7ABquH5RS2qRVNQ=s7988",
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/15_zt5ryg.jpg",
 							filename: "yup",
 						},
 						{
-							url: "https://blogger.googleusercontent.com/img/a/AVvXsEiDMuEGSKP10Dn8WXoyFCGmlaveKnl5UEgiTyoGmNpkt3qmm0QxI3xScl5yIdYlXHBnZvsqa4ARvhIANbCjImxjnPG0OnvPdzHS__av6VJzJTH2TlFAc9QirYE68GLogPk3Jg9c07wB7vm8dj1SLVet6hUSf_VthsNJ-tVf4_3Krxm7ABquH5RS2qRVNQ=s7988",
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/16_o6tqzk.jpg",
 							filename: "yup",
 						},
 						{
-							url: "https://blogger.googleusercontent.com/img/a/AVvXsEiDMuEGSKP10Dn8WXoyFCGmlaveKnl5UEgiTyoGmNpkt3qmm0QxI3xScl5yIdYlXHBnZvsqa4ARvhIANbCjImxjnPG0OnvPdzHS__av6VJzJTH2TlFAc9QirYE68GLogPk3Jg9c07wB7vm8dj1SLVet6hUSf_VthsNJ-tVf4_3Krxm7ABquH5RS2qRVNQ=s7988",
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/18_jmrzo9.jpg",
 							filename: "yup",
 						},
 						{
-							url: "https://blogger.googleusercontent.com/img/a/AVvXsEiDMuEGSKP10Dn8WXoyFCGmlaveKnl5UEgiTyoGmNpkt3qmm0QxI3xScl5yIdYlXHBnZvsqa4ARvhIANbCjImxjnPG0OnvPdzHS__av6VJzJTH2TlFAc9QirYE68GLogPk3Jg9c07wB7vm8dj1SLVet6hUSf_VthsNJ-tVf4_3Krxm7ABquH5RS2qRVNQ=s7988",
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/19_w8fhb8.jpg",
 							filename: "yup",
 						},
 						{
-							url: "https://blogger.googleusercontent.com/img/a/AVvXsEiDMuEGSKP10Dn8WXoyFCGmlaveKnl5UEgiTyoGmNpkt3qmm0QxI3xScl5yIdYlXHBnZvsqa4ARvhIANbCjImxjnPG0OnvPdzHS__av6VJzJTH2TlFAc9QirYE68GLogPk3Jg9c07wB7vm8dj1SLVet6hUSf_VthsNJ-tVf4_3Krxm7ABquH5RS2qRVNQ=s7988",
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/18_jmrzo9.jpg",
 							filename: "yup",
 						},
 						{
-							url: "https://blogger.googleusercontent.com/img/a/AVvXsEiDMuEGSKP10Dn8WXoyFCGmlaveKnl5UEgiTyoGmNpkt3qmm0QxI3xScl5yIdYlXHBnZvsqa4ARvhIANbCjImxjnPG0OnvPdzHS__av6VJzJTH2TlFAc9QirYE68GLogPk3Jg9c07wB7vm8dj1SLVet6hUSf_VthsNJ-tVf4_3Krxm7ABquH5RS2qRVNQ=s7988",
-							filename: "yup",
-						},
-						{
-							url: "https://blogger.googleusercontent.com/img/a/AVvXsEiDMuEGSKP10Dn8WXoyFCGmlaveKnl5UEgiTyoGmNpkt3qmm0QxI3xScl5yIdYlXHBnZvsqa4ARvhIANbCjImxjnPG0OnvPdzHS__av6VJzJTH2TlFAc9QirYE68GLogPk3Jg9c07wB7vm8dj1SLVet6hUSf_VthsNJ-tVf4_3Krxm7ABquH5RS2qRVNQ=s7988",
-							filename: "yup",
-						},
-						{
-							url: "https://blogger.googleusercontent.com/img/a/AVvXsEiDMuEGSKP10Dn8WXoyFCGmlaveKnl5UEgiTyoGmNpkt3qmm0QxI3xScl5yIdYlXHBnZvsqa4ARvhIANbCjImxjnPG0OnvPdzHS__av6VJzJTH2TlFAc9QirYE68GLogPk3Jg9c07wB7vm8dj1SLVet6hUSf_VthsNJ-tVf4_3Krxm7ABquH5RS2qRVNQ=s7988",
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/19_w8fhb8.jpg",
 							filename: "yup",
 						},
 					],

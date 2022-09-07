@@ -33,10 +33,12 @@
 			</div>
 		</div>
 	</div>
+
 	<div>
 		<div class="row">
 			<h1 class="text-center">Chapter Selection</h1>
 			<div class="col-md-6 offset-md-3">
+				<!-- if  not admin or perms then not allowed to see this -->
 				<form action="/uploads/<%= book.id %>/chapters" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
 					<div class="input-group mb-3">
 						<label for="chapter[name]" class="col-sm-2 col-form-label">Name</label>
@@ -58,24 +60,25 @@
 						<input type="file" id="chapter[image]" name="images" class="form-control" multiple />
 						<label for="chapter[image]" class="input-group-text">Upload</label>
 					</div>
+				</form>
+				<!--*****  -->
 
-					<div class="">
-						<% book.chapterss.forEach( el => { %>
-						<div class="card mb-1">
-							<div class="row g-0">
-								<div class="col-mb-8">
-									<div class="card-body">
-										<a href="/uploads/<%=book.id%>/chapterss/<%= el.id%>" class="text-decoration-none">
-											<h5 class="card-title"><%= el.name %></h5>
-										</a>
-										<p class="card-text text"><small class="text-muted"><%= el.uploadTime %></small></p>
-									</div>
+				<div class="">
+					<% book.chapterss.forEach( el => { %>
+					<div class="card mb-1">
+						<div class="row g-0">
+							<div class="col-mb-8">
+								<div class="card-body">
+									<a href="/uploads/<%=book.id%>/chapterss-<%=el.number%>/" class="text-decoration-none">
+										<h5 class="card-title"><%= el.name %></h5>
+									</a>
+									<p class="card-text text"><small class="text-muted"><%= el.uploadTime %></small></p>
 								</div>
 							</div>
 						</div>
-						<% }) %>
 					</div>
-				</form>
+					<% }) %>
+				</div>
 			</div>
 		</div>
 	</div>
