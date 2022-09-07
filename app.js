@@ -109,6 +109,7 @@ app.get("/register", (req, res) => {
 	res.render("users/register");
 });
 
+// ** ADDED **
 // showing the books
 app.get(
 	"/uploads",
@@ -119,49 +120,44 @@ app.get(
 	})
 );
 
-// QUICK SEARCH Do be determined  DBT
-// app.get("/books/quickSearch", (req, res) => {
-// 	res.render("books/quickSearch");
-// });
-
+// ** ADDED **
 app.post(
 	"/books/show",
 	catchAsync(async (req, res, next) => {
 		let searchTerm = req.body.searchTerm;
 		let book = await Upload.find({ $text: { $search: searchTerm, $diacriticSensitive: true } });
 
-		return res.redirect(`/uploads/${book[0].id}`);
+		res.redirect(`/uploads/${book[0].id}`);
 	})
 );
 
-// NEW RELEASE tbh might scrap this 
-app.get("/books/release", (req, res) => {
-	res.render("books/release");
-});
+
 
 //
-// Rendering form create
+// ** ADDED **Rendering form create
 //
 app.get("/uploads/new", (req, res) => {
 	res.render("books/new", { genre });
 });
 
 //
-// POSTING the new book to the db 
-app.post(
-	"/uploads",
+// ** ADDED ** POSTING the new book to the db 
+// app.post(
+// 	"/uploads",
 
-	upload.array("coverPicture"),
-	catchAsync(async (req, res, next) => {
-		const book = new Upload(req.body.book);
-		book.coverPicture = req.files.map((f) => ({ url: f.path, filename: f.filename }));
-		book.chapters;
-		await book.save();
-		console.log(book);
-		res.redirect(`/uploads/${book._id}`);
-	})
-);
+// 	upload.array("coverPicture"),
+// 	catchAsync(async (req, res, next) => {
+// 		const book = new Upload(req.body.book);
+// 		book.coverPicture = req.files.map((f) => ({ url: f.path, filename: f.filename }));
+// 		book.chapters;
+// 		await book.save();
+// 		console.log(book);
+// 		res.redirect(`/uploads/${book._id}`);
+// 	})
+// );
 
+
+// ** ADDED ** 
 // showing the book aka all chapters
 app.get(
 	"/uploads/:id",
@@ -176,6 +172,7 @@ app.get(
 	})
 );
 
+// ** ADDED ** 
 // showing the actual chapter that shows the images
 app.get(
 	"/uploads/:id/chapterss-:number/",
@@ -187,6 +184,8 @@ app.get(
 	})
 );
 
+
+// ** ADDED ** 
 // rendering Edit form
 app.get(
 	"/uploads/:id/edit",
@@ -196,6 +195,7 @@ app.get(
 		res.render("books/edit", { book, genre });
 	})
 );
+// ** ADDED ** 
 // updating book
 app.put(
 	"/uploads/:id",
@@ -214,7 +214,7 @@ app.put(
 		res.redirect(`/uploads/${book._id}`);
 	})
 );
-
+// ** ADDED ** 
 app.delete(
 	"/uploads/:id",
 	catchAsync(async (req, res) => {
