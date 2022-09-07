@@ -163,8 +163,16 @@ app.get(
 	// upload.array("coverPicture"),
 	catchAsync(async (req, res) => {
 		const book = await Upload.findById(req.params.id);
-
-		res.render("books/show", { book });
+		const lastIdx = book.chapterss[book.chapterss.length - 1];
+		const lastValue = book.chapterss.length;
+		const revOrder = book.chapterss.slice().reverse();
+		
+		// console.log(lastIdx.number)
+		// console.log(lastValue)
+		// reOrder.forEach(x=> console.log(x.number))
+		
+		
+		res.render("books/show", { book, lastIdx, lastValue, revOrder });
 	})
 );
 

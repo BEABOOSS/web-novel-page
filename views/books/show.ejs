@@ -62,9 +62,53 @@
 					</div>
 				</form>
 				<!--*****  -->
+				<div class="dropdown">
+					<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
+				</div>
 
-				<div class="">
-					<% book.chapterss.forEach( el => { %>
+				<div class="release">
+					<h2><%= book.title %></h2>
+					<div class="first-last">
+						<div class="select">
+							<!-- selecting the first chapter -->
+							<a href="/uploads/<%= book.id%>/chapterss-1">
+								<span>First Chapter</span>
+								<span>Chapter 1</span>
+							</a>
+						</div>
+						<div class="select">
+							<!-- selection the last chapter -->
+							<a href="/uploads/<%= book.id%>/chapterss-<%= lastIdx.number %>">
+								<span>New Chapter</span>
+								<span>Chapter <%= lastValue %></span>
+							</a>
+						</div>
+						<div class="search-chapter">
+							<input id="searchchapter" type="text" placeholder="Search Chapter. ex: 1 " />
+						</div>
+
+						<div class="chlister" id="chapterlist">
+							<ul class="clstyle">
+								<% revOrder.forEach( el => { %>
+								<li data-num="<%= el.number %>">
+									<div class="box">
+										<div class="chh-num">
+											<a href="/uploads/<%= book.id%>/chapterss-<%= el.number %>">
+												<span class="chapternum">Chapter <%=el.number %></span>
+												<span class="chapternum"><%=el.uploadTime %></span>
+											</a>
+										</div>
+									</div>
+								</li>
+
+								<% })%>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<!-- <div class="">
+					<% revOrder.forEach( el => { %>
 					<div class="card mb-1">
 						<div class="row g-0">
 							<div class="col-mb-8">
@@ -78,7 +122,11 @@
 						</div>
 					</div>
 					<% }) %>
+				</div> -->
+				<div class="reviews">
+					<h2>Reviews</h2>
 				</div>
+
 			</div>
 		</div>
 	</div>
