@@ -2,8 +2,8 @@ const User = require("../models/user");
 
 // NEED TO ADD THE FLASH msg later on if possible
 module.exports.renderRegister = (req, res) => {
-    res.render("users/register");
-}
+	res.render("users/register");
+};
 
 module.exports.register = async (req, res, next) => {
 	try {
@@ -29,7 +29,9 @@ module.exports.login = (req, res) => {
 	res.redirect(redirectUrl);
 };
 
-module.exports.logout = (req, res) => {
-    req.logout();
-    req.redirect("/uploads")
+module.exports.logout = (req, res, next) => {
+	req.logout((err) => {
+		if (err) return next(err);
+	});
+	res.redirect("/uploads");
 };

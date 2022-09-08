@@ -12,7 +12,7 @@ const { isLoggedIn } = require("../middleware");
 
 router.route("/")
     .get(catchAsync(uploads.allBook))
-    .post(isLoggedIn, upload.array("coverPicture"), catchAsync(uploads.createBook));
+    .post( upload.array("coverPicture"), catchAsync(uploads.createBook));
 
 //-------- IMPORTANT--------
 // must put the new route before the show page or else it thinks that new is an ID

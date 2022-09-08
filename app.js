@@ -19,7 +19,6 @@ const session = require("express-session");
 const LocalStrategy = require("passport-local");
 
 const { cloudinary } = require("./cloudinary");
-const { genre } = require("./seeds/genres");
 const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
 
@@ -153,6 +152,11 @@ app.post(
 		res.redirect(`/uploads/${book[0].id}`);
 	})
 );
+
+
+
+
+
 
 //* ==================
 //*  error middleware
