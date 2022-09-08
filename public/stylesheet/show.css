@@ -1,4 +1,13 @@
+.body {
+    background-color: #1f1d2c;
+}
 .imgCover {
     width: 690px;
     height: 1000px;
+}
+
+
+.chLister {
+    margin: 15px;
+    border: 1px solid black;
 }

@@ -1,27 +1,27 @@
 <% layout("layout/boilerplate") %>
 <link rel="stylesheet" href="/stylesheet/browse.css" />
 
-<h1>Welcome To Our Home Page</h1>
+<h1 class="separate">Popular Today</h1>
 
 <div class="container">
-	<div id="allTimePopular" class="carousel slide" data-bs-ride="carousel">
+	<div id="allTimePopular" class="carousel slide shadow rounded" data-bs-ride="carousel">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="https://res.cloudinary.com/dqdaf6ffk/image/upload/v1646682003/YelpCamp/wyxai2femooxknq8svwl.png" alt="" srcset="" />
+				<img src="https://res.cloudinary.com/dqdaf6ffk/image/upload/v1646682003/YelpCamp/wyxai2femooxknq8svwl.png" class="rounded" alt="" srcset="" />
 				<div class="carousel-caption d-none d-md-block">
 					<h5>First slide</h5>
 					<p>Some representative placeholder content for the first slide.</p>
 				</div>
 			</div>
 			<div class="carousel-item">
-				<img src="https://res.cloudinary.com/dqdaf6ffk/image/upload/v1646682003/YelpCamp/wyxai2femooxknq8svwl.png" alt="" srcset="" />
+				<img src="https://res.cloudinary.com/dqdaf6ffk/image/upload/v1646682003/YelpCamp/wyxai2femooxknq8svwl.png" class="rounded" alt="" srcset="" />
 				<div class="carousel-caption d-none d-md-block">
 					<h5>Second slide</h5>
 					<p>Some representative placeholder content for the first slide.</p>
 				</div>
 			</div>
 			<div class="carousel-item">
-				<img src="https://res.cloudinary.com/dqdaf6ffk/image/upload/v1646682003/YelpCamp/wyxai2femooxknq8svwl.png" alt="" srcset="" />
+				<img src="https://res.cloudinary.com/dqdaf6ffk/image/upload/v1646682003/YelpCamp/wyxai2femooxknq8svwl.png" class="rounded" alt="" srcset="" />
 				<div class="carousel-caption d-none d-md-block">
 					<h5>Third slide</h5>
 					<p>Some representative placeholder content for the first slide.</p>
@@ -44,26 +44,27 @@
 
 <div>
 	<div>
-		<h2>New Release</h2>
-		<br />
+		<h2 class="h2sep">New Release</h2>
 	</div>
 	<div class="row row-cols-1 row-cols-md-2 g4">
 		<% book.forEach( el => { %>
 		<div class="col">
-			<div class="card mb-3 shadow" style="max-width: 600px; max-height: 210px;">
+			<div class="card mb-3 shadow cardBg">
 				<div class="row g-0">
-					<div class="col-md-4">
+					<div class="col-3">
 						<a class="link" href="/uploads/<%=el._id%>">
-							<img src="<%=el.coverPicture[0].url%>" class="img-fluid rounded" style="max-width: 200px;max-height: 200px" alt="..." />
+							<!-- <img src="<%=el.coverPicture[0].url%>" class="imgDis" alt="..." /> -->
+							<img src="https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662672154/chapter1/Solo_Leveling_Webtoon_nhkzpq.png" class="imgDis" alt="..." />
 						</a>
 					</div>
-					<div class="col-md-8">
+					<div class="col-9">
 						<div class="card-body">
-							<a class="text-decoration-none" href="/uploads/<%=el._id%>">
-								<h5 class="card-title"><%= el.title%> <span class="badge rounded-pill bg-danger">New</span></h5>
+							<a class="anc" href="/uploads/<%=el._id%>">
+								<h4 class="card-title"><%= el.title%> <span class="badge rounded-pill bg-danger">New</span></h4>
 							</a>
-							<p class="card-text"><%= el.description %></p>
-							<p class="card-text"><small class="text-muted"><%= el.uploadTime %> </small></p>
+							<h5>Chapter <%= el.chapterss.slice().reverse()[0].number %></h5>
+							<h5>Chapter <%= el.chapterss.slice().reverse()[1].number %></h5>
+							<!-- <p class="card-text"><small class="text-muted"><%= el.uploadTime %> </small></p> -->
 						</div>
 					</div>
 				</div>

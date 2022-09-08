@@ -34,6 +34,11 @@ module.exports.navbarSearch = async (req, res, next) => {
 //showing all books 
 module.exports.allBook = async (req, res) => {
 	const book = await Upload.find({});
+	// const lastIdx = book.chapterss[book.chapterss.length - 1]
+	
+
+
+	// console.log()
 	res.render("books/browse", { book });
 };
 
