@@ -39,32 +39,31 @@
 			<h1 class="text-center">Chapter Selection</h1>
 			<div class="col-md-6 offset-md-3">
 				<!-- if  not admin or perms then not allowed to see this -->
-				<form action="/uploads/<%= book.id %>/chapters" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
-					<div class="input-group mb-3">
-						<label for="chapter[name]" class="col-sm-2 col-form-label">Name</label>
-						<input type="text" id="chapter[name]" placeholder="Name" name="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
-					</div>
-					<div class="input-group mb-3">
-						<label for="chpater[number]" class="col-sm-2 col-form-label">Number</label>
-						<input
-							type="text"
-							id="chapter[number]"
-							placeholder="Number"
-							name="number"
-							class="form-control"
-							aria-label="Sizing example input"
-							aria-describedby="inputGroup-sizing-default"
-						/>
-					</div>
-					<div class="input-group mb-3">
-						<input type="file" id="chapter[image]" name="images" class="form-control" multiple />
-						<label for="chapter[image]" class="input-group-text">Upload</label>
-					</div>
-				</form>
+				<% if(currentUser && book.author.equals(currentUser.id)) {%>
+					<form action="/uploads/<%= book.id %>/chapters" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+						<div class="input-group mb-3">
+							<label for="chapter[name]" class="col-sm-2 col-form-label">Name</label>
+							<input type="text" id="chapter[name]" placeholder="Name" name="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+						</div>
+						<div class="input-group mb-3">
+							<label for="chpater[number]" class="col-sm-2 col-form-label">Number</label>
+							<input
+								type="text"
+								id="chapter[number]"
+								placeholder="Number"
+								name="number"
+								class="form-control"
+								aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-default"
+							/>
+						</div>
+						<div class="input-group mb-3">
+							<input type="file" id="chapter[image]" name="images" class="form-control" multiple />
+							<label for="chapter[image]" class="input-group-text">Upload</label>
+						</div>
+					</form>
+				<% } %>
 				<!--*****  -->
-				<div class="dropdown">
-					<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
-				</div>
 
 				<div class="release">
 					<h2><%= book.title %></h2>
@@ -109,7 +108,6 @@
 				<div class="reviews">
 					<h2>Reviews</h2>
 				</div>
-
 			</div>
 		</div>
 	</div>
