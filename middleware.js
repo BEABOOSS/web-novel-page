@@ -6,6 +6,18 @@ const { uploadSchema } = require("./schemas");
 
 
 
+module.exports.isLoggedIn = (req, res, next) => {
+
+    if(!req.isAuthenticated()) {
+        req.session.returnTo = req.originalUrl;
+        return res.redirect("/login");
+    }
+    next();
+};
+// Don't forget to add isAdmin or something similar
+
+
+
 module.exports.validateBook = (req, res, next) => {
     const {error} = uploadSchema.validate(req.body);
     if(error){
@@ -21,9 +33,11 @@ module.exports.validateBook = (req, res, next) => {
 
 
 
-
 /// | REVIEWS |
 /// V         V
+
+
+
 
 
 module.exports.validateReview = (req, res, next) => {

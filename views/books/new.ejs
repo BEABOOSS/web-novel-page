@@ -20,7 +20,7 @@
 				<label for="book[genres]" class="col-sm-2 col-form-label">Genres</label>
 				<input class="form-control" list="datalistOptions" id="genres" name="book[genres]" placeholder="Type to search..." />
 				<datalist id="datalistOptions">
-					<% for (let keys of genre) {%>
+					<% for (let keys of genres) {%>
 					<option value="<%= keys%>"></option>
 					<% } %>
 				</datalist>

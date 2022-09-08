@@ -8,12 +8,15 @@ const { array } = require("joi");
 const upload = multer({ storage });
 
 const Upload = require("../models/upload");
+const { isLoggedIn } = require("../middleware");
 
-router.route("/").get(catchAsync(uploads.allBook)).post(upload.array("coverPicture"), catchAsync(uploads.createBook));
+router.route("/")
+    .get(catchAsync(uploads.allBook))
+    .post(isLoggedIn, upload.array("coverPicture"), catchAsync(uploads.createBook));
 
 //-------- IMPORTANT--------
 // must put the new route before the show page or else it thinks that new is an ID
-router.get("/new", uploads.renderNewForm);
+router.get("/new", isLoggedIn, uploads.renderNewForm);
 
 
 // I'm not sure what to do about this
@@ -21,9 +24,12 @@ router.get("/new", uploads.renderNewForm);
 // router.post("/books/show", catchAsync(uploads.navbarSearch));
 // router.post("/books/show", uploads.navbarSearch);
 
-router.route("/:id").get(catchAsync(uploads.pageOfBook)).put(upload.array("coverPicture"), catchAsync(uploads.updateBook)).delete(catchAsync(uploads.deleteBook));
+router.route("/:id")
+    .get(catchAsync(uploads.pageOfBook))
+    .put(isLoggedIn, upload.array("coverPicture"), catchAsync(uploads.updateBook))
+    .delete(isLoggedIn, catchAsync(uploads.deleteBook));
 
-router.get("/:id/edit", catchAsync(uploads.renderEditForm));
+router.get("/:id/edit", isLoggedIn, catchAsync(uploads.renderEditForm));
 
 router.get("/:id/chapterss-:number", catchAsync(uploads.chapterOfBook));
 
