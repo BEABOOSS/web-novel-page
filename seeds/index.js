@@ -26,6 +26,7 @@ const seedDB = async () => {
 		const random114 = Math.floor(Math.random() * 114);
 		const genres = Math.floor(Math.random() * 109);
 		const book = new Upload({
+			author: "631a36c228c72348e344ab28",
 			title: `${Manga[random114].name}`,
 			status: `${Manga[random114].status}`,
 			description: lorem,
@@ -135,13 +136,10 @@ const seedDB = async () => {
 		});
 
 		await book.save();
-		console.log(book);
+		// console.log(book);
 	}
 };
 
-// sedDB().then(()=> {
-//     mongoose.connection.close();
-// })
 seedDB().then(() => {
 	mongoose.connection.close();
 });

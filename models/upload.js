@@ -56,6 +56,10 @@ const UploadSchema = new Schema(
 			default: Date.now,
 		},
 		coverPicture: [ImageSchema],
+		author: {
+			type: Schema.Types.ObjectId,
+			ref: "User"
+		},
 		chapterss: [
 			{
 				name: String,
