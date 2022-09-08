@@ -1,7 +1,7 @@
-// if (process.env.NODE_ENV !== "production") {
-//     require("dotenv").config();
-// };
-require("dotenv/config");
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config();
+};
+// require("dotenv/config");
 
 const express = require("express");
 const ejsMate = require("ejs-mate");
@@ -14,11 +14,16 @@ const methodOverride = require("method-override");
 const { uploadSchema } = require("./schemas");
 const helmet = require("helmet");
 const uploadRoutes = require("./routes/uploads");
+const passport = require("passport")
+const LocalStrategy = require("passport-local");
+
 
 const { cloudinary } = require("./cloudinary");
 const { genre } = require("./seeds/genres");
 const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
+
+const MongoDBStore = require("connect-mongo");
 
 // connect to mongo and sends back error if something goes wrong
 mongoose
@@ -33,6 +38,9 @@ mongoose
 
 const app = express();
 
+
+
+
 // Setting templating engine to EJS
 app.engine("ejs", ejsMate);
 app.set("views", path.join(__dirname, "/views"));
@@ -41,20 +49,43 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
-// SETTING UP MULTER
-// const storage = multer.diskStorage({
-// 	destination: (req, file, cb) => {
-// 		cb(null, "uploadings");
-// 	},
-// 	filename: (req, file, cb) => {
-// 		const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-// 		cb(null, file.fieldname + "-" + uniqueSuffix);
-// 	},
-// });
-const { storage } = require("./cloudinary");
-// const upload = multer({ storage });
 
-const scriptSrcUrls = ["https://stackpath.bootstrapcdn.com/", "https://kit.fontawesome.com/", "https://cdnjs.cloudflare.com/", "https://cdn.jsdelivr.net/", "https://res.cloudinary.com/dqdaf6ffk/"];
+const store = new MongoDBStore({
+	mongoUrl: dbUrl,
+	secret: process.env.SESSION_SECRET,
+	touchAfter: 24 * 60 * 60,
+});
+
+store.on("errors", function(e){
+	console.log("SESSION STORE OPEN", e);
+})
+
+const sessionConfig = {
+	store,
+	name: "manga",
+	secret: process.env.SESSION_SECRET,
+	saveUninitialized: true,
+	cookie: {
+		httpOnly: true,
+		// ENABLE BEFORE PUTTING IT IN PRODUCTION MODE
+		// secure: true,
+		expire: Date.now() + 1000 * 60 * 60 * 24 * 7,
+		maxAge: 1000 * 60 * 60 * 24 * 7,
+	},
+};
+
+
+app.use(session(sessionConfig));
+
+// app.use(helmet());
+
+const scriptSrcUrls = [
+	"https://stackpath.bootstrapcdn.com/",
+	"https://kit.fontawesome.com/",
+	"https://cdnjs.cloudflare.com/",
+	"https://cdn.jsdelivr.net/",
+	"https://res.cloudinary.com/dqdaf6ffk/",
+];
 const styleSrcUrls = [
 	"https://kit-free.fontawesome.com/",
 	"https://stackpath.bootstrapcdn.com/",
@@ -90,28 +121,34 @@ app.use(
 	})
 );
 
-const validateBook = (req, res, next) => {
-	const { error } = uploadSchema.validate(req.body);
-	if (error) {
-		const msg = error.details.map((el) => el.message).join(",");
-		throw new ExpressError(msg, 400);
-	} else {
-		next();
-	}
-};
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticat()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use((req, res, next)=> {
+	res.locals.currentUser = req.user;
+
+	next();
+})
+
+
+
+
+
 // IMPORTING ROUTES
 // app.use("/", userRoutes);
 app.use("/uploads", uploadRoutes);
 
 // getting a home routes
 app.get("/", (req, res) => {
-	res.render("books/home");
+	res.send(req.oidc.isAuthenticated() ? "Logged In" : "Logged out")
 });
 
-// rendering the register form
-// app.get("/register", (req, res) => {
-// 	res.render("users/register");
-// });
+
+
 
 // // ** ADDED **
 app.post(
@@ -139,7 +176,7 @@ app.use((err, req, res, next) => {
 });
 
 // CONNECTING TO THE DATA BASE
-const port = process.env.PORT || "3000";
+const port = process.env.DEV_PORT || "3000";
 app.listen(port, () => {
 	console.log(`Serving on port ${port}`);
 });
