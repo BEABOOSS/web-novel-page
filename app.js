@@ -1,6 +1,6 @@
 if (process.env.NODE_ENV !== "production") {
-    require("dotenv").config();
-};
+	require("dotenv").config();
+}
 // require("dotenv/config");
 
 const express = require("express");
@@ -10,21 +10,23 @@ const mongoose = require("mongoose");
 const multer = require("multer");
 const mongoSanitize = require("express-mongo-sanitize");
 const Upload = require("./models/upload");
+const User = require("./models/user");
 const methodOverride = require("method-override");
 const { uploadSchema } = require("./schemas");
 const helmet = require("helmet");
-const uploadRoutes = require("./routes/uploads");
-const passport = require("passport")
+const passport = require("passport");
+const session = require("express-session");
 const LocalStrategy = require("passport-local");
-
 
 const { cloudinary } = require("./cloudinary");
 const { genre } = require("./seeds/genres");
 const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
 
-const MongoDBStore = require("connect-mongo");
+const uploadRoutes = require("./routes/uploads");
+const userRoutes = require("./routes/users");
 
+const MongoDBStore = require("connect-mongo");
 // connect to mongo and sends back error if something goes wrong
 mongoose
 	.connect(process.env.MONGO_URL)
@@ -38,9 +40,6 @@ mongoose
 
 const app = express();
 
-
-
-
 // Setting templating engine to EJS
 app.engine("ejs", ejsMate);
 app.set("views", path.join(__dirname, "/views"));
@@ -48,22 +47,25 @@ app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+app.use(express.static(path.join(__dirname, "public")));
 
+// CONFIGURING COOKIES
 
 const store = new MongoDBStore({
-	mongoUrl: dbUrl,
+	mongoUrl: process.env.MONGO_URL,
 	secret: process.env.SESSION_SECRET,
 	touchAfter: 24 * 60 * 60,
 });
 
-store.on("errors", function(e){
+store.on("errors", function (e) {
 	console.log("SESSION STORE OPEN", e);
-})
+});
 
 const sessionConfig = {
 	store,
 	name: "manga",
 	secret: process.env.SESSION_SECRET,
+	resave: false,
 	saveUninitialized: true,
 	cookie: {
 		httpOnly: true,
@@ -74,18 +76,11 @@ const sessionConfig = {
 	},
 };
 
-
 app.use(session(sessionConfig));
 
 // app.use(helmet());
 
-const scriptSrcUrls = [
-	"https://stackpath.bootstrapcdn.com/",
-	"https://kit.fontawesome.com/",
-	"https://cdnjs.cloudflare.com/",
-	"https://cdn.jsdelivr.net/",
-	"https://res.cloudinary.com/dqdaf6ffk/",
-];
+const scriptSrcUrls = ["https://stackpath.bootstrapcdn.com/", "https://kit.fontawesome.com/", "https://cdnjs.cloudflare.com/", "https://cdn.jsdelivr.net/", "https://res.cloudinary.com/dqdaf6ffk/"];
 const styleSrcUrls = [
 	"https://kit-free.fontawesome.com/",
 	"https://stackpath.bootstrapcdn.com/",
@@ -121,34 +116,32 @@ app.use(
 	})
 );
 
+// CONFIGURING PASSPORT
+// .session will keep you login on every route
+// IMPORTANT to use session() before passport.session()
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticat()));
+passport.use(new LocalStrategy(User.authenticate()));
 
+// V how to store a user in a session V
 passport.serializeUser(User.serializeUser());
+// V how do you get a user out of that session V
 passport.deserializeUser(User.deserializeUser());
 
-app.use((req, res, next)=> {
+app.use((req, res, next) => {
 	res.locals.currentUser = req.user;
 
 	next();
-})
-
-
-
-
+});
 
 // IMPORTING ROUTES
-// app.use("/", userRoutes);
+app.use("/", userRoutes);
 app.use("/uploads", uploadRoutes);
 
 // getting a home routes
 app.get("/", (req, res) => {
-	res.send(req.oidc.isAuthenticated() ? "Logged In" : "Logged out")
+	res.render("books/home");
 });
-
-
-
 
 // // ** ADDED **
 app.post(
