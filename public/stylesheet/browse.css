@@ -11,15 +11,27 @@
 	--lighBg: var(--purple-2);
 	--darkBg: var(--purple-3);
 }
+body {
+	line-height: 1.5;
+}
 a {
 	color: var(--white);
 	text-decoration: none;
 }
-
+a:hover {
+	color: var(--light-purple);
+}
 .separate {
 	border-bottom: 1px solid var(--purple-1);
 	margin-bottom: 1%;
 }
+.bigbox {
+	margin: 0px 25px 18px 25px;
+	padding: 10px;
+	overflow: hidden;
+}
+
+
 .h2sep {
 	border-bottom: 1px solid var(--purple-1);
 	margin-top: 1%;
@@ -29,41 +41,66 @@ a {
 .updates {
 	display: grid;
 	flex-direction: column;
-	justify-content: center;
 	grid-template-columns: 1fr 1fr 1fr;
+	justify-content: center;
 }
-
-.cardBg {
-	background-color: var(--lighBg);
-	width: 380px;
+.cards {
+	width: 383px;
 	height: 240px;
+	float: left;
+	background-color: var(--lightBg);
+}
+.sbx {
+	display: grid;
+	grid-template-columns: 0.8fr 1fr;
+	width: 363px;
+	column-gap: 0.5rem;
+	row-gap: 8px;
+	overflow: hidden;
+	position: relative;
+	margin: 14px 10px 10px 10px;
+}
+.imgTL {
+	width: 160px;
+	height: 216px;
+	background-origin: padding-box;
+	background-size: auto;
+	border-radius: 10px;
+	box-shadow: 0 0 0.5em 0 #000;
 }
 .imgDis {
-	margin: 5px;
-	min-width: 140px;
-	min-height: 200px;
-	max-width: 200px;
-	max-height: 200px;
-	border-radius: 2%;
+	width: 160px;
+	height: 216px;
+	position: absolute;
+	/* top: 0px; */
+	border-radius: 10px;
+	box-shadow: 0 0 0.5em 0 #000;
+}
+.carding-body {
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	height: auto;
 }
 .chap-list {
+	gap: 0.25rem;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	gap: 0.25rem;
 	justify-content: flex-end;
 }
 
 .tt {
 	margin: 0;
 	height: auto;
+	overflow: hidden;
 }
 .cardDis {
 	padding: 15px 10px;
 }
 
 .adds {
-	padding: 5px;
+	padding: 0.3rem;
 	border: 1px solid var(--light-purple);
 }
 .adds:hover {
@@ -78,7 +115,7 @@ a {
 	justify-content: space-between;
 	width: 100%;
 	border-radius: 25px;
-	padding: 0.3rem;
+	padding: 5px;
 }
 
 .allChap {
@@ -92,7 +129,9 @@ a {
 
 .chLin {
 	font-size: 1rem;
+	margin-left: 10px;
 }
 .chDate {
 	text-align: right;
+	margin-right: 10px;
 }
