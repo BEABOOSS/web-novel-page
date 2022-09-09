@@ -46,26 +46,49 @@
 	<div>
 		<h2 class="h2sep">New Release</h2>
 	</div>
-	<div class="row row-cols-1 row-cols-md-2 g4">
+	<div class="updates">
 		<% book.forEach( el => { %>
-		<div class="col">
-			<div class="card mb-3 shadow cardBg">
-				<div class="row g-0">
-					<div class="col-3">
-						<a class="link" href="/uploads/<%=el._id%>">
-							<!-- <img src="<%=el.coverPicture[0].url%>" class="imgDis" alt="..." /> -->
-							<img src="https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662672154/chapter1/Solo_Leveling_Webtoon_nhkzpq.png" class="imgDis" alt="..." />
-						</a>
-					</div>
-					<div class="col-9">
-						<div class="card-body">
-							<a class="anc" href="/uploads/<%=el._id%>">
-								<h4 class="card-title"><%= el.title%> <span class="badge rounded-pill bg-danger">New</span></h4>
+		<div class="card mb-4 shadow cardBg">
+			<div class="row g-0">
+				<div class="col-5">
+					<a class="link" href="/uploads/<%=el._id%>">
+						<!-- <img src="<%=el.coverPicture[0].url%>" class="imgDis" alt="..." /> -->
+						<img src="https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662672154/chapter1/Solo_Leveling_Webtoon_nhkzpq.png" class="imgDis" alt="..." />
+					</a>
+				</div>
+				<div class="col-7">
+					<div class="card-body">
+						<div class="info">
+							<a href="/uploads/<%=el._id%>">
+								<div class="tt"><%= el.title%> <span class="badge rounded-pill bg-danger">New</span></div>
 							</a>
-							<h5>Chapter <%= el.chapterss.slice().reverse()[0].number %></h5>
-							<h5>Chapter <%= el.chapterss.slice().reverse()[1].number %></h5>
-							<!-- <p class="card-text"><small class="text-muted"><%= el.uploadTime %> </small></p> -->
 						</div>
+						<div class="chap-list">
+							<!-- ******** -->
+							<a href="">
+								<div class="adds round">
+									<div class="chLin">Chapter <%= el.chapterss.slice().reverse()[0].number%></div>
+									<div class="chDate">2 Hours</div>
+								</div>
+							</a>
+							<!-- ******** -->
+							<a href="">
+								<div class="adds round">
+									<div class="chLin">Chapter <%= el.chapterss.slice().reverse()[1].number%></div>
+									<div class="chDate">2 Hours</div>
+								</div>
+							</a>
+							<a href="">
+								<div class="adds round">
+									<div class="chLin">Chapter <%= el.chapterss.slice().reverse()[2].number%></div>
+									<div class="chDate">2 Hours</div>
+								</div>
+							</a>
+							<a href="">
+								<div class="adds allChap">All chapters</div>
+							</a>
+						</div>
+						<!-- <p class="card-text"><small class="text-muted"><%= el.uploadTime %> </small></p> -->
 					</div>
 				</div>
 			</div>
