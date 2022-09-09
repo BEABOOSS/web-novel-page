@@ -132,6 +132,157 @@ const seedDB = async () => {
 						},
 					],
 				},
+				{
+					name: "asdfhjklasdfjkhasdhjk 1 ",
+					number: 3,
+					images: [
+						{
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/02_1_paw5qh.jpg",
+							filename: "yup",
+						},
+					],
+				},
+				{
+					name: "asdfhjklasdfjkhasdhjk 1 ",
+					number: 4,
+					images: [
+						{
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/02_1_paw5qh.jpg",
+							filename: "yup",
+						},
+					],
+				},
+				{
+					name: "asdfhjklasdfjkhasdhjk 1 ",
+					number: 5,
+					images: [
+						{
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/02_1_paw5qh.jpg",
+							filename: "yup",
+						},
+					],
+				},
+				{
+					name: "asdfhjklasdfjkhasdhjk 1 ",
+					number: 6,
+					images: [
+						{
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/02_1_paw5qh.jpg",
+							filename: "yup",
+						},
+					],
+				},
+				{
+					name: "asdfhjklasdfjkhasdhjk 1 ",
+					number: 7,
+					images: [
+						{
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/02_1_paw5qh.jpg",
+							filename: "yup",
+						},
+					],
+				},
+				{
+					name: "asdfhjklasdfjkhasdhjk 1 ",
+					number: 8,
+					images: [
+						{
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/02_1_paw5qh.jpg",
+							filename: "yup",
+						},
+					],
+				},
+				{
+					name: "asdfhjklasdfjkhasdhjk 1 ",
+					number: 9,
+					images: [
+						{
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/02_1_paw5qh.jpg",
+							filename: "yup",
+						},
+					],
+				},
+				{
+					name: "asdfhjklasdfjkhasdhjk 1 ",
+					number: 10,
+					images: [
+						{
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/02_1_paw5qh.jpg",
+							filename: "yup",
+						},
+					],
+				},
+				{
+					name: "asdfhjklasdfjkhasdhjk 1 ",
+					number: 11,
+					images: [
+						{
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/02_1_paw5qh.jpg",
+							filename: "yup",
+						},
+					],
+				},
+				{
+					name: "asdfhjklasdfjkhasdhjk 1 ",
+					number: 12,
+					images: [
+						{
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/02_1_paw5qh.jpg",
+							filename: "yup",
+						},
+					],
+				},
+				{
+					name: "asdfhjklasdfjkhasdhjk 1 ",
+					number: 13,
+					images: [
+						{
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/02_1_paw5qh.jpg",
+							filename: "yup",
+						},
+					],
+				},
+				{
+					name: "asdfhjklasdfjkhasdhjk 1 ",
+					number: 14,
+					images: [
+						{
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/02_1_paw5qh.jpg",
+							filename: "yup",
+						},
+					],
+				},
+				{
+					name: "asdfhjklasdfjkhasdhjk 1 ",
+					number: 15,
+					images: [
+						{
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/02_1_paw5qh.jpg",
+							filename: "yup",
+						},
+					],
+				},
+				{
+					name: "asdfhjklasdfjkhasdhjk 1 ",
+					number: 16,
+					images: [
+						{
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/02_1_paw5qh.jpg",
+							filename: "yup",
+						},
+					],
+				},
+				{
+					name: "asdfhjklasdfjkhasdhjk 1 ",
+					number: 17,
+					images: [
+						{
+							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/02_1_paw5qh.jpg",
+							filename: "yup",
+						},
+					],
+				},
+
 			],
 		});
 

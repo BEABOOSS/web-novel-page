@@ -1,15 +1,14 @@
 <% layout("layout/boilerplate") %>
 <link rel="stylesheet" href="/stylesheet/show.css" />
-<div class="container">
-	<!-- top half of  -->
-	<div class="">
+<div class="">
+	<div class="firstHalf">
 		<div class="row">
-			<div class="col-6">
+			<div class="col">
 				<div class="">
 					<img src="<%= book.coverPicture[0].url%>" class="img-fluid rounded shadow-lg" alt="" srcset="" />
 				</div>
 			</div>
-			<div class="col-4">
+			<div class="col">
 				<div class="">
 					<h1><%= book.title %></h1>
 					<p><span class="badge rounded-pill bg-dark"><%= book.genres %></span></p>
@@ -22,44 +21,52 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col">
-			<div class="">
-				<!-- if  not admin or perms then not allowed to see this -->
-				<% if(currentUser && book.author.equals(currentUser.id)) { %>
-				<h1>Edit</h1>
-				<form action="/uploads/<%= book.id %>/chapters" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
-					<div class="input-group mb-3">
-						<label for="chapter[name]" class="col-sm-2 col-form-label">Name</label>
-						<input type="text" id="chapter[name]" placeholder="Name" name="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
-					</div>
-					<div class="input-group mb-3">
-						<label for="chpater[number]" class="col-sm-2 col-form-label">Number</label>
-						<input
-							type="text"
-							id="chapter[number]"
-							placeholder="Number"
-							name="number"
-							class="form-control"
-							aria-label="Sizing example input"
-							aria-describedby="inputGroup-sizing-default"
-						/>
-					</div>
-					<div class="input-group mb-3">
-						<input type="file" id="chapter[image]" name="images" class="form-control" multiple />
-						<label for="chapter[image]" class="input-group-text">Upload</label>
-					</div>
-				</form>
-				<% } %>
+	<div class="secondHalf">
+		<!-- <div class="row">
+			<div class="col">
+				<div class="">
+					if  not admin or perms then not allowed to see this
+					<% if(currentUser && book.author.equals(currentUser.id)) { %>
+					<h1>Edit</h1>
+					<form action="/uploads/<%= book.id %>/chapters" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+						<div class="input-group mb-3">
+							<label for="chapter[name]" class="col-sm-2 col-form-label">Name</label>
+							<input type="text" id="chapter[name]" placeholder="Name" name="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+						</div>
+						<div class="input-group mb-3">
+							<label for="chpater[number]" class="col-sm-2 col-form-label">Number</label>
+							<input
+								type="text"
+								id="chapter[number]"
+								placeholder="Number"
+								name="number"
+								class="form-control"
+								aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-default"
+							/>
+						</div>
+						<div class="input-group mb-3">
+							<input type="file" id="chapter[image]" name="images" class="form-control" multiple />
+							<label for="chapter[image]" class="input-group-text">Upload</label>
+						</div>
+					</form>
+					<% } %>
+				</div>
+			</div>
+		</div> -->
+		<!-- chapter selection -->
+
+		<div class="left-box">
+			<div class="binfo">
+				<h2>_____________</h2>
+				<h2>HI IHIHIHIHI</h2>
+				<h2>HI IHIHIHIHI</h2>
 			</div>
 		</div>
-	</div>
-	<!-- chapter selection -->
-	<div class="row">
-		<h1>Chapter Selection(will remove)</h1>
-		<div class="col-md-6 offset-md-3">
+		<div class="right-box">
 			<div class="release">
 				<div class="title">
+					<h2>_________</h2>
 					<h2><%= book.title %></h2>
 				</div>
 				<div class="first-last">
@@ -72,35 +79,30 @@
 					</div>
 					<div class="select">
 						<!-- selection the last chapter -->
-						<a href="/uploads/<%= book.id%>/chapterss-<%= lastIdx.number %>">
+						<a href="/uploads/<%= book.id %>/chapterss-<%= lastValue %>">
 							<span>New Chapter</span>
-							<span>Chapter <%= lastValue %></span>
+							<span>Chapter <% lastIdx %></span>
 						</a>
 					</div>
-					<div class="search-chapter">
-						<input id="searchchapter" type="text" placeholder="Search Chapter. ex: 1 " />
-					</div>
-
-					<div class="chLister" id="chapterlist">
-						<ul class="cltyle">
-							<% revOrder.forEach( el => { %>
-							<li data-num="<%= el.number %>">
-								<div class="box">
-									<div class="chh-num">
-										<a href="/uploads/<%= book.id%>/chapterss-<%= el.number %>">
+				</div>
+				<div class="chLister" id="chapterlist">
+					<ul class="lister">
+						<% revOrder.forEach( el => { %>
+							<li class="li-lis" data-num="<%= el.number %>">
+								<a href="/uploads/<%= book.id%>/chapterss-<%= el.number %>">
+									<div class="box">
+										<div class="episodeNUM">
 											<span class="chapternum">Chapter <%=el.number %></span>
-											<span class="chapternum"><%=el.uploadTime %></span>
-										</a>
+											<!-- <span class="chapternum"><%=el.uploadTime %></span> -->
+										</div>
 									</div>
-								</div>
+								</a>
 							</li>
 
-							<% })%>
-						</ul>
-					</div>
+						<% })%>
+					</ul>
 				</div>
 			</div>
-			
 		</div>
 	</div>
 	<div class="reviews">

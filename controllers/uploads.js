@@ -46,9 +46,9 @@ module.exports.allBook = async (req, res) => {
 // The page of the book AKA the one with all the chapters
 module.exports.pageOfBook = async (req, res) => {
 	const book = await Upload.findById(req.params.id);
-	const lastIdx = book.chapterss[book.chapterss.length - 1];
-	const revOrder = book.chapterss.slice().reverse();
 	const lastValue = book.chapterss.length;
+	const lastIdx = book.chapterss[lastValue - 1];
+	const revOrder = book.chapterss.slice().reverse();
 
 	res.render("books/show", { book, lastIdx, revOrder, lastValue });
 };
@@ -57,9 +57,16 @@ module.exports.pageOfBook = async (req, res) => {
 // The page with all the chapters AKA the one showing the images ("story")
 module.exports.chapterOfBook = async (req, res) => {
 	const book = await Upload.findById(req.params.id);
-	book.number = req.params.number;
+	const number = req.params.number - 0;	
+	const number2 = req.params.number;	
+	const lastIdx = book.chapterss[book.chapterss.length - 1];
+	const nextIdx = book.chapterss[number + 1];
 
-	res.render("books/chapter", { book });
+	// console.log(book);
+	// console.log(lastIdx);
+	// console.log(nextIdx);
+
+	res.render("books/chapter", { book, lastIdx, nextIdx, number2 });
 };
 
 //

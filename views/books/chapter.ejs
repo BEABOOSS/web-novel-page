@@ -1,10 +1,38 @@
-<% layout("layout/boilerplate") %> 
-<!-- <h1>1<%= book.chapterss[book.number]%> </h1> -->
+<% layout("layout/boilerplate") %>
+<link rel="stylesheet" href="/stylesheet/chapter.css " />
 
+<div class="chapBody">
+	<div class="area">
+		<div class="">
+			<div class="topPost">
+            <h1 class="title" ><%= book.title %></h1>
+            <p>Return To<a href="/uploads/<%= book.id%>"> All Chapters</a></p>
 
+         </div>
+			<div class="maincontent">
+            <div class="selectors">
+               <span class="chapSelc"></span>
+               <span class="nav-r">
+                  <div class="nextprev">
+                     <a href="/uploads/<%= book.id%>/chapterss-<%= lastIdx.number %>">Prev</a>
+                     <% if (nextIdx === undefined) { %> 
+                        <a class="disabled">Next</a>  
+                     <% } else { %>
+                           <a href="/uploads/<%= book.id%>/chapterss-<%= nextIdx.number %>">Next</a>
+                     <% } %>  
+                  </div>
+               </span>
+            </div>
+            <% book.chapterss[number2].images.forEach(el => { %>
+               <p>
+                  <img src="<%= el.url%>" width="800" height="1000" alt >
+               </p>
+            <% }) %>  
+         </div>
+		</div>
+	</div>
+</div>
 
-<% book.chapterss[book.number].images.forEach( el => {%>
-
-   <img src="<%= el.url%>" alt="" srcset="">
-
-<% }) %> 
+<img src="https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662689901/chapter1/001-129_srmeyj.jpg" width="800" height="1000" alt="" />
+<img src="https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662690000/chapter1/002-169_gttcmj.jpg" width="800" height="1000" alt="" />
+<img src="https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662689971/chapter1/003-168_ufrliv.jpg" width="800" height="1000" alt="" />

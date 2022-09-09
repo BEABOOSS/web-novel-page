@@ -1,0 +1,18 @@
+:root {
+	--lightBlue: #15abbb;
+	--red-1: #e95f5e;
+	--red-2: #e7605d;
+	--white: #ffffff;
+	--light-purple: #6559bc;
+	--purple-1: #413e51;
+	--purple-2: #252638;
+	--purple-3: #1f1d2b;
+	--purple-4: #1f1d2c;
+	--lighBg: var(--purple-2);
+	--darkBg: var(--purple-3);
+}
+
+.mainImg {
+    width: 800;
+    height: 1000;
+}
