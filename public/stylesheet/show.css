@@ -33,7 +33,7 @@ a:hover {
 	height: 1000px;
 }
 .title {
-	border-bottom: 5px solid var(--white);
+	border-bottom: 3px solid var(--white);
 }
 
 .secondHalf {
@@ -90,10 +90,28 @@ a:hover {
 	box-sizing: border-box;
 }
 .select {
-	float: left;
-	width: 50%;
+	box-sizing: border-box;
+    display: block;
+    float: left;
+    width: 450px;
+    text-align: center;
 }
-
+.fricking {
+    display: block;
+    box-sizing: border-box;
+    margin: 5px;
+    padding: 15px;
+    text-align: center;
+    background-color: var(--light-purple);
+    border-radius: 20px ;
+} 
+.fricking:hover {
+    background-color: var(--lighBg);
+}
+.episoded{
+    display: block;
+    margin-top: 6px;
+}
 .chLister {
 	box-sizing: border-box;
 	margin: 15px;
@@ -103,10 +121,8 @@ a:hover {
 	display: grid;
 	flex-direction: column;
 	grid-template-columns: 1fr 1fr;
-	/* justify-content: center; */
-
 	margin: 0px 0px 0px -5px;
-	height: 200px;
+	height: 250px;
 	overflow: auto;
 	padding: 0px;
 	list-style-position: outside;
@@ -119,7 +135,7 @@ a:hover {
 	width: 70%;
 }
 .box {
-    display: block;
+	display: block;
 	box-sizing: border-box;
 	margin: 0px 5px 5px 10px;
 	overflow: hidden;
@@ -134,17 +150,17 @@ a:hover {
 	background-color: var(--light-purple);
 }
 .episodeNUM {
-    display: block;
+	display: block;
 	float: none;
 	height: 40px;
 	width: 256px;
-    text-align: center;
+	text-align: center;
 }
 .chapternum {
 	box-sizing: border-box;
-    height: 21px;
+	height: 21px;
 }
 .chapterdate {
-    box-sizing: border-box;
-    height: 21px;
+	box-sizing: border-box;
+	height: 21px;
 }

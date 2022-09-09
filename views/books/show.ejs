@@ -100,21 +100,21 @@
 		<div class="right-box">
 			<div class="release">
 				<div class="title">
-					<h2><%= book.title %></h2>
+					<h4><%= book.title %></h5>
 				</div>
 				<div class="first-last">
 					<div class="select">
 						<!-- selecting the first chapter -->
-						<a href="/uploads/<%= book.id%>/chapterss-1">
+						<a class="fricking" href="/uploads/<%= book.id%>/chapterss-1">
 							<span>First Chapter</span>
-							<span>Chapter 1</span>
+							<span class="episoded">Chapter 1</span>
 						</a>
 					</div>
 					<div class="select">
 						<!-- selection the last chapter -->
-						<a href="/uploads/<%= book.id %>/chapterss-<%= lastValue %>">
+						<a class="fricking" href="/uploads/<%= book.id %>/chapterss-<%= lastValue %>">
 							<span>New Chapter</span>
-							<span>Chapter <% lastIdx %></span>
+							<span class="episoded">Chapter <% lastIdx %></span>
 						</a>
 					</div>
 				</div>

@@ -5,30 +5,33 @@
 	<div class="area">
 		<div class="">
 			<div class="topPost">
-            <h1 class="title" ><%= book.title %></h1>
-            <p>Return To<a href="/uploads/<%= book.id%>"> All Chapters</a></p>
-
-         </div>
+				<h1 class="title"><%= book.title %></h1>
+				<p>Return To<a href="/uploads/<%= book.id%>"> All Chapters</a></p>
+			</div>
 			<div class="maincontent">
-            <div class="selectors">
-               <span class="chapSelc"></span>
-               <span class="nav-r">
-                  <div class="nextprev">
-                     <a href="/uploads/<%= book.id%>/chapterss-<%= lastIdx.number %>">Prev</a>
-                     <% if (nextIdx === undefined) { %> 
-                        <a class="disabled">Next</a>  
-                     <% } else { %>
-                           <a href="/uploads/<%= book.id%>/chapterss-<%= nextIdx.number %>">Next</a>
-                     <% } %>  
-                  </div>
-               </span>
-            </div>
-            <% book.chapterss[number2].images.forEach(el => { %>
-               <p>
-                  <img src="<%= el.url%>" width="800" height="1000" alt >
-               </p>
-            <% }) %>  
-         </div>
+				<div class="selectors">
+					<span class="chapSelc"></span>
+					<span class="nav-r">
+						<div class="nextprev">
+							<% if(lastIdx  === undefined) { %>
+							   <a class="disabled">Prev</a>
+							<% } else { %>
+							   <a href="/uploads/<%= book.id%>/chapterss-<%= lastIdx.number %>">Prev</a>
+							<% } %> 
+                     <% if (nextIdx == undefined) { %>
+							   <a class="disabled">Next</a>
+							<% } else { %>
+							   <a href="/uploads/<%= book.id%>/chapterss-<%= nextIdx.number %>">Next</a>
+							<% } %>
+						</div>
+					</span>
+				</div>
+				<% book.chapterss[number2].images.forEach(el => { %>
+				<p>
+					<img src="<%= el.url%>" width="800" height="1000" alt />
+				</p>
+				<% }) %>
+			</div>
 		</div>
 	</div>
 </div>

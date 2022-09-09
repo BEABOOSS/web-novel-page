@@ -59,12 +59,10 @@ module.exports.chapterOfBook = async (req, res) => {
 	const book = await Upload.findById(req.params.id);
 	const number = req.params.number - 0;	
 	const number2 = req.params.number;	
-	const lastIdx = book.chapterss[book.chapterss.length - 1];
+	const lastIdx = book.chapterss[number - 1];
 	const nextIdx = book.chapterss[number + 1];
 
-	// console.log(book);
-	// console.log(lastIdx);
-	// console.log(nextIdx);
+
 
 	res.render("books/chapter", { book, lastIdx, nextIdx, number2 });
 };
