@@ -31,7 +31,6 @@ a:hover {
 	overflow: hidden;
 }
 
-
 .h2sep {
 	border-bottom: 1px solid var(--purple-1);
 	margin-top: 1%;
@@ -72,8 +71,7 @@ a:hover {
 	width: 160px;
 	height: 216px;
 	position: absolute;
-	/* top: 0px; */
-	border-radius: 10px;
+	border-radius: 10px 10px 10px 10px;
 	box-shadow: 0 0 0.5em 0 #000;
 }
 .carding-body {
