@@ -33,7 +33,7 @@ a:hover {
 	height: 1000px;
 }
 .title {
-	border-bottom: 5px solid var(--);
+	border-bottom: 5px solid var(--white);
 }
 
 .secondHalf {
@@ -43,26 +43,59 @@ a:hover {
 }
 .left-box {
 	display: flex;
-    justify-content: start;
-
+	flex-grow: 0.4;
+	flex-shrink: 0.4;
+	margin-left: 30px;
+	background-origin: padding-box;
+	background-position: 0px;
+	background-size: auto;
+	column-gap: 0.8rem;
+	row-gap: 0.8rem;
 }
+.binfo {
+	display: flex;
+	flex-direction: column;
+	margin: 10px 10px 10px 10px;
+	overflow: hidden;
+	padding: 10px 0px 10px 0px;
+	box-sizing: border-box;
+	border: 10px solid var(--light-purple_);
+	width: 100%;
+	column-gap: 0.8rem;
+	row-gap: 0.8rem;
+}
+
+.imptdata {
+	align-items: center;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: flex-start;
+	overflow: hidden;
+	padding: 4px;
+	height: 27px;
+	font-size: 13px;
+	line-height: 1.5;
+	column-gap: 2%;
+	row-gap: 2%;
+}
+
 .right-box {
-    flex-grow: 0.6;
+	flex-grow: 0.6;
 }
 
 .first-last {
-    margin: 10px 10px 10px 10px;
-    overflow: hidden;
-    position: relative;
-    box-sizing: border-box;
+	margin: 10px 10px 10px 10px;
+	overflow: hidden;
+	position: relative;
+	box-sizing: border-box;
 }
 .select {
-    float: left;
-    width: 50%;
+	float: left;
+	width: 50%;
 }
 
 .chLister {
-    box-sizing: border-box;
+	box-sizing: border-box;
 	margin: 15px;
 	/* border: 1px solid black; */
 }
@@ -73,34 +106,45 @@ a:hover {
 	/* justify-content: center; */
 
 	margin: 0px 0px 0px -5px;
-	height: 250px;
+	height: 200px;
 	overflow: auto;
 	padding: 0px;
 	list-style-position: outside;
 	list-style-type: none;
 }
 .li-lis {
-    box-sizing: border-box;
-    display: list-item;
-    float: left;
-    width: 70%;
+	box-sizing: border-box;
+	display: list-item;
+	float: left;
+	width: 70%;
 }
 .box {
-    box-sizing: border-box;
-    margin: 0px 5px 5px 10px;
-    overflow: hidden;
-    padding: 10px;
-    position: relative;
-    text-align: center;
-    border: 1px solid var(--light-purple);
-    border-radius: 15px;
+    display: block;
+	box-sizing: border-box;
+	margin: 0px 5px 5px 10px;
+	overflow: hidden;
+	padding: 10px;
+	position: relative;
+	text-align: center;
+	border: 1px solid var(--light-purple);
+	border-radius: 15px;
 }
-.box:hover{ 
-    border: 1px solid var(--darkBg);
-    background-color: var(--light-purple);
+.box:hover {
+	border: 1px solid var(--darkBg);
+	background-color: var(--light-purple);
 }
 .episodeNUM {
-    float: none;
-    height: 40px;
-    width: 256px;
+    display: block;
+	float: none;
+	height: 40px;
+	width: 256px;
+    text-align: center;
+}
+.chapternum {
+	box-sizing: border-box;
+    height: 21px;
+}
+.chapterdate {
+    box-sizing: border-box;
+    height: 21px;
 }

@@ -58,15 +58,48 @@
 
 		<div class="left-box">
 			<div class="binfo">
-				<h2>_____________</h2>
-				<h2>HI IHIHIHIHI</h2>
-				<h2>HI IHIHIHIHI</h2>
+				<div class="imptdata">
+					<h5>Type</h5>
+					<i>Manhwa</i>
+				</div>
+				<div class="imptdata">
+					<h5>Status</h5>
+					<i>Ongoing</i>
+				</div>
+				<div class="imptdata">
+					<h5>Released</h5>
+					<i>2020</i>
+				</div>
+				<div class="imptdata">
+					<h5>Author</h5>
+					<i>Sing-Shong</i>
+				</div>
+				<div class="imptdata">
+					<h5>Artist</h5>
+					<i>Sleepy-C (REDICE STUDIO)</i>
+				</div>
+				<div class="imptdata">
+					<h5>Serialization</h5>
+					<i>Naver Webtoon (Naver)</i>
+				</div>
+				<div class="imptdata">
+					<h5>Translation</h5>
+					<i>Flame Scans</i>
+				</div>
+				<div class="imptdata">
+					<h5>Posted By</h5>
+					<span itemprop="author" itemscope="" itemtype="https://schema.org/Person" class="author vcard">
+						<i itemprop="name">SxThx</i>
+					</span>
+				</div>
+				<div class="imptdata">
+					<h5>Posted On </h5> <i><time itemprop="datePublished" datetime="2021-01-27T18:20:34+04:00">January 27, 2021</time></i>
+				</div>
 			</div>
 		</div>
 		<div class="right-box">
 			<div class="release">
 				<div class="title">
-					<h2>_________</h2>
 					<h2><%= book.title %></h2>
 				</div>
 				<div class="first-last">
@@ -88,16 +121,17 @@
 				<div class="chLister" id="chapterlist">
 					<ul class="lister">
 						<% revOrder.forEach( el => { %>
-							<li class="li-lis" data-num="<%= el.number %>">
-								<a href="/uploads/<%= book.id%>/chapterss-<%= el.number %>">
-									<div class="box">
-										<div class="episodeNUM">
-											<span class="chapternum">Chapter <%=el.number %></span>
-											<!-- <span class="chapternum"><%=el.uploadTime %></span> -->
-										</div>
+						<li class="li-lis" data-num="<%= el.number %>">
+							<a href="/uploads/<%= book.id%>/chapterss-<%= el.number %>">
+								<div class="box">
+									<div class="episodeNUM">
+										<span class="chapternum">Chapter <%=el.number %></span>
+										<span>September 9, 2022</span>
+										<!-- <span class="chapterdate"><%=el.uploadTime %></span> -->
 									</div>
-								</a>
-							</li>
+								</div>
+							</a>
+						</li>
 
 						<% })%>
 					</ul>
