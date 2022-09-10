@@ -18,33 +18,6 @@ ImageSchema.virtual("thumbnail").get(function () {
 
 const opts = { toJSON: { virtuals: true } };
 
-// const UploadSchema = new Schema(
-// 	{
-// 		title: String,
-// 		description: String,
-// 		status: String,
-// 		genres: String,
-// 		uploadTime: {
-// 			type: Date,
-// 			default: Date.now,
-// 		},
-// 		coverPicture: [ImageSchema],
-// 		chapterss: [
-// 			{
-// 				type: Schema.Types.ObjectId,
-// 				ref: "Chapter",
-// 			},
-// 		],
-// 		reviews: [
-// 			{
-// 				type: Schema.Types.ObjectId,
-// 				ref: "Review",
-// 			},
-// 		],
-// 	},
-// 	opts
-// );
-
 const UploadSchema = new Schema(
 	{
 		title: String,

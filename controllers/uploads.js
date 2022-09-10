@@ -9,18 +9,18 @@ module.exports.renderNewForm = (req, res) => {
 	res.render("books/new", { genres });
 };
 
-// 
+//
 // Create Book
 module.exports.createBook = async (req, res, next) => {
 	const book = new Upload(req.body.book);
 	book.coverPicture = req.files.map((f) => ({ url: f.path, filename: f.filename }));
-	// book.chapters;
+	// book.chapterss;
+	console.log(req.body);
 	await book.save();
-	// console.log(book);
 	res.redirect(`/uploads/${book._id}`);
 };
- 
-// 
+
+//
 // NAV
 module.exports.navbarSearch = async (req, res, next) => {
 	let searchTerm = req.body.searchTerm;
@@ -30,19 +30,17 @@ module.exports.navbarSearch = async (req, res, next) => {
 	res.redirect(`/uploads/${book[0].id}`);
 };
 
-// 
-//showing all books 
+//
+//showing all books
 module.exports.allBook = async (req, res) => {
 	const book = await Upload.find({});
 	// const lastIdx = book.chapterss[book.chapterss.length - 1]
-	
-
 
 	// console.log()
 	res.render("books/browse", { book });
 };
 
-// 
+//
 // The page of the book AKA the one with all the chapters
 module.exports.pageOfBook = async (req, res) => {
 	const book = await Upload.findById(req.params.id);
@@ -53,42 +51,40 @@ module.exports.pageOfBook = async (req, res) => {
 	res.render("books/show", { book, lastIdx, revOrder, lastValue });
 };
 
-// 
+//
 // The page with all the chapters AKA the one showing the images ("story")
 module.exports.chapterOfBook = async (req, res) => {
 	const book = await Upload.findById(req.params.id);
-	const number = req.params.number - 0;	
-	const number2 = req.params.number;	
+	const number = req.params.number - 0;
+	const number2 = req.params.number;
 	const lastIdx = book.chapterss[number - 1];
 	const nextIdx = book.chapterss[number + 1];
-
-
 
 	res.render("books/chapter", { book, lastIdx, nextIdx, number2 });
 };
 
 //
-// Rendering the edit form 
+// Rendering the edit form
 module.exports.renderEditForm = async (req, res) => {
-	const book = await Upload.findById(req.params.id);
-	//  console.log(book)
-	console.log(req.body)
+	const { id } = req.params;
+	const book = await Upload.findById(id);
+	 console.log(book)
 	res.render("books/edit", { book, genre });
 };
 
 // NOT FINISH JUST ADDED WHAT I THINK NEED TO BE DONE BUT IT'S NOT CONNECTED
-// I'm spreading the imgs because it would be an array of array's and that won't work here 
+// I'm spreading the imgs because it would be an array of array's and that won't work here
 module.exports.updateBook = async (req, res) => {
 	const { id } = req.params;
 	const book = await Upload.findByIdAndUpdate(id, { ...req.body.book });
-	const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
+	const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
 	book.coverPicture.push(...imgs);
 	await book.save();
 	if (req.body.deleteImages) {
 		for (let filename of req.body.deleteImages) {
 			await cloudinary.uploader.destroy(filename);
 		}
-		await book.updateOne({ $pull: {images: {filename: {$in: req.body.deleteImages}}} });
+		await book.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } });
 	}
 
 	res.redirect(`/uploads/${book._id}`);

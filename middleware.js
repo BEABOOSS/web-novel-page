@@ -14,7 +14,17 @@ module.exports.isLoggedIn = (req, res, next) => {
     }
     next();
 };
+
 // Don't forget to add isAdmin or something similar
+
+module.exports.isAuthor = async (req, res, next) => {
+    const {id} = req.params;
+    const book = await Upload.findById(id);
+    if(!book.author.equals(req.user.id)) {
+        return res.redirect(`/uploads/${id}`)
+    }
+    next();
+};
 
 
 

@@ -4,18 +4,21 @@ const sanitizeHTML = require("sanitize-html");
 const extension = (joi) => ({
 	type: "string",
 	base: joi.string(),
-	// message: {
-	// 	"string.escapeHTML": "{{#label} must not include HTML!",
-	// },
+	messages: {
+		"string.escapeHTML": "{{#label} must not include HTML!",
+	},
 	rules: {
 		escapeHTML: {
 			validate(value, helpers) {
-				const clean = sanitizeHtml(value, {
+				const filtered = sanitizeHTML(value, {
+					allowedTags: false,
+					allowedAttributes: false,
+				});
+				const clean = sanitizeHTML(filtered, {
 					allowedTags: [],
 					allowedAttributes: {},
-				});
-				if (clean !== value) return helpers.error("string.escapeHTML", { value });
-				return clean;
+				  });
+				if (clean !== filtered) return helpers.error("string.escapeHTML");
 			},
 		},
 	},

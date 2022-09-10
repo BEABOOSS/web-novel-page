@@ -142,21 +142,21 @@ app.get("/", (req, res) => {
 	res.render("books/home");
 });
 
-// // ** ADDED **
+// // Navbar search
 app.post(
 	"/books/show",
 	catchAsync(async (req, res, next) => {
 		let searchTerm = req.body.searchTerm;
 		let book = await Upload.find({ $text: { $search: searchTerm, $diacriticSensitive: true } });
-		console.log(req.body);
-		res.redirect(`/uploads/${book[0].id}`);
+		if (book === undefined || book.length === 0) {
+			return res.redirect("/uploads");
+		} else {
+			res.redirect(`/uploads/${book[0].id}`);
+		}
+		next();
 	})
 );
-
-
-
-
-
+// if searchTerm not found then
 
 //* ==================
 //*  error middleware
