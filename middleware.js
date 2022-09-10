@@ -2,11 +2,11 @@ const ExpressError = require("./utils/ExpressError");
 const Upload = require("./models/upload");
 const Review = require("./models/review");
 const User = require("./models/user");
-const { uploadSchema } = require("./schemas");
+const { uploadSchema, reviewSchema} = require("./schemas");
 
 module.exports.isLoggedIn = (req, res, next) => {
 	if (!req.isAuthenticated()) {
-		req.session.returnTo = req.originalUrl;
+		req.session.returnTo = req.originalUrl
 		return res.redirect("/login");
 	}
 	next();
@@ -39,7 +39,7 @@ module.exports.validateBook = (req, res, next) => {
 module.exports.isReviewAuthor = async (req, res, next) => {
 	const { id, reviewId } = req.params;
 	const review = await Review.findById(reviewId);
-	if (!reviewId.author.equals(req.user.id)) {
+	if (!review.author.equals(req.user.id)) {
 		return res.redirect(`/uploads/${id}`);
 	}
 	next();
@@ -48,8 +48,8 @@ module.exports.isReviewAuthor = async (req, res, next) => {
 module.exports.validateReview = (req, res, next) => {
 	const { error } = reviewSchema.validate(req.body);
 	if (error) {
-		const msg = error.details.map((el) => el.message).join(",");
-		throw new ExpressError(msg, 400);
+		const msg = error.details.map(el => el.message).join(",")
+		throw new ExpressError(msg, 400)
 	} else {
 		next();
 	}

@@ -77,8 +77,7 @@ const sessionConfig = {
 };
 
 app.use(session(sessionConfig));
-
-// app.use(helmet());
+app.use(helmet());
 
 const scriptSrcUrls = ["https://stackpath.bootstrapcdn.com/", "https://kit.fontawesome.com/", "https://cdnjs.cloudflare.com/", "https://cdn.jsdelivr.net/", "https://res.cloudinary.com/dqdaf6ffk/"];
 const styleSrcUrls = [
@@ -144,7 +143,7 @@ app.get("/", (req, res) => {
 	res.render("books/home");
 });
 
-// Navbar search 
+// Navbar search
 app.post(
 	"/books/show",
 	catchAsync(async (req, res, next) => {
@@ -158,7 +157,6 @@ app.post(
 		next();
 	})
 );
-
 
 //* ==================
 //*  error middleware

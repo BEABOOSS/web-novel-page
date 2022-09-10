@@ -10,15 +10,12 @@ const extension = (joi) => ({
 	rules: {
 		escapeHTML: {
 			validate(value, helpers) {
-				const filtered = sanitizeHTML(value, {
-					allowedTags: false,
-					allowedAttributes: false,
-				});
-				const clean = sanitizeHTML(filtered, {
+				const clean = sanitizeHTML(value, {
 					allowedTags: [],
 					allowedAttributes: {},
-				  });
-				if (clean !== filtered) return helpers.error("string.escapeHTML");
+				});
+				if (clean !== value) return helpers.error("string.escapeHTML", { value });
+				return clean;
 			},
 		},
 	},
@@ -26,23 +23,19 @@ const extension = (joi) => ({
 const Joi = BaseJoi.extend(extension);
 
 module.exports.uploadSchema = Joi.object({
-	book: Joi.object({
-		title: Joi.string().required().escapeHTML(),
-		genres: Joi.string().required().escapeHTML(),
-		description: Joi.string().required().escapeHTML(),
-		chapters: Joi.array().items(
-			Joi.object({
-				name: Joi.string().escapeHTML(),
-				number: Joi.string().required().escapeHTML(),
-			})
-		),
-	}).required(),
+	title: Joi.string().required().escapeHTML(),
+	genres: Joi.string().required().escapeHTML(),
+	description: Joi.string().required().escapeHTML(),
+	chapters: Joi.array().items(
+		Joi.object({
+			name: Joi.string().escapeHTML(),
+			number: Joi.string().required().escapeHTML(),
+		})
+	),
 	deleteImages: Joi.array(),
-});
+}).required();
 
 module.exports.reviewSchema = Joi.object({
-	review: Joi.object({
-		rating: Joi.number().required().min(1).max(10),
-		body: Joi.string().required().escapeHTML(),
-	}).required(),
-});
+	rating: Joi.number().required().min(1).max(10),
+	body: Joi.string().required().escapeHTML(),
+}).required();

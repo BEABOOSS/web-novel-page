@@ -123,7 +123,7 @@
 					<form action="/uploads/<%= book.id%>/reviews" method="POST" class="" novalidate>
 						<div>
 							<label for="rating">Rating</label>
-							<input type="text" name="rating" id="rating" required >
+							<input type="number" name="rating" id="rating" required >
 						</div>
 						<div>
 							<label class="" for="body">Review Text</label>
@@ -133,7 +133,17 @@
 					</form>
 				</div>
 				<% } %> 
-				<div class="allreviews"></div>
+				<div class="allreviews">
+					<% for(let review of book.reviews) { %>
+						<div class="card mb-3 cards">
+							<div class="card-body ">
+								<h5><%= review.author.username%></h5>
+								<p>Review: <%= review.body %> </p>
+							</div>
+						</div>
+					
+					<% } %>  
+				</div>
 			</div>
 		</div>
 	</div>

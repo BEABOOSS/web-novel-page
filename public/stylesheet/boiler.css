@@ -57,3 +57,9 @@ $cyan: #0dcaf0 */
 .whiteText {
 	color: var(--white);
 }
+.cards {
+	width: 383px;
+	height: 240px;
+	float: left;
+	background-color: var(--lightBg);
+}

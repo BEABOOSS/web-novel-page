@@ -15,7 +15,7 @@ module.exports.createBook = async (req, res, next) => {
 	const book = new Upload(req.body.book);
 	book.coverPicture = req.files.map((f) => ({ url: f.path, filename: f.filename }));
 	// book.chapterss;
-	console.log(req.body);
+	// console.log(req.body);
 	await book.save();
 	res.redirect(`/uploads/${book._id}`);
 };
@@ -46,7 +46,14 @@ module.exports.allBook = async (req, res) => {
 //
 // The page of the book AKA the one with all the chapters
 module.exports.pageOfBook = async (req, res) => {
-	const book = await Upload.findById(req.params.id);
+	const book = await Upload.findById(req.params.id)
+	.populate({
+		path:"reviews",
+		populate:{
+			path:"author"
+		},
+	})
+	.populate("author")
 	const lastValue = book.chapterss.length;
 	const lastIdx = book.chapterss[lastValue - 1];
 	const revOrder = book.chapterss.slice().reverse();
