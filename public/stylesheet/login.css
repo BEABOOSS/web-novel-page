@@ -1,0 +1,29 @@
+:root {
+	--lightBlue: #15abbb;
+	--red-1: #e95f5e;
+	--red-2: #e7605d;
+	--white: #ffffff;
+	--light-purple: #6559bc;
+	--purple-1: #413e51;
+	--purple-2: #252638;
+	--purple-3: #1f1d2b;
+	--purple-4: #1f1d2c;
+	--lighBg: var(--purple-2);
+	--darkBg: var(--purple-3);
+}
+.card {
+    border: 10px solid var(---white);
+}
+.cbd {
+    background-color: var(--light-purple);
+    border-radius: 5px;
+}
+.button {
+    border: 1px solid var(--purple-4);
+    color: var(--white);
+}
+
+.button:hover {
+    border: 1px solid var(--light-purple);
+    background-color: var(--lighBg);
+}

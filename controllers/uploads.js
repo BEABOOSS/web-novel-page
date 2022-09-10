@@ -71,23 +71,26 @@ module.exports.chapterOfBook = async (req, res) => {
 // Rendering the edit form 
 module.exports.renderEditForm = async (req, res) => {
 	const book = await Upload.findById(req.params.id);
-
+	//  console.log(book)
+	console.log(req.body)
 	res.render("books/edit", { book, genre });
 };
 
 // NOT FINISH JUST ADDED WHAT I THINK NEED TO BE DONE BUT IT'S NOT CONNECTED
+// I'm spreading the imgs because it would be an array of array's and that won't work here 
 module.exports.updateBook = async (req, res) => {
 	const { id } = req.params;
-	const book = await Upload.findById(id, { ...req.body.campground });
-	const images = req.files.map((f) => ({ url: f.path, filename: f.filename }));
-	book.chapters.images.push(...images);
+	const book = await Upload.findByIdAndUpdate(id, { ...req.body.campground });
+	const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
+	book.coverPicture.push(...imgs);
 	await book.save();
 	if (req.body.deleteImages) {
 		for (let filename of req.body.deleteImages) {
 			await cloudinary.uploader.destroy(filename);
 		}
-		await book.updateOne({ $pull: { chapters: { images: { filename: { $in: req.body.deleteImages } } } } });
+		await book.updateOne({ $pull: {images: {filename: {$in: req.body.deleteImages}}} });
 	}
+
 	res.redirect(`/uploads/${book._id}`);
 };
 

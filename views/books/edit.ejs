@@ -1,17 +1,26 @@
-<% layout("layout/boilerplate") %> 
-
+<% layout("layout/boilerplate") %>
+<link rel="stylesheet" href="/stylesheet/edit.css">
 <div class="row">
-	<h1 class="text-center">EDIT!!!!!!!!!!!</h1>
-	<div class="col-md-6 offset-md-3">
+	<h1 class="text-center">Edit the Books Info</h1>
+	<div class="col-md-6 offset-md-3 dbg">
 		<form action="/uploads/<%=book.id%>?_method=PUT" method="POST" class="needs-validation" enctype="multipart/form-data" novalidate>
 			<div class="input-group mb-3">
 				<!-- <span class="input-group-text" id="inputGroup-sizing-default">Title: </span> -->
 				<label for="book[title]" class="col-sm-2 col-form-label">Title</label>
-				<input type="text" value="<%= book.title%>" id="title" name="book[title]" class="form-control" placeholder="Name" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+				<input
+					type="text"
+					value="<%= book.title%>"
+					id="title"
+					name="book[title]"
+					class="form-control"
+					placeholder="Name"
+					aria-label="Sizing example input"
+					aria-describedby="inputGroup-sizing-default"
+				/>
 			</div>
 
 			<div class="input-group mb-3">
-				<input type="file" name="coverPicture" class="form-control" id="coverPicture" multiple/>
+				<input type="file" name="coverPicture" class="form-control" id="coverPicture" multiple />
 				<label class="input-group-text" for="coverPicture">Upload</label>
 			</div>
 
@@ -26,8 +35,6 @@
 				</datalist>
 			</div>
 
-
-
 			<div class="input-group">
 				<!-- <span class="input-group-text">With textarea</span> -->
 				<label for="book[description]" class="col-sm-2 col-form-label">Description </label>
@@ -35,21 +42,50 @@
 			</div>
 
 
-			<!-- <div class="mb-3">
-				<% book.chapters[0].images.forEach(function(img, i) { %>
-					<img src="<%= img.thumbnail%>" class="img-thumbnail" alt=""/>
+
+			<div class="input-group">
+				<input type="file" name="images" class="form-control" id="images" multiple>
+				<label for="images" class="input-group-text">Upload Chapter</label>
+			</div>
+
+			<div class="mb-3">
+				<% book.coverPicture.forEach((img, i) => { %>
+					<img src="<%= img.thumbnail%>" class="img-thumbnail" />
 					<div class="form-check-inline">
-						<input type="checkbox" name="" id="image-<%= i %>" name="deleteImages[]" value="<%= img.filename%>" />
+						<input type="checkbox" name="deleteImages" id="image-<%= i%>" value="<%= img.filename%>"/>
 					</div>
 					<label for="image-<%=i%>">Delete</label>
-				<% }) %> 
-			</div> -->
+				<% }) %>  
+			</div>
 
 			<div class="input-group mb-3">
 				<button class="btn btn-outline-secondary" type="submit" id="button-addon1">Submit</button>
 			</div>
 		</form>
 
-		<a href="/books/browse">Go Back To Browse</a>
+		<a href="/uploads">Go Back To Browse</a>
 	</div>
 </div>
+
+<!-- <div class="row">
+	<div class="col">
+		<div class="">
+			if not admin or perms then not allowed to see this 
+			<h1>Edit Images</h1>
+			<form action="/uploads/<%= book.id %>/chapterss" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+				<div class="input-group mb-3">
+					<label for="chapter[name]" class="col-sm-2 col-form-label">Name</label>
+					<input type="text" id="chapter[name]" placeholder="Name" name="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+				</div>
+				<div class="input-group mb-3">
+					<label for="chpater[number]" class="col-sm-2 col-form-label">Number</label>
+					<input type="text" id="chapter[number]" placeholder="Number" name="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+				</div>
+				<div class="input-group mb-3">
+					<input type="file" id="chapter[image]" name="images" class="form-control" multiple />
+					<label for="chapter[image]" class="input-group-text">Upload</label>
+				</div>
+			</form>
+		</div>
+	</div>
+</div> -->

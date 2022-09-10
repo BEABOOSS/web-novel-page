@@ -12,7 +12,6 @@ const mongoSanitize = require("express-mongo-sanitize");
 const Upload = require("./models/upload");
 const User = require("./models/user");
 const methodOverride = require("method-override");
-const { uploadSchema } = require("./schemas");
 const helmet = require("helmet");
 const passport = require("passport");
 const session = require("express-session");
@@ -41,12 +40,13 @@ const app = express();
 
 // Setting templating engine to EJS
 app.engine("ejs", ejsMate);
-app.set("views", path.join(__dirname, "/views"));
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "/views"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
+// app.use(mongoSanitize());
 
 // CONFIGURING COOKIES
 

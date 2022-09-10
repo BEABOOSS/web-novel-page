@@ -26,7 +26,7 @@ router.get("/new", isLoggedIn, uploads.renderNewForm);
 
 router.route("/:id")
     .get(catchAsync(uploads.pageOfBook))
-    .put(isLoggedIn, upload.array("coverPicture"), catchAsync(uploads.updateBook))
+    .put(isLoggedIn, upload.fields([{name: "coverPicture"},{name: "images"}]), catchAsync(uploads.updateBook))
     .delete(isLoggedIn, catchAsync(uploads.deleteBook));
 
 router.get("/:id/edit", isLoggedIn, catchAsync(uploads.renderEditForm));

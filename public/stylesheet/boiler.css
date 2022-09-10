@@ -29,12 +29,28 @@ $teal: #20c997
 $cyan: #0dcaf0 */
 :root {
 	--lightBlue: #15abbb;
-	--redish: #e95f5e;
-	--white: #fff;
-	--lighBg: #262837;
-	--darkBg: #1f1d2c;
+	--red-1: #e95f5e;
+	--red-2: #e7605d;
+	--white: #ffffff;
+	--light-purple: #6559bc;
+	--purple-1: #413e51;
+	--purple-2: #252638;
+	--purple-3: #1f1d2b;
+	--purple-4: #1f1d2c;
+	--lighBg: var(--purple-2);
+	--darkBg: var(--purple-3);
 }
-
+.nav-bg{
+	background-color: var(--lighBg);
+}
+.search-butn {
+	color: var(--white);
+	border: 1px solid var(--light-purple);
+}
+.search-butn:hover {
+	border-color: var(--darkBg);
+	background-color: var(--light-purple);
+}
 .main {
 	background-color: var(--darkBg);
 }

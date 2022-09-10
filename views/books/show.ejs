@@ -22,40 +22,6 @@
 	</div>
 
 	<div class="secondHalf">
-		<!-- <div class="row">
-			<div class="col">
-				<div class="">
-					if  not admin or perms then not allowed to see this
-					<% if(currentUser && book.author.equals(currentUser.id)) { %>
-					<h1>Edit</h1>
-					<form action="/uploads/<%= book.id %>/chapters" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
-						<div class="input-group mb-3">
-							<label for="chapter[name]" class="col-sm-2 col-form-label">Name</label>
-							<input type="text" id="chapter[name]" placeholder="Name" name="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
-						</div>
-						<div class="input-group mb-3">
-							<label for="chpater[number]" class="col-sm-2 col-form-label">Number</label>
-							<input
-								type="text"
-								id="chapter[number]"
-								placeholder="Number"
-								name="number"
-								class="form-control"
-								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-default"
-							/>
-						</div>
-						<div class="input-group mb-3">
-							<input type="file" id="chapter[image]" name="images" class="form-control" multiple />
-							<label for="chapter[image]" class="input-group-text">Upload</label>
-						</div>
-					</form>
-					<% } %>
-				</div>
-			</div>
-		</div> -->
-		<!-- chapter selection -->
-
 		<div class="left-box">
 			<div class="binfo">
 				<div class="imptdata">
@@ -100,7 +66,13 @@
 		<div class="right-box">
 			<div class="release">
 				<div class="title">
-					<h4><%= book.title %></h5>
+					<% if(currentUser && book.author.equals(currentUser.id)) {%> 
+						<a href="/uploads/<%= book.id%>/edit">
+							<h4><%= book.title %></h4>
+						</a>
+					<% } else { %>
+						<h4><%= book.title%></h4>
+					<% } %>  
 				</div>
 				<div class="first-last">
 					<div class="select">
