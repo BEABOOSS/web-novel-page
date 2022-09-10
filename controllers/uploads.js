@@ -25,9 +25,12 @@ module.exports.createBook = async (req, res, next) => {
 module.exports.navbarSearch = async (req, res, next) => {
 	let searchTerm = req.body.searchTerm;
 	let book = await Upload.find({ $text: { $search: searchTerm, $diacriticSensitive: true } });
-
-	console.log(req.body);
-	res.redirect(`/uploads/${book[0].id}`);
+	if (book === undefined || book.length === 0) {
+		return res.redirect("/uploads");
+	} else {
+		res.redirect(`/uploads/${book[0].id}`);
+	}
+	next();
 };
 
 //

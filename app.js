@@ -142,7 +142,7 @@ app.get("/", (req, res) => {
 	res.render("books/home");
 });
 
-// // Navbar search
+// Navbar search 
 app.post(
 	"/books/show",
 	catchAsync(async (req, res, next) => {
@@ -156,7 +156,7 @@ app.post(
 		next();
 	})
 );
-// if searchTerm not found then
+
 
 //* ==================
 //*  error middleware
