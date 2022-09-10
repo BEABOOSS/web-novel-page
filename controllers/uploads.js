@@ -80,7 +80,7 @@ module.exports.renderEditForm = async (req, res) => {
 // I'm spreading the imgs because it would be an array of array's and that won't work here 
 module.exports.updateBook = async (req, res) => {
 	const { id } = req.params;
-	const book = await Upload.findByIdAndUpdate(id, { ...req.body.campground });
+	const book = await Upload.findByIdAndUpdate(id, { ...req.body.book });
 	const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
 	book.coverPicture.push(...imgs);
 	await book.save();
