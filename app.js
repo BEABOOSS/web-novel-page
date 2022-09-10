@@ -22,6 +22,7 @@ const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
 
 const uploadRoutes = require("./routes/uploads");
+const reviewRoutes = require("./routes/reviews");
 const userRoutes = require("./routes/users");
 
 const MongoDBStore = require("connect-mongo");
@@ -136,6 +137,7 @@ app.use((req, res, next) => {
 // IMPORTING ROUTES
 app.use("/", userRoutes);
 app.use("/uploads", uploadRoutes);
+app.use("/uploads/:id/reviews", reviewRoutes);
 
 // getting a home routes
 app.get("/", (req, res) => {

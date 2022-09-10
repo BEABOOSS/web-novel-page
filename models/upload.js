@@ -24,6 +24,7 @@ const UploadSchema = new Schema(
 		description: String,
 		status: String,
 		genres: String,
+		rating: Number,
 		uploadTime: {
 			type: Date,
 			default: Date.now,

@@ -111,7 +111,30 @@
 			</div>
 		</div>
 	</div>
-	<div class="reviews">
-		<h2>Reviews</h2>
+	<div class="third-half">
+		<div class="title">
+			<h2>Reviews</h2>
+		</div>
+		<div class="box1">
+			<div class="posts">
+				<% if(currentUser) { %>
+					<h3>Leave a Review</h3> 
+				<div class="form">
+					<form action="/uploads/<%= book.id%>/reviews" method="POST" class="" novalidate>
+						<div>
+							<label for="rating">Rating</label>
+							<input type="text" name="rating" id="rating" required >
+						</div>
+						<div>
+							<label class="" for="body">Review Text</label>
+							<textarea name="body" id="body" cols="150" rows="3" required></textarea>
+						</div>
+						<button class="btn search-butn">Submit</button>
+					</form>
+				</div>
+				<% } %> 
+				<div class="allreviews"></div>
+			</div>
+		</div>
 	</div>
 </div>
