@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col">
 				<div class="">
-					<img src="<%= book.coverPicture[0].url%>" class="img-fluid rounded shadow-lg" alt="" srcset="" />
+					<img src="<%= book.coverPicture[0].url%>" crossorigin="anonymous" class="img-fluid rounded shadow-lg" alt="" srcset="" />
 				</div>
 			</div>
 			<div class="col">
@@ -140,6 +140,11 @@
 								<h5><%= review.author.username%></h5>
 								<p>Review: <%= review.body %> </p>
 							</div>
+							<% if(currentUser && review.author.equals(currentUser._id)) {%> 
+							<form action="/uploads/<%= book.id%>/reviews/<%= review._id%>?_method=DELETE" method="POST">
+								<button class="btn search-butn">Delete</button>
+							</form>
+							<% } %> 
 						</div>
 					
 					<% } %>  

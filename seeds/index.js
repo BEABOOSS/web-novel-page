@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Chapter = require("../models/chapter");
 const Upload = require("../models/upload");
+const Review = require("../models/review");
 const { genre } = require("./genres");
 const data = require("./data.json");
 const Manga = require("./export-manga-BEABOOSS");
@@ -22,6 +23,7 @@ db.once("open", () => {
 const seedDB = async () => {
 	await Upload.deleteMany({});
 	await Chapter.deleteMany({});
+	await Review.deleteMany({});
 	for (let i = 0; i < 12; i++) {
 		const random114 = Math.floor(Math.random() * 114);
 		const genres = Math.floor(Math.random() * 109);

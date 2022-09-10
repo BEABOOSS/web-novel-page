@@ -12,10 +12,8 @@ module.exports.renderNewForm = (req, res) => {
 //
 // Create Book
 module.exports.createBook = async (req, res, next) => {
-	const book = new Upload(req.body.book);
+	const book = new Upload(req.body);
 	book.coverPicture = req.files.map((f) => ({ url: f.path, filename: f.filename }));
-	// book.chapterss;
-	// console.log(req.body);
 	await book.save();
 	res.redirect(`/uploads/${book._id}`);
 };
@@ -35,6 +33,7 @@ module.exports.navbarSearch = async (req, res, next) => {
 
 //
 //showing all books
+// still need to add proper logic for the chapters that show up on the browse page
 module.exports.allBook = async (req, res) => {
 	const book = await Upload.find({});
 	// const lastIdx = book.chapterss[book.chapterss.length - 1]
@@ -53,7 +52,7 @@ module.exports.pageOfBook = async (req, res) => {
 			path:"author"
 		},
 	})
-	.populate("author")
+	.populate("author");
 	const lastValue = book.chapterss.length;
 	const lastIdx = book.chapterss[lastValue - 1];
 	const revOrder = book.chapterss.slice().reverse();
