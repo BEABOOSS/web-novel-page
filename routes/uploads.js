@@ -6,8 +6,6 @@ const multer = require("multer");
 const { storage } = require("../cloudinary");
 const { array } = require("joi");
 const upload = multer({ storage });
-
-const Upload = require("../models/upload");
 const { isLoggedIn, isAuthor, validateBook } = require("../middleware");
 
 router.route("/")

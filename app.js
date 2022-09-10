@@ -23,6 +23,7 @@ const ExpressError = require("./utils/ExpressError");
 
 const uploadRoutes = require("./routes/uploads");
 const reviewRoutes = require("./routes/reviews");
+const searchRoute = require("./routes/search");
 const userRoutes = require("./routes/users");
 
 const MongoDBStore = require("connect-mongo");
@@ -135,6 +136,7 @@ app.use((req, res, next) => {
 
 // IMPORTING ROUTES
 app.use("/", userRoutes);
+app.use("/", searchRoute)
 app.use("/uploads", uploadRoutes);
 app.use("/uploads/:id/reviews", reviewRoutes);
 
@@ -143,20 +145,6 @@ app.get("/", (req, res) => {
 	res.render("books/home");
 });
 
-// Navbar search
-app.post(
-	"/books/show",
-	catchAsync(async (req, res, next) => {
-		let searchTerm = req.body.searchTerm;
-		let book = await Upload.find({ $text: { $search: searchTerm, $diacriticSensitive: true } });
-		if (book === undefined || book.length === 0) {
-			return res.redirect("/uploads");
-		} else {
-			res.redirect(`/uploads/${book[0].id}`);
-		}
-		next();
-	})
-);
 
 //* ==================
 //*  error middleware
