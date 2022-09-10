@@ -3,12 +3,15 @@ const router = express.Router();
 const passport = require("passport");
 const catchAsync = require("../utils/catchAsync");
 const users = require("../controllers/users");
+const searching = require("../controllers/search");
 
-router.route("/register")
-    .get(users.renderRegister)
-    .post(catchAsync(users.register));
+// Search in the navbar
+router.post("/books/show", catchAsync(searching.searchBar));
 
-router.route("/login")
+router.route("/register").get(users.renderRegister).post(catchAsync(users.register));
+
+router
+	.route("/login")
 	.get(users.renderLogin)
 	.post(passport.authenticate("local", { failureRedirect: "/login" }), users.login);
 

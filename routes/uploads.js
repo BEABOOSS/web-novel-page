@@ -17,11 +17,6 @@ router.route("/")
 router.get("/new", isLoggedIn, uploads.renderNewForm);
 
 
-// I'm not sure what to do about this
-// --- 
-// router.post("/books/show", catchAsync(uploads.navbarSearch));
-// router.post("/books/show", uploads.navbarSearch);
-
 router.route("/:id")
     .get(catchAsync(uploads.pageOfBook))
     .put(isLoggedIn, isAuthor, upload.array("coverPicture"), catchAsync(uploads.updateBook))
