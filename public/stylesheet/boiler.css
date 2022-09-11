@@ -63,7 +63,68 @@ $cyan: #0dcaf0 */
 	float: left;
 	background-color: var(--lightBg);
 }
+/* footer */
 
+.footer{
+	box-sizing: border-box;
+	display: block;
+	bottom: 0px;
+	background-color: #000;
+}
+.sfooter {
+	box-sizing: border-box;
+	display: block;
+	height: 150px;
+}
+.logos {
+	box-sizing: border-box;
+	display: inline;
+	height: 80px;
+	overflow: hidden;
+	padding: 10px;
+}
+.route {
+	box-sizing: border-box;
+	display: block;
+	height: 40px;
+	padding: 0px;
+}
+.menu {
+	display: block;
+	box-sizing: border-box;
+	text-align: center;
+	overflow: hidden;
+	list-style-type: none;
+	list-style-position: outside;
+}
+.menu-item {
+	box-sizing: border-box;
+	display: inline-block;
+	padding: 5px 10px 5px 10px;
+}
+.ftcopyright {
+	box-sizing: border-box;
+	display: block;
+	margin: 0px 20% 0px 20%;
+	max-width: 1220px;
+	overflow: hidden;
+	padding: 0px 20px 0px 20px;
+	text-align: center;
+}
+.copyright {
+	box-sizing: border-box;
+	display: block;
+	margin-bottom: 20px;
+	overflow: hidden;
+}
+.txt {
+	box-sizing: border-box;
+	display: block;
+	margin: 0px 240px 0px 240px;
+	max-width: 700px;
+	font-size: 13px ;
+	filter: brightness(0.5);
+}
 ::-webkit-scrollbar {
 	display: block;
 	width: 10px;
