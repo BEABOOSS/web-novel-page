@@ -46,17 +46,18 @@ module.exports.allBook = async (req, res) => {
 // The page of the book AKA the one with all the chapters
 module.exports.pageOfBook = async (req, res) => {
 	const book = await Upload.findById(req.params.id)
-	.populate({
-		path:"reviews",
-		populate:{
-			path:"author"
-		},
-	})
-	.populate("author");
+		.populate({
+			path: "reviews",
+			populate: {
+				path: "author",
+			},
+		})
+		.populate("author");
 	const lastValue = book.chapterss.length;
 	const lastIdx = book.chapterss[lastValue - 1];
 	const revOrder = book.chapterss.slice().reverse();
-
+	const user = req.user;
+	
 	res.render("books/show", { book, lastIdx, revOrder, lastValue });
 };
 
@@ -77,7 +78,7 @@ module.exports.chapterOfBook = async (req, res) => {
 module.exports.renderEditForm = async (req, res) => {
 	const { id } = req.params;
 	const book = await Upload.findById(id);
-	 console.log(book)
+	console.log(book);
 	res.render("books/edit", { book, genre });
 };
 
@@ -86,7 +87,7 @@ module.exports.renderEditForm = async (req, res) => {
 module.exports.updateBook = async (req, res) => {
 	const { id } = req.params;
 	const book = await Upload.findByIdAndUpdate(id, { ...req.body.book });
-	const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
+	const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
 	book.coverPicture.push(...imgs);
 	await book.save();
 	if (req.body.deleteImages) {

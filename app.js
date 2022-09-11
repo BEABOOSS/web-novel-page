@@ -145,15 +145,18 @@ app.get("/", (req, res) => {
 	res.render("books/home");
 });
 
-app.post("/uploads/:id/users", catchAsync(async(req, res, next) => {
-	const {id} = req.params;
-	const book = await Upload.findById(id);
-	const user = req.user;
-	user.bookmarks.push(book.id)
+app.post(
+	"/uploads/:id/users",
+	catchAsync(async (req, res, next) => {
+		const { id } = req.params;
+		const book = await Upload.findById(id);
+		const user = req.user;
+		user.bookmarks.push(book.id);
 
-	await user.save()
-	res.redirect(`/uploads/${id}`)
-}))
+		await user.save();
+		res.redirect(`/uploads/${id}`);
+	})
+);
 
 //* ==================
 //*  error middleware

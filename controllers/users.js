@@ -42,6 +42,7 @@ module.exports.bookmark = async (req, res, next) => {
 	const user = req.user;
 	user.bookmarks.push(book.id)
 
+	console.log(user)
 	await user.save()
 	res.redirect(`/uploads/${id}`)
 };

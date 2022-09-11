@@ -7,7 +7,10 @@
 				<div class="">
 					<img src="<%= book.coverPicture[0].url%>" crossorigin="anonymous" class="img-fluid rounded shadow-lg" alt="" srcset="" />
 					<div class="bookmark1">
-						<form action="/uploads/<%= book.id %>/users" method="POST" novalidate>
+						<% if (currentUser.bookmarks.find(x => x._id === book.id) ) { %>
+							<h1>YES</h1>	
+						<% } %> 
+						<form action="/uploads/<%= book.id %>/users" method="POST" novalidate> 
 							<button class="bk1-butn">Bookmark</button>
 						</form>
 					</div>
