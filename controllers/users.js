@@ -1,5 +1,5 @@
 const User = require("../models/user");
-
+const Upload = require("../models/upload");
 // NEED TO ADD THE FLASH msg later on if possible
 module.exports.renderRegister = (req, res) => {
 	res.render("users/register");
@@ -34,4 +34,14 @@ module.exports.logout = (req, res, next) => {
 		if (err) return next(err);
 	});
 	res.redirect("/uploads");
+};
+
+module.exports.bookmark = async (req, res, next) => {
+	const {id} = req.params;
+	const book = await Upload.findById(id);
+	const user = req.user;
+	user.bookmarks.push(book.id)
+
+	await user.save()
+	res.redirect(`/uploads/${id}`)
 };

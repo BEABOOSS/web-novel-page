@@ -2,19 +2,7 @@
 <link rel="stylesheet" href="/stylesheet/show.css" />
 <div class="">
 	<div class="firstHalf">
-		<div class="row">
-			<div class="col buz">
-				<div class="">
-					<img src="<%= book.coverPicture[0].url%>" crossorigin="anonymous" class="img-fluid rounded shadow-lg" alt="" srcset="" />
-					<div class="bookmark1">
-						<form action="/uploads/<%= book.id %>/users" method="POST" novalidate>
-							<button class="bk1-butn">Bookmark</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
+		<div class="inf-half">
 			<div class="col">
 				<div class="top-tt">
 					<h1><%= book.title %></h1>
@@ -29,6 +17,18 @@
 				<div>
 					<h3>Synopsis</h3>
 					<p><%= book.description %></p>
+				</div>
+			</div>
+		</div>
+		<div class="thumbnail-half">
+			<div class="buz">
+				<div class="">
+					<img src="<%= book.coverPicture[0].url%>" crossorigin="anonymous" class="img-fluid rounded shadow-lg" alt="" srcset="" />
+					<div class="bookmark1">
+						<form action="">
+							<button class="bk1-butn">Bookmark</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
