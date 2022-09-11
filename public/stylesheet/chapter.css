@@ -11,8 +11,74 @@
 	--lighBg: var(--purple-2);
 	--darkBg: var(--purple-3);
 }
+a {
+	color: var(--white);
+	text-decoration: none;
+}
+a:hover {
+	color: var(--light-purple);
+}
+.chapBody {
+	box-sizing: border-box;
+	display: block;
+}
+.area {
+	box-sizing: border-box;
+	display: block;
+	margin: 10px 0px 0px 0px;
+}
+.post-id {
+	box-sizing: border-box;
+	display: block;
+}
+.topPost {
+	box-sizing: border-box;
+	display: block;
+	margin: 0px 15% 15px 15%;
+	text-align: center;
+}
+.allchap {
+	color: var(--light-purple);
+}
+.allchap:hover {
+	color: var(--white);
+}
+.maincontent {
+	box-sizing: border-box;
+	display: block;
+}
+.nav-r {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+	margin: 0px 15% 15px 15%;
+	text-align: center;
+}
+.nextprev {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.prev {
+	padding: 3px 15px 3px 15px;
+	border: 1px solid var(--light-purple);
+	border-radius: 20px;
+	margin: 0px 5px 0px 5px;
+}
+.prev:hover {
+	color: var(--white);
+	background: var(--light-purple);
+	border: 1px solid var(--purple-4);
+}
 
+
+.reading {
+	box-sizing: border-box;
+	display: block;
+	margin: 10px 20% 10px 20%;
+}
 .mainImg {
-    width: 800;
-    height: 1000;
+	width: 800;
+	height: 1000;
 }

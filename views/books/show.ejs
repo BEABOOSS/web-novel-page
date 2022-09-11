@@ -7,10 +7,7 @@
 				<div class="">
 					<img src="<%= book.coverPicture[0].url%>" crossorigin="anonymous" class="img-fluid rounded shadow-lg" alt="" srcset="" />
 					<div class="bookmark1">
-						<% if (currentUser.bookmarks.find(x => x._id === book.id) ) { %>
-							<h1>YES</h1>	
-						<% } %> 
-						<form action="/uploads/<%= book.id %>/users" method="POST" novalidate> 
+						<form action="/uploads/<%= book.id %>/users" method="POST" novalidate>
 							<button class="bk1-butn">Bookmark</button>
 						</form>
 					</div>
@@ -129,8 +126,8 @@
 		</div>
 	</div>
 	<div class="third-half">
-		<div class="title">
-			<h2>Reviews</h2>
+		<div class=" t-box">
+			<h2 class="title">Reviews</h2>
 		</div>
 		<div class="box1">
 			<div class="posts">
@@ -138,34 +135,38 @@
 				<h3>Leave a Review</h3>
 				<div class="form">
 					<form action="/uploads/<%= book.id%>/reviews" method="POST" class="" novalidate>
-						<div>
-							<label for="rating">Rating</label>
-							<input type="number" name="rating" id="rating" required />
+						<div class="r4ting">
+							<label class="la " for="rating">Rating : </label>
+							<input class="inpt" type="number" name="rating" id="rating" min="1" max="10" maxlength="2" required />
 						</div>
-						<div>
-							<label class="" for="body">Review Text</label>
-							<textarea name="body" id="body" cols="150" rows="3" required></textarea>
+						<div class="r4ting">
+							<textarea class="textbd" name="body" id="body" cols="150" rows="3" required>Leave a Review</textarea>
 						</div>
 						<button class="btn search-butn">Submit</button>
 					</form>
 				</div>
 				<% } %>
-				<div class="allreviews">
-					<% for(let review of book.reviews) { %>
-					<div class="card mb-3 cards">
-						<div class="card-body">
+			</div>
+			<div class="allreviews">
+				<% for(let review of book.reviews) { %>
+				<div class="card mb-3 cards">
+					<div class="card-body">
+						<div class="userR4">
 							<h5><%= review.author.username%></h5>
+							<p><%= review.rating %> </p>
+						</div>
+						<div class="rev-body">
 							<p>Review: <%= review.body %></p>
 						</div>
-						<% if(currentUser && review.author.equals(currentUser._id)) {%>
-						<form action="/uploads/<%= book.id%>/reviews/<%= review._id%>?_method=DELETE" method="POST">
-							<button class="btn search-butn">Delete</button>
-						</form>
-						<% } %>
 					</div>
-
+					<% if(currentUser && review.author.equals(currentUser._id)) {%>
+					<form action="/uploads/<%= book.id%>/reviews/<%= review._id%>?_method=DELETE" method="POST">
+						<button class="btn search-butn">Delete</button>
+					</form>
 					<% } %>
 				</div>
+
+				<% } %>
 			</div>
 		</div>
 	</div>

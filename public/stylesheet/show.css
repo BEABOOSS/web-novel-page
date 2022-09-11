@@ -208,3 +208,87 @@ a:hover {
 }
 
 /* REVIEWS */
+
+/* .third-half {
+	display: flex;
+} */
+.t-box{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0px 0px 5px 0px;
+}
+.box1{
+	display: flex;
+	flex-direction: column;
+}
+/* create a review */
+.posts {
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+}
+
+.r4ting {
+	display: flex;
+	justify-content: center;
+	margin: 0px 0px 10px 0px;
+}
+.la {
+	margin: 0px 5px 0px 0px ;
+}
+.inpt {
+	border-radius: 10px;
+	background-color: var(--lighBg);
+	border: none;
+	width: 100px;
+	color: var(--white);
+	text-align: center;
+	box-shadow: 1px 1px 1px 1px #000;
+	padding: 5px 5px 5px 5px;
+}
+.textbd {
+	border-radius: 20px ;
+	background-color: var(--lighBg);
+	color: var(--white);
+	border: none;
+	text-align: start;
+	padding: 5px 0px 0px 15px;
+	margin: 10px 0px 0px 0px;
+	resize: none;
+	white-space: normal;
+	box-shadow: 1px 1px 1px 1px #000;
+}
+
+/* all reviews */
+.allreviews {
+	display: grid;
+	flex-direction: column;
+	grid-template-columns: 1fr 1fr 1fr;
+	box-sizing: border-box;
+	margin: 10px 0px 0px 0px ;
+	
+}
+.allreviews::selection {
+	border-color: var(--light-purple);
+}
+.cards {
+	background-color: var(--lighBg);
+	margin: 5px 10px 5px 10px;
+	box-sizing: border-box;
+	padding: 5px;
+}
+.card-body {
+	display: flex;
+	flex-direction: column;
+	padding: 5px 10px 0px 15px;
+}
+.userR4	{
+	display: flex;
+	justify-content: space-evenly;
+	align-content: flex-start;
+}
+.rev-body {
+	overflow: auto;
+	height: 120px;
+}
+

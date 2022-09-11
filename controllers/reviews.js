@@ -8,7 +8,6 @@ module.exports.createReview = async (req, res, next) => {
 	review.author = req.user._id;
 	book.reviews.push(review);
 	
-	// console.log(req)
 	await review.save();
 	await book.save();
 	res.redirect(`/uploads/${id}`);

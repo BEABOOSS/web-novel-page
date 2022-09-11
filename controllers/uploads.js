@@ -56,8 +56,9 @@ module.exports.pageOfBook = async (req, res) => {
 	const lastValue = book.chapterss.length;
 	const lastIdx = book.chapterss[lastValue - 1];
 	const revOrder = book.chapterss.slice().reverse();
-	const user = req.user;
-	
+
+		
+	res.cookie("bookmarks", `${book.title}`)	
 	res.render("books/show", { book, lastIdx, revOrder, lastValue });
 };
 

@@ -3,39 +3,72 @@
 
 <div class="chapBody">
 	<div class="area">
-		<div class="">
+		<div class="post-id" id="<%= book.id%>">
 			<div class="topPost">
-				<h1 class="title"><%= book.title %></h1>
-				<p>Return To<a href="/uploads/<%= book.id%>"> All Chapters</a></p>
+				<h1 class="title"><%= book.title %> Chapter <%= number2%></h1>
+				<p>Return To<a class="allchap" href="/uploads/<%= book.id%>"> All Chapters</a></p>
 			</div>
 			<div class="maincontent">
 				<div class="selectors">
 					<span class="chapSelc"></span>
 					<span class="nav-r">
 						<div class="nextprev">
-							<% if(lastIdx  === undefined) { %>
-							   <a class="disabled">Prev</a>
+							<% if(lastIdx === undefined) { %>
+							<a class="disabled">
+								<div class="adds">Prev</div>
+							</a>
 							<% } else { %>
-							   <a href="/uploads/<%= book.id%>/chapterss-<%= lastIdx.number %>">Prev</a>
-							<% } %> 
-                     <% if (nextIdx == undefined) { %>
-							   <a class="disabled">Next</a>
+							<a href="/uploads/<%= book.id%>/chapterss-<%= lastIdx.number %>">
+								<div class="prev">Prev</div>
+							</a>
+							<% } %> <% if (nextIdx == undefined) { %>
+							<a class="disabled">
+								<div class="prev">Next</div>
+							</a>
 							<% } else { %>
-							   <a href="/uploads/<%= book.id%>/chapterss-<%= nextIdx.number %>">Next</a>
+							<a href="/uploads/<%= book.id%>/chapterss-<%= nextIdx.number %>">
+								<div class="prev">Next</div>
+							</a>
 							<% } %>
 						</div>
 					</span>
 				</div>
-				<% book.chapterss[number2].images.forEach(el => { %>
-				<p>
-					<img src="<%= el.url%>"  crossorigin="anonymous" width="800" height="1000" alt />
-				</p>
-				<% }) %>
+				<div class="reading">
+					<% book.chapterss[number2].images.forEach(el => { %>
+					<p>
+						<img src="<%= el.url%>" crossorigin="anonymous" width="800" height="1000" alt />
+					</p>
+					<% }) %>
+				</div>
+				<div class="selectors">
+					<span class="chapSelc"></span>
+					<span class="nav-r">
+						<div class="nextprev">
+							<% if(lastIdx === undefined) { %>
+							<a class="disabled">
+								<div class="adds">Prev</div>
+							</a>
+							<% } else { %>
+							<a href="/uploads/<%= book.id%>/chapterss-<%= lastIdx.number %>">
+								<div class="prev">Prev</div>
+							</a>
+							<% } %> <% if (nextIdx == undefined) { %>
+							<a class="disabled">
+								<div class="prev">Next</div>
+							</a>
+							<% } else { %>
+							<a href="/uploads/<%= book.id%>/chapterss-<%= nextIdx.number %>">
+								<div class="prev">Next</div>
+							</a>
+							<% } %>
+						</div>
+					</span>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<img src="https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662689901/chapter1/001-129_srmeyj.jpg" crossorigin="anonymous" width="800" height="1000" alt="" />
-<img src="https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662690000/chapter1/002-169_gttcmj.jpg" crossorigin="anonymous" width="800" height="1000" alt="" />
-<img src="https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662689971/chapter1/003-168_ufrliv.jpg" crossorigin="anonymous" width="800" height="1000" alt="" />
+<!-- <img class="reading" src="https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662689901/chapter1/001-129_srmeyj.jpg" crossorigin="anonymous" width="800" height="1000" alt="" />
+<img class="reading" src="https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662690000/chapter1/002-169_gttcmj.jpg" crossorigin="anonymous" width="800" height="1000" alt="" />
+<img class="reading" src="https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662689971/chapter1/003-168_ufrliv.jpg" crossorigin="anonymous" width="800" height="1000" alt="" /> -->

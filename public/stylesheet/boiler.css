@@ -37,7 +37,7 @@ $cyan: #0dcaf0 */
 	--purple-2: #252638;
 	--purple-3: #1f1d2b;
 	--purple-4: #1f1d2c;
-	--lighBg: var(--purple-2);
+	--lightBg: var(--purple-2);
 	--darkBg: var(--purple-3);
 }
 .nav-bg{
@@ -62,4 +62,16 @@ $cyan: #0dcaf0 */
 	height: 240px;
 	float: left;
 	background-color: var(--lightBg);
+}
+
+::-webkit-scrollbar {
+	display: block;
+	width: 10px;
+	overflow: auto;
+	background-color: var(--lighBg);
+	border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+	border-radius: 5px;
+	background-color: var(--light-purple);
 }
