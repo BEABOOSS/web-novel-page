@@ -36,6 +36,7 @@ a:hover {
 	/* color: var(--white); */
 }
 .bk-butn {
+	display: inline-block;
 	text-align: center;
 	border: 1px solid var(--light-purple);
 	border-radius: 5px;
@@ -49,12 +50,19 @@ a:hover {
 }
 .bk-butn::before {
 	content: url("/stylesheet/bookmark.svg");
-	display: inline-block;
 	background-position: 0 0px, center;
-
 }
+
+.marked {
+	background-color: var(--light-purple);
+	background-position: 0 0px, center;
+}
+.marked:hover {
+	background-color: var(--lightBg);
+}
+
 .marked::before {
-	content: url("/stylesheet/bookmark_mark.svg");
+	content: url("/stylesheet/bookmark_marked.svg");
 }
 
 

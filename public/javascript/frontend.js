@@ -38,10 +38,12 @@ $(document).ready(function () {
 	$("#btn-bookmarkJQ").click(function () {
 		// let i = $(this).data("id");
 		$.post(location + "/users", () => {
-			$(this).toggleClass("on");
-			$(".")
+			$(this).toggleClass("marked");
 		});
     });
+	// $("#btn-bookmarkJQ").click( function () {
+	// 	$(this).removeClass("marked");
+	// });
 });
 
 // $("#btn-bookmark")
