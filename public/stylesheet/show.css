@@ -33,11 +33,10 @@ a:hover {
 	box-sizing: border-box;
 	position: relative;
 	margin: 2px 0px 2px 0px;
+	/* color: var(--white); */
 }
 .bk-butn {
-	display: block;
 	text-align: center;
-	box-sizing: border-box;
 	border: 1px solid var(--light-purple);
 	border-radius: 5px;
 	background-color: var(--lightBg);
@@ -48,27 +47,15 @@ a:hover {
 .bk-butn:hover {
 	background-color: var(--light-purple);
 }
-/* .bk-butn.on {
-	display: block;
-} */
-/* .bked-butn {
-	display: none;
-	text-align: center;
-	box-sizing: border-box;
-	border: 1px solid var(--light-purple);
-	border-radius: 5px;
-	background-color: var(--lightBg);
-	color: var(--white);
-	padding: 5px 0px 5px 0px;
-	width: 100%;
+.bk-butn::before {
+	content: url("/stylesheet/bookmark.svg");
+	display: inline-block;
+	background-position: 0 0px, center;
+
 }
-.bked-butn:hover {
-	background-color: var(--light-purple);
+.marked::before {
+	content: url("/stylesheet/bookmark_mark.svg");
 }
-.bked-butn.on {
-	background-position: ;
-	display: block;
-} */
 
 
 

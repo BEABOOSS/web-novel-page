@@ -52,14 +52,15 @@ app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
-app.use(express.urlencoded({ extended: true }));
+
+// * 
+app.use(express.urlencoded({ extended: true })); 
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.json({extended:true, limit: "1mb"}))
 // app.use(mongoSanitize());
 
 // CONFIGURING COOKIES
-
 const store = new MongoDBStore({
 	mongoUrl: process.env.MONGO_URL,
 	secret: process.env.SESSION_SECRET,
@@ -136,6 +137,7 @@ passport.serializeUser(User.serializeUser());
 // V how do you get a user out of that session V
 passport.deserializeUser(User.deserializeUser());
 
+// making the user info available on the req
 app.use((req, res, next) => {
 	res.locals.currentUser = req.user;
 
@@ -163,9 +165,9 @@ app.post("/uploads/:id/users", isLoggedIn,catchAsync( async (req, res, next) => 
 	// if()
 
 
-	// res.cookie("bookmarksId", JSON.stringify(bookmarksID)).send()
-	// console.log(cookies)
-	console.log(as)
+	res.cookie("bookmarksId", ([book.id])).send()
+
+	// console.log()
 	// await user.save()				NOT NEEDED
 	// res.redirect(`/uploads/${id}`)   NOT NEEDED due to jquery
 }));

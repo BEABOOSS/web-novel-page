@@ -36,8 +36,11 @@
 // });
 $(document).ready(function () {
 	$("#btn-bookmarkJQ").click(function () {
-		let i = $(this).data("id");
-		$.post(location + "/users");
+		// let i = $(this).data("id");
+		$.post(location + "/users", () => {
+			$(this).toggleClass("on");
+			$(".")
+		});
     });
 });
 
