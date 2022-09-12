@@ -33,6 +33,7 @@ const reviewRoutes = require("./routes/reviews");
 const userRoutes = require("./routes/users");
 
 const MongoDBStore = require("connect-mongo");
+const { isLoggedIn } = require("./middleware");
 // connect to mongo and sends back error if something goes wrong
 mongoose
 	.connect(process.env.MONGO_URL)
@@ -152,16 +153,24 @@ app.get("/", (req, res) => {
 	res.render("books/home");
 });
 
-app.post("/uploads/:id/users", catchAsync( async (req, res, next) => {
+app.post("/uploads/:id/users", isLoggedIn,catchAsync( async (req, res, next) => {
 	const {id} = req.params;
 	const book = await Upload.findById(id);
-	const user = req.user;
-	user.bookmarks.push(book.id)
+	const cookies = req.headers.cookie;
+	const as = cookies.split("; ")
+	let bookmarksID = [{book: `3234234`}, {book: "494"}]
+	// const i = JSON.stringify(bookmarksID)
+	// if()
 
-	console.log(user)
-	await user.save()
-	res.redirect(`/uploads/${id}`)
+
+	// res.cookie("bookmarksId", JSON.stringify(bookmarksID)).send()
+	// console.log(cookies)
+	console.log(as)
+	// await user.save()				NOT NEEDED
+	// res.redirect(`/uploads/${id}`)   NOT NEEDED due to jquery
 }));
+
+
 
 //* ==================
 //*  error middleware

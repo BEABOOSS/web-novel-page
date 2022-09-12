@@ -36,13 +36,13 @@ module.exports.logout = (req, res, next) => {
 	res.redirect("/uploads");
 };
 
-module.exports.bookmark = async (req, res, next) => {
-	const {id} = req.params;
-	const book = await Upload.findById(id);
-	const user = req.user;
-	user.bookmarks.push(book.id)
+// module.exports.bookmark = async (req, res, next) => {
+// 	const {id} = req.params;
+// 	const book = await Upload.findById(id);
+// 	const user = req.user;
+// 	user.bookmarks.push(book.id)
 
-	console.log(user)
-	await user.save()
-	res.redirect(`/uploads/${id}`)
-};
+// 	console.log(user)
+// 	await user.save()
+// 	res.redirect(`/uploads/${id}`)
+// };

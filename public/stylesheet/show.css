@@ -34,7 +34,8 @@ a:hover {
 	position: relative;
 	margin: 2px 0px 2px 0px;
 }
-.bk1-butn {
+.bk-butn {
+	display: block;
 	text-align: center;
 	box-sizing: border-box;
 	border: 1px solid var(--light-purple);
@@ -44,9 +45,36 @@ a:hover {
 	padding: 5px 0px 5px 0px;
 	width: 100%;
 }
-.bk1-butn:hover {
+.bk-butn:hover {
 	background-color: var(--light-purple);
 }
+/* .bk-butn.on {
+	display: block;
+} */
+/* .bked-butn {
+	display: none;
+	text-align: center;
+	box-sizing: border-box;
+	border: 1px solid var(--light-purple);
+	border-radius: 5px;
+	background-color: var(--lightBg);
+	color: var(--white);
+	padding: 5px 0px 5px 0px;
+	width: 100%;
+}
+.bked-butn:hover {
+	background-color: var(--light-purple);
+}
+.bked-butn.on {
+	background-position: ;
+	display: block;
+} */
+
+
+
+
+
+
 .top-tt {
 	padding: 5px 0px 5px 0px;
 }
