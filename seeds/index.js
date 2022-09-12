@@ -1,16 +1,15 @@
 const mongoose = require("mongoose");
-const Chapter = require("../models/chapter");
 const Upload = require("../models/upload");
 const Review = require("../models/review");
 const { genre } = require("./genres");
-const data = require("./data.json");
 const Manga = require("./export-manga-BEABOOSS");
 const { bool } = require("joi");
+require("dotenv/config");
 
 const lorem = `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate, obcaecati voluptatibus.Accusantium minus beatae qui harum optio. Modi ea laborum corrupti sit reiciendis cumque hic sapiente aperiam incidunt quaerat. Repudiandae quasi quo quibusdam tenetur distinctio reprehenderit provident cupiditate, aliquam facere repellendus.
 `;
 
-mongoose.connect("mongodb://localhost:27017/web-novel-page");
+mongoose.connect(process.env.DB_ATLAS_URL);
 
 // checks if there is an error
 const db = mongoose.connection;
@@ -22,13 +21,12 @@ db.once("open", () => {
 
 const seedDB = async () => {
 	await Upload.deleteMany({});
-	await Chapter.deleteMany({});
 	await Review.deleteMany({});
 	for (let i = 0; i < 12; i++) {
 		const random114 = Math.floor(Math.random() * 114);
 		const genres = Math.floor(Math.random() * 109);
 		const book = new Upload({
-			author: "631a36c228c72348e344ab28",
+			author: "631fb9bd74b1b4f6c6c7a424",
 			title: `${Manga[random114].name}`,
 			status: `${Manga[random114].status}`,
 			description: lorem,

@@ -3,6 +3,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 // require("dotenv/config");
 
+
 const express = require("express");
 const ejsMate = require("ejs-mate");
 const path = require("path");
@@ -29,14 +30,13 @@ const ExpressError = require("./utils/ExpressError");
 
 const uploadRoutes = require("./routes/uploads");
 const reviewRoutes = require("./routes/reviews");
-// const searchRoute = require("./routes/search");
 const userRoutes = require("./routes/users");
 
 const MongoDBStore = require("connect-mongo");
 const { isLoggedIn } = require("./middleware");
 // connect to mongo and sends back error if something goes wrong
 mongoose
-	.connect(process.env.MONGO_URL)
+	.connect(process.env.DB_ATLAS_URL)
 	.then(() => {
 		console.log("DataBase connected!!!");
 	})
@@ -61,7 +61,7 @@ app.use(express.json({ extended: true, limit: "1mb" }));
 
 // CONFIGURING COOKIES
 const store = new MongoDBStore({
-	mongoUrl: process.env.MONGO_URL,
+	mongoUrl: process.env.DB_ATLAS_URL,
 	secret: process.env.SESSION_SECRET,
 	touchAfter: 24 * 60 * 60,
 });
@@ -72,7 +72,7 @@ store.on("errors", function (e) {
 
 const sessionConfig = {
 	store,
-	name: "manga",
+	name: "session",
 	secret: process.env.SESSION_SECRET,
 	resave: false,
 	saveUninitialized: true,

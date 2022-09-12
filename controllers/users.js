@@ -15,6 +15,7 @@ module.exports.register = async (req, res, next) => {
 			res.redirect("/uploads");
 		});
 	} catch (e) {
+		console.log(e)
 		res.redirect("register");
 	}
 };
