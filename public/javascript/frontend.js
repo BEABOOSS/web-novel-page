@@ -1,69 +1,42 @@
-// $(document).ready(function () {
-//     $("#btn-bookmark").on("click",() => {
-//         $.ajax({
-//             type: "POST",
-//             url: "/:id/users",
-//             data: { manga_id: 1357 },
-//             success: function (result) {
-//                 if (result == 1) {
-//                     // $(this).toggleClass("on")
-//                     // $(".bookmarked").removeClass("on");
-//                     alert('Success');
-//                     // window.location.reload();
-//                 } else {
-//                     alert("Please login");
-//                 }
-//             },
-//         });
-//     });
-//     $("#btnUnsubscribe").click(function () {
-//         $.ajax({
-//             type: "POST",
-//             url: "/:id/users",
-//             data: { manga_id: 1357 },
-//             success: function (result) {
-//                 if (result == 1) {
-//                     // $(this).toggleClass("on");
-//                     // $(".bookmark").removeClass("on");
-//                     alert('Success');
-//                     // window.location.reload();
-//                 } else {
-//                     alert("Please login");
-//                 }
-//             },
-//         });
-//     });
-
-
-// });
 $(document).ready(function () {
+	$(function () {
+		if (localStorage.getItem("bookmark") === null) {
+			// const a = JSON.parse(localStorage.getItem("bookmark"));
+			localStorage.setItem("bookmark", JSON.stringify(["afsdfas"]));
+			// alert("hi new user!")
+		}
+	});
+	$(function () {
+		const marks = JSON.parse(localStorage.getItem("bookmark"));
+		const i = $("#btn-bookmarkJQ").data("id");
+		if (localStorage.getItem("bookmark") === undefined || !marks.includes(i)) {
+			return $("#btn-bookmarkJQ").addClass("marked");
+		}
+	});
+
 	$("#btn-bookmarkJQ").click(function () {
 		const marks = JSON.parse(localStorage.getItem("bookmark"));
 		const i = $(this).data("id");
-		const pos = marks.indexOf(i)
+		const pos = marks.indexOf(i);
 
-
-
-		$.post(location + "/users", () => {
-			$(this).toggleClass("marked");
-			if(marks.includes(i)) {
-				marks.splice(pos, 1);
-				return localStorage.setItem("bookmark", JSON.stringify(marks))
-			} else {
-				marks.push(i)
-				return localStorage.setItem("bookmark", JSON.stringify(marks))
-			}
-		});
-    });
-
+		if (localStorage.getItem("bookmark") === undefined || !marks.includes(i)) {
+			marks.push(i);
+			localStorage.setItem("bookmark", JSON.stringify(marks));
+			$("#btn-bookmarkJQ").addClass("marked");
+			location.reload();
+		} else {
+			marks.splice(pos, 1);
+			localStorage.setItem("bookmark", JSON.stringify(marks));
+			$("#btn-bookmarkJQ").removeClass("marked");
+			location.reload();
+		}
+	});
 });
 
-// $("#btn-bookmark")
-// $.delete(location + "/users" )
 //  bookmark [
 //     {
 //         manga_title: "",
 //         manga_ID: "",
 //         time: number,
 //     }
-// ] 
+// ]

@@ -154,17 +154,20 @@ app.get("/", (req, res) => {
 	res.render("books/home");
 });
 
-app.post(
-	"/uploads/:id/users",
-	isLoggedIn,
-	catchAsync(async (req, res, next) => {
-		const { id } = req.params;
-		const book = await Upload.findById(id);
-		const cookies = req.headers.cookie;
 
-		res.cookie("bookmarksId", book.id).send();
-	})
-);
+// ** NOT NEEDED NO MORE 
+// like I'm setting the bookmarks to localStorage 
+// app.post(
+// 	"/uploads/:id/users",
+// 	isLoggedIn,
+// 	catchAsync(async (req, res, next) => {
+// 		const { id } = req.params;
+// 		const book = await Upload.findById(id);
+// 		const cookies = req.headers.cookie;
+
+// 		res.cookie("bookmarksId", book.id).send();
+// 	})
+// );
 
 //* ==================
 //*  error middleware
