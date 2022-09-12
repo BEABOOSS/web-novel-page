@@ -161,11 +161,8 @@ app.post(
 		const { id } = req.params;
 		const book = await Upload.findById(id);
 		const cookies = req.headers.cookie;
-		const as = cookies.split("; ");
 
 		res.cookie("bookmarksId", book.id).send();
-
-		// console.log(as[2])
 	})
 );
 
