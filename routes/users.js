@@ -9,7 +9,7 @@ const { isLoggedIn } = require("../middleware");
 // Search in the navbar
 router.post("/books/show", catchAsync(searching.searchBar));
 
-router.post("/uploads/:id/users", isLoggedIn, catchAsync(users.bookmark))
+// router.post("/uploads/:id/users", isLoggedIn, catchAsync(users.bookmark))
 
 router.route("/register").get(users.renderRegister).post(catchAsync(users.register));
 

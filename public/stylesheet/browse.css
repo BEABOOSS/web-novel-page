@@ -25,8 +25,9 @@ a:hover {
 	border-bottom: 1px solid var(--purple-1);
 	margin-bottom: 1%;
 }
+
+/* displaying books */
 .bigbox {
-	margin: 0px 25px 18px 25px;
 	padding: 10px;
 	overflow: hidden;
 }
@@ -42,12 +43,14 @@ a:hover {
 	flex-direction: column;
 	grid-template-columns: 1fr 1fr 1fr;
 	justify-content: center;
+	margin-bottom: 30px;
 }
 .cards {
 	width: 383px;
 	height: 240px;
 	float: left;
-	background-color: var(--lightBg);
+	margin: 10px 0px 10px 0px;
+	background-color: var(--darkBg);
 }
 .sbx {
 	display: grid;

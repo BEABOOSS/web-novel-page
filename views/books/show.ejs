@@ -1,5 +1,6 @@
 <% layout("layout/boilerplate") %>
 <link rel="stylesheet" href="/stylesheet/show.css" />
+
 <div class="">
 	<div class="firstHalf">
 		<div class="row">
@@ -8,8 +9,11 @@
 					<img src="<%= book.coverPicture[0].url%>" crossorigin="anonymous" class="img-fluid rounded shadow-lg" alt="" srcset="" />
 					<div class="bookmark1">
 						<form action="/uploads/<%= book.id %>/users" method="POST" novalidate>
-							<button class="bk1-butn">Bookmark</button>
+							<button class="bk1-butn" id="btn-bookmark">Bookmark Normal </button>
 						</form>
+					</div>
+					<div class="bookmark1">
+						<button class="bk1-butn" id="btn-bookmark">Bookmark Jquery</button>
 					</div>
 				</div>
 			</div>
@@ -126,7 +130,7 @@
 		</div>
 	</div>
 	<div class="third-half">
-		<div class=" t-box">
+		<div class="t-box">
 			<h2 class="title">Reviews</h2>
 		</div>
 		<div class="box1">
@@ -136,7 +140,7 @@
 				<div class="form">
 					<form action="/uploads/<%= book.id%>/reviews" method="POST" class="" novalidate>
 						<div class="r4ting">
-							<label class="la " for="rating">Rating : </label>
+							<label class="la" for="rating">Rating : </label>
 							<input class="inpt" type="number" name="rating" id="rating" min="1" max="10" maxlength="2" required />
 						</div>
 						<div class="r4ting">
@@ -153,7 +157,7 @@
 					<div class="card-body">
 						<div class="userR4">
 							<h5><%= review.author.username%></h5>
-							<p><%= review.rating %> </p>
+							<p><%= review.rating %></p>
 						</div>
 						<div class="rev-body">
 							<p>Review: <%= review.body %></p>
@@ -171,3 +175,5 @@
 		</div>
 	</div>
 </div>
+
+<script src="/javascript/frontend.js"></script>

@@ -16,6 +16,12 @@ const helmet = require("helmet");
 const passport = require("passport");
 const session = require("express-session");
 const LocalStrategy = require("passport-local");
+const jsdom = require("jsdom")
+const {JSDOM} = jsdom;
+const {window} = new JSDOM();
+const {document} = (new JSDOM("")).window;
+global.document = document;
+const $ = require("jquery")(window);
 
 const { cloudinary } = require("./cloudinary");
 const catchAsync = require("./utils/catchAsync");
@@ -48,6 +54,7 @@ app.set("views", path.join(__dirname, "/views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.json({extended:true, limit: "1mb"}))
 // app.use(mongoSanitize());
 
 // CONFIGURING COOKIES
@@ -145,6 +152,16 @@ app.get("/", (req, res) => {
 	res.render("books/home");
 });
 
+app.post("/uploads/:id/users", catchAsync( async (req, res, next) => {
+	const {id} = req.params;
+	const book = await Upload.findById(id);
+	const user = req.user;
+	user.bookmarks.push(book.id)
+
+	console.log(user)
+	await user.save()
+	res.redirect(`/uploads/${id}`)
+}));
 
 //* ==================
 //*  error middleware
