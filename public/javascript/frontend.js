@@ -10,7 +10,7 @@ $(document).ready(function () {
 		const marks = JSON.parse(localStorage.getItem("bookmark"));
 		const i = $("#btn-bookmarkJQ").data("id");
 		if (marks.includes(i)) {
-			return $("#btn-bookmarkJQ").addClass("marked");
+			$("#btn-bookmarkJQ").addClass("marked").html("Bookmarked");
 		}
 	});
 	// upon button click adds||remove the marked class 
@@ -19,16 +19,17 @@ $(document).ready(function () {
 		const i = $(this).data("id");
 		const pos = marks.indexOf(i);
 
-		if (localStorage.getItem("bookmark") === undefined || !marks.includes(i)) {
+		if (!marks.includes(i)) {
 			marks.push(i);
 			localStorage.setItem("bookmark", JSON.stringify(marks));
-			$("#btn-bookmarkJQ").addClass("marked");
+			$("#btn-bookmarkJQ").addClass("marked").html("Bookmarked");
 			location.reload();
 		} else {
 			marks.splice(pos, 1);
 			localStorage.setItem("bookmark", JSON.stringify(marks));
-			$("#btn-bookmarkJQ").removeClass("marked");
+			$("#btn-bookmarkJQ").removeClass("marked").html("Bookmark")
 			location.reload();
 		}
 	});
 });
+
