@@ -79,7 +79,7 @@ const sessionConfig = {
 	cookie: {
 		httpOnly: true,
 		// ENABLE BEFORE PUTTING IT IN PRODUCTION MODE
-		// secure: true,
+		secure: true,
 		expire: Date.now() + 1000 * 60 * 60 * 24 * 7,
 		maxAge: 1000 * 60 * 60 * 24 * 7,
 	},
@@ -169,7 +169,7 @@ app.use((err, req, res, next) => {
 });
 
 // CONNECTING TO THE DATA BASE
-const port = process.env.DEV_PORT || "3000";
+const port = process.env.PORT;
 app.listen(port, () => {
 	console.log(`Serving on port ${port}`);
 });
