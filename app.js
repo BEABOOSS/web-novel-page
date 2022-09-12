@@ -16,10 +16,10 @@ const helmet = require("helmet");
 const passport = require("passport");
 const session = require("express-session");
 const LocalStrategy = require("passport-local");
-const jsdom = require("jsdom")
-const {JSDOM} = jsdom;
-const {window} = new JSDOM();
-const {document} = (new JSDOM("")).window;
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const { window } = new JSDOM();
+const { document } = new JSDOM("").window;
 global.document = document;
 const $ = require("jquery")(window);
 
@@ -52,12 +52,11 @@ app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
-
-// * 
-app.use(express.urlencoded({ extended: true })); 
+// *
+app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
-app.use(express.json({extended:true, limit: "1mb"}))
+app.use(express.json({ extended: true, limit: "1mb" }));
 // app.use(mongoSanitize());
 
 // CONFIGURING COOKIES
@@ -155,24 +154,20 @@ app.get("/", (req, res) => {
 	res.render("books/home");
 });
 
-app.post("/uploads/:id/users", isLoggedIn,catchAsync( async (req, res, next) => {
-	const {id} = req.params;
-	const book = await Upload.findById(id);
-	const cookies = req.headers.cookie;
-	const as = cookies.split("; ")
-	let bookmarksID = [{book: `3234234`}, {book: "494"}]
-	// const i = JSON.stringify(bookmarksID)
-	// if()
+app.post(
+	"/uploads/:id/users",
+	isLoggedIn,
+	catchAsync(async (req, res, next) => {
+		const { id } = req.params;
+		const book = await Upload.findById(id);
+		const cookies = req.headers.cookie;
+		const as = cookies.split("; ");
 
+		res.cookie("bookmarksId", book.id).send();
 
-	res.cookie("bookmarksId", ([book.id])).send()
-
-	// console.log()
-	// await user.save()				NOT NEEDED
-	// res.redirect(`/uploads/${id}`)   NOT NEEDED due to jquery
-}));
-
-
+		// console.log(as[2])
+	})
+);
 
 //* ==================
 //*  error middleware

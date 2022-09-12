@@ -33,17 +33,29 @@
 //             },
 //         });
 //     });
+
+
 // });
 $(document).ready(function () {
 	$("#btn-bookmarkJQ").click(function () {
-		// let i = $(this).data("id");
+		const marks = JSON.parse(localStorage.getItem("bookmark"));
+		const i = $(this).data("id");
+		const pos = marks.indexOf(i)
+
+
+
 		$.post(location + "/users", () => {
 			$(this).toggleClass("marked");
+			if(marks.includes(i)) {
+				marks.splice(pos, 1);
+				return localStorage.setItem("bookmark", JSON.stringify(marks))
+			} else {
+				marks.push(i)
+				return localStorage.setItem("bookmark", JSON.stringify(marks))
+			}
 		});
     });
-	// $("#btn-bookmarkJQ").click( function () {
-	// 	$(this).removeClass("marked");
-	// });
+
 });
 
 // $("#btn-bookmark")
