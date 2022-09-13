@@ -100,6 +100,7 @@ const scriptSrcUrls = [
 	"https://cdnjs.cloudflare.com/",
 	"https://cdn.jsdelivr.net/",
 	"https://res.cloudinary.com/dqdaf6ffk/",
+	"https://cdnjs.cloudflare.com",
 ];
 const styleSrcUrls = [
 	"https://kit-free.fontawesome.com/",
