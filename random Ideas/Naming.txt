@@ -1,7 +1,0 @@
-St_ = Story
-_Scans = xx-Scans (it's from a scans website)
-_ImgUrl = Needs no explanation
-_FL = First and Last Img (where they put the the credits)  }
-_M = Main (where the story si located)                     } excludes Manga Katana
-
-St_Scans_ImgUrl_FL 

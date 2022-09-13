@@ -35,8 +35,11 @@ const userRoutes = require("./routes/users");
 const MongoDBStore = require("connect-mongo");
 const { isLoggedIn } = require("./middleware");
 // connect to mongo and sends back error if something goes wrong
+
+// **** DO NOT FORGET TO SWITCH TO DB_ATLAS_URL *****
+// **** DO NOT FORGET TO SWITCH TO DB_ATLAS_URL *****
 mongoose
-	.connect(process.env.DB_ATLAS_URL)
+	.connect(process.env.MONGO_URL)
 	.then(() => {
 		console.log("DataBase connected!!!");
 	})
@@ -60,8 +63,10 @@ app.use(express.json({ extended: true, limit: "1mb" }));
 // app.use(mongoSanitize());
 
 // CONFIGURING COOKIES
+// **** DO NOT FORGET TO SWITCH TO DB_ATLAS_URL *****
+// **** DO NOT FORGET TO SWITCH TO DB_ATLAS_URL *****
 const store = new MongoDBStore({
-	mongoUrl: process.env.DB_ATLAS_URL,
+	mongoUrl: process.env.MONGO_URL,
 	secret: process.env.SESSION_SECRET,
 	touchAfter: 24 * 60 * 60,
 });
@@ -79,16 +84,23 @@ const sessionConfig = {
 	cookie: {
 		httpOnly: true,
 		// ENABLE BEFORE PUTTING IT IN PRODUCTION MODE
-		secure: true,
+		// secure: true,
 		expire: Date.now() + 1000 * 60 * 60 * 24 * 7,
 		maxAge: 1000 * 60 * 60 * 24 * 7,
 	},
 };
 
 app.use(session(sessionConfig));
+// helmet helps prevent injecting anything unintended to the page
 app.use(helmet());
 
-const scriptSrcUrls = ["https://stackpath.bootstrapcdn.com/", "https://kit.fontawesome.com/", "https://cdnjs.cloudflare.com/", "https://cdn.jsdelivr.net/", "https://res.cloudinary.com/dqdaf6ffk/"];
+const scriptSrcUrls = [
+	"https://stackpath.bootstrapcdn.com/",
+	"https://kit.fontawesome.com/",
+	"https://cdnjs.cloudflare.com/",
+	"https://cdn.jsdelivr.net/",
+	"https://res.cloudinary.com/dqdaf6ffk/",
+];
 const styleSrcUrls = [
 	"https://kit-free.fontawesome.com/",
 	"https://stackpath.bootstrapcdn.com/",
@@ -103,7 +115,7 @@ app.use(
 		contentSecurityPolicy: {
 			directives: {
 				defaultSrc: [],
-				connectSrc: ["'self'", "https://res.cloudinary.com/dqdaf6ffk/"],
+				connectSrc: ["'self'", "https://res.cloudinary.com/dqdaf6ffk/", ],
 				scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
 				styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
 				workerSrc: ["'self'", "blob:"],
@@ -113,7 +125,6 @@ app.use(
 					"blob:",
 					"data:",
 					"https://res.cloudinary.com/dqdaf6ffk/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT!
-					"https://images.unsplash.com/",
 				],
 				fontSrc: ["'self'", ..."https://res.cloudinary.com/dqdaf6ffk/"],
 				mediaSrc: ["https://res.cloudinary.com/dlzez5yga/"],
@@ -169,7 +180,7 @@ app.use((err, req, res, next) => {
 });
 
 // CONNECTING TO THE DATA BASE
-const port = process.env.PORT;
-app.listen(port, () => {
-	console.log(`Serving on port ${port}`);
+// const port = process.env.PORT || "3000";
+app.listen(3000, () => {
+	console.log(`Serving on port ${3000}`);
 });
