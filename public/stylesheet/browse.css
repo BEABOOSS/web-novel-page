@@ -31,7 +31,8 @@ a:hover {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: black;
+	background-color: var(--lighBg);
+	border-radius: 5px;
 }
 .container { 
 	width: 1600px;
@@ -39,7 +40,7 @@ a:hover {
 
 }
 .subcontainer {
-	width: 85%;
+	width: 95%;
 	margin: auto;
 }
 
@@ -71,7 +72,7 @@ a:hover {
 }
 
 .slide-img {
-	width: 100%;
+	width: 90%;
 	height: 275px;
 	background-position: center;
 	background-size: cover;
@@ -82,22 +83,12 @@ a:hover {
 	transition: 0.5s;
 }
 
-.slide-img:hover {
-	box-shadow: 0 0 0 200px rgba(0, 0, 0, 0.9) inset;
-}
-
 .slide-img a {
 	text-decoration: none;
-	transform: scale(0);
-	transition: 0.8s ;
-	font-size: 1.5rem;
 	color: white;
-	opacity: 0;
-}
-.slide-img:hover a {
 	opacity: 1;
-	transform: scale(1);
 }
+
 
 @media(max-width: 1600px) {
 	.container {

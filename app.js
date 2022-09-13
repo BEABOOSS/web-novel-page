@@ -110,6 +110,7 @@ const styleSrcUrls = [
 	"https://res.cloudinary.com/dqdaf6ffk/",
 ];
 
+
 app.use(
 	helmet({
 		contentSecurityPolicy: {
@@ -126,7 +127,6 @@ app.use(
 					"data:",
 					"https://res.cloudinary.com/dqdaf6ffk/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT!
 				],
-				fontSrc: ["'self'", ..."https://res.cloudinary.com/dqdaf6ffk/"],
 				mediaSrc: ["https://res.cloudinary.com/dlzez5yga/"],
 				childSrc: ["blob:"],
 			},
@@ -162,7 +162,7 @@ app.use("/uploads/:id/reviews", reviewRoutes);
 
 // getting a home routes
 app.get("/", (req, res) => {
-	res.render("books/home");
+	res.redirect("/uploads");
 });
 
 //* ==================
