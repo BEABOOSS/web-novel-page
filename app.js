@@ -38,7 +38,7 @@ const { isLoggedIn } = require("./middleware");
 // **** DO NOT FORGET TO SWITCH TO DB_ATLAS_URL *****
 // **** DO NOT FORGET TO SWITCH TO DB_ATLAS_URL *****
 mongoose
-	.connect(process.env.MONGO_URL)
+	.connect(process.env.DB_ATLAS_URL)
 	.then(() => {
 		console.log("DataBase connected!!!");
 	})
@@ -59,13 +59,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.json({ extended: true, limit: "1mb" }));
-// app.use(mongoSanitize());
+app.use(mongoSanitize());
 
 // CONFIGURING COOKIES
 // **** DO NOT FORGET TO SWITCH TO DB_ATLAS_URL *****
 // **** DO NOT FORGET TO SWITCH TO DB_ATLAS_URL *****
 const store = new MongoDBStore({
-	mongoUrl: process.env.MONGO_URL,
+	mongoUrl: process.env.DB_ATLAS_URL,
 	secret: process.env.SESSION_SECRET,
 	touchAfter: 24 * 60 * 60,
 });
@@ -83,7 +83,7 @@ const sessionConfig = {
 	cookie: {
 		httpOnly: true,
 		// ENABLE BEFORE PUTTING IT IN PRODUCTION MODE
-		// secure: true,
+		secure: true,
 		expire: Date.now() + 1000 * 60 * 60 * 24 * 7,
 		maxAge: 1000 * 60 * 60 * 24 * 7,
 	},
