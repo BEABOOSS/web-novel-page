@@ -1,7 +1,7 @@
 const ExpressError = require("./utils/ExpressError");
-const Upload = require("./models/upload");
-const Review = require("./models/review");
-const User = require("./models/user");
+const Upload = require("./src/models/upload");
+const Review = require("./src/models/review");
+const User = require("./src/models/user");
 const { uploadSchema, reviewSchema} = require("./schemas");
 
 module.exports.isLoggedIn = (req, res, next) => {

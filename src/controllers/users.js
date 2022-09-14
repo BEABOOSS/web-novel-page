@@ -1,5 +1,5 @@
-const User = require("../models/user");
-const Upload = require("../models/upload");
+const User = require("../src/models/user");
+const Upload = require("../src/models/upload");
 // NEED TO ADD THE FLASH msg later on if possible
 module.exports.renderRegister = (req, res) => {
 	res.render("users/register");
@@ -7,15 +7,31 @@ module.exports.renderRegister = (req, res) => {
 
 module.exports.register = async (req, res, next) => {
 	try {
-		const { email, username, password } = req.body;
-		const userDB = new User({ email, username });
-		const registeredUser = await User.register(userDB, password);
-		req.login(registeredUser, (err) => {
-			if (err) return next(err);
-			res.redirect("/uploads");
-		});
+		const { email } = req.body;
+		const userDB = await User.findOne({ email });
+		if(userDB) {
+			res.status(400);
+			res.send({msg: "You can't use that one"});
+		} else {
+			const {password} = req.body
+			const newUser = new User.register({ email, password})
+			req.login(newUser, (err) => {
+				if (err) return next(err);
+				res.redirect("/uploads")
+			})
+			res.send(201)
+		}
+
+
+
+
+		// const registeredUser = await User.register(userDB, password);
+		// req.login(registeredUser, (err) => {
+		// 	if (err) return next(err);
+		// 	res.redirect("/uploads");
+		// });
 	} catch (e) {
-		console.log(e)
+		console.log(e);
 		res.redirect("register");
 	}
 };
