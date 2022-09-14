@@ -3,10 +3,10 @@
 
 <div class="chapBody">
 	<div class="area">
-		<div class="post-id" id="<%= book.id%>">
+		<div class="post-id" id="<%= bookDB.id%>">
 			<div class="topPost">
-				<h1 class="title"><%= book.title %> Chapter <%= number2%></h1>
-				<p>Return To<a class="allchap" href="/uploads/<%= book.id%>"> All Chapters</a></p>
+				<h1 class="title"><%= bookDB.title %> Chapter <%= number2%></h1>
+				<p>Return To<a class="allchap" href="/uploads/<%= bookDB.id%>"> All Chapters</a></p>
 			</div>
 			<div class="maincontent">
 				<div class="selectors">
@@ -18,7 +18,7 @@
 								<div class="adds">Prev</div>
 							</a>
 							<% } else { %>
-							<a href="/uploads/<%= book.id%>/chapterss-<%= lastIdx.number %>">
+							<a href="/uploads/<%= bookDB.id%>/chapterss-<%= lastIdx.number %>">
 								<div class="prev">Prev</div>
 							</a>
 							<% } %> <% if (nextIdx == undefined) { %>
@@ -26,7 +26,7 @@
 								<div class="prev">Next</div>
 							</a>
 							<% } else { %>
-							<a href="/uploads/<%= book.id%>/chapterss-<%= nextIdx.number %>">
+							<a href="/uploads/<%= bookDB.id%>/chapterss-<%= nextIdx.number %>">
 								<div class="prev">Next</div>
 							</a>
 							<% } %>
@@ -34,7 +34,7 @@
 					</span>
 				</div>
 				<div class="reading">
-					<% book.chapterss[number2].images.forEach(el => { %>
+					<% bookDB.chapterss[number2].images.forEach(el => { %>
 					<p>
 						<img src="<%= el.url%>" crossorigin="anonymous" width="800" height="1000" alt />
 					</p>
@@ -49,7 +49,7 @@
 								<div class="adds">Prev</div>
 							</a>
 							<% } else { %>
-							<a href="/uploads/<%= book.id%>/chapterss-<%= lastIdx.number %>">
+							<a href="/uploads/<%= bookDB.id%>/chapterss-<%= lastIdx.number %>">
 								<div class="prev">Prev</div>
 							</a>
 							<% } %> <% if (nextIdx == undefined) { %>
@@ -57,7 +57,7 @@
 								<div class="prev">Next</div>
 							</a>
 							<% } else { %>
-							<a href="/uploads/<%= book.id%>/chapterss-<%= nextIdx.number %>">
+							<a href="/uploads/<%= bookDB.id%>/chapterss-<%= nextIdx.number %>">
 								<div class="prev">Next</div>
 							</a>
 							<% } %>

@@ -12,21 +12,21 @@ module.exports.renderNewForm = (req, res) => {
 //
 // Create Book
 module.exports.createBook = async (req, res, next) => {
-	const book = new Upload(req.body);
-	book.coverPicture = req.files.map((f) => ({ url: f.path, filename: f.filename }));
-	await book.save();
-	res.redirect(`/uploads/${book._id}`);
+	const bookDB = new Upload(req.body);
+	bookDB.coverPicture = req.files.map((f) => ({ url: f.path, filename: f.filename }));
+	await bookDB.save();
+	res.redirect(`/uploads/${bookDB._id}`);
 };
 
 //
 // NAV
 module.exports.navbarSearch = async (req, res, next) => {
-	let searchTerm = req.body.searchTerm;
-	let book = await Upload.find({ $text: { $search: searchTerm, $diacriticSensitive: true } });
-	if (book === undefined || book.length === 0) {
+	const searchTerm = req.body.searchTerm;
+	const bookDB = await Upload.find({ $text: { $search: searchTerm, $diacriticSensitive: true } });
+	if (bookDB === undefined || bookDB.length === 0) {
 		return res.redirect("/uploads");
 	} else {
-		res.redirect(`/uploads/${book[0].id}`);
+		res.redirect(`/uploads/${bookDB[0].id}`);
 	}
 	next();
 };
@@ -35,7 +35,7 @@ module.exports.navbarSearch = async (req, res, next) => {
 //showing all books
 // still need to add proper logic for the chapters that show up on the browse page
 module.exports.allBook = async (req, res) => {
-	const book = await Upload.find({});
+	const bookDB = await Upload.find({});
 	// const lastIdx = book.chapterss[book.chapterss.length - 1]
 
 
@@ -51,13 +51,13 @@ module.exports.allBook = async (req, res) => {
 				: weekNow <= 4 ? `${weekNow} Week`
 				: `${monthNow} Months`;
 	};
-	res.render("books/browse", { book, timeElapsed });
+	res.render("books/browse", { bookDB, timeElapsed });
 };
 
 //
 // The page of the book AKA the one with all the chapters
 module.exports.pageOfBook = async (req, res) => {
-	const book = await Upload.findById(req.params.id)
+	const bookDB = await Upload.findById(req.params.id)
 		.populate({
 			path: "reviews",
 			populate: {
@@ -65,51 +65,51 @@ module.exports.pageOfBook = async (req, res) => {
 			},
 		})
 		.populate("author");
-	const lastValue = book.chapterss.length;
-	const lastIdx = book.chapterss[lastValue - 1];
-	const revOrder = book.chapterss.slice().reverse();
+	const lastValue = bookDB.chapterss.length;
+	const lastIdx = bookDB.chapterss[lastValue - 1];
+	const revOrder = bookDB.chapterss.slice().reverse();
 
-	res.cookie("bookmarks", `${book.title}`);
-	res.render("books/show", { book, lastIdx, revOrder, lastValue });
+	res.cookie("bookmarks", `${bookDB.title}`);
+	res.render("books/show", { bookDB, lastIdx, revOrder, lastValue });
 };
 
 //
 // The page with all the chapters AKA the one showing the images ("story")
 module.exports.chapterOfBook = async (req, res) => {
-	const book = await Upload.findById(req.params.id);
+	const bookDB = await Upload.findById(req.params.id);
 	const number = req.params.number - 0;
 	const number2 = req.params.number;
-	const lastIdx = book.chapterss[number - 1];
-	const nextIdx = book.chapterss[number + 1];
+	const lastIdx = bookDB.chapterss[number - 1];
+	const nextIdx = bookDB.chapterss[number + 1];
 
-	res.render("books/chapter", { book, lastIdx, nextIdx, number2 });
+	res.render("books/chapter", { bookDB, lastIdx, nextIdx, number2 });
 };
 
 //
 // Rendering the edit form
 module.exports.renderEditForm = async (req, res) => {
 	const { id } = req.params;
-	const book = await Upload.findById(id);
-	console.log(book);
-	res.render("books/edit", { book, genre });
+	const bookDB = await Upload.findById(id);
+	console.log(bookDB);
+	res.render("books/edit", { bookDB, genre });
 };
 
 // NOT FINISH JUST ADDED WHAT I THINK NEED TO BE DONE BUT IT'S NOT CONNECTED
 // I'm spreading the imgs because it would be an array of array's and that won't work here
 module.exports.updateBook = async (req, res) => {
 	const { id } = req.params;
-	const book = await Upload.findByIdAndUpdate(id, { ...req.body.book });
+	const bookDB = await Upload.findByIdAndUpdate(id, { ...req.body.bookDB });
 	const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
 	book.coverPicture.push(...imgs);
-	await book.save();
+	await bookDB.save();
 	if (req.body.deleteImages) {
 		for (let filename of req.body.deleteImages) {
 			await cloudinary.uploader.destroy(filename);
 		}
-		await book.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } });
+		await bookDB.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } });
 	}
 
-	res.redirect(`/uploads/${book._id}`);
+	res.redirect(`/uploads/${bookDB._id}`);
 };
 
 // NOT FINISH JUST ADDED WHAT I THINK NEED TO BE DONE BUT IT'S NOT CONNECTED

@@ -3,13 +3,13 @@ const Upload = require("../models/upload");
 
 module.exports.createReview = async (req, res, next) => {
 	const { id } = req.params;
-	const book = await Upload.findById(id);
+	const bookDB = await Upload.findById(id);
 	const review = new Review(req.body);
 	review.author = req.user._id;
-	book.reviews.push(review);
-	
+	bookDB.reviews.push(review);
+
 	await review.save();
-	await book.save();
+	await bookDB.save();
 	res.redirect(`/uploads/${id}`);
 };
 

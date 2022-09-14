@@ -5,25 +5,25 @@
 		<div class="inf-half">
 			<div class="col">
 				<div class="top-tt">
-					<h1><%= book.title %></h1>
+					<h1><%= bookDB.title %></h1>
 					<div class="gnr">
 						<span class="genr">
-							<p class="adds-rounding"><%= book.genres %></p>
-							<p class="adds-rounding"><%= book.genres %></p>
-							<p class="adds-rounding"><%= book.genres %></p>
+							<p class="adds-rounding"><%= bookDB.genres %></p>
+							<p class="adds-rounding"><%= bookDB.genres %></p>
+							<p class="adds-rounding"><%= bookDB.genres %></p>
 						</span>
 					</div>
 				</div>
 				<div>
 					<h3>Synopsis</h3>
-					<p><%= book.description %></p>
+					<p><%= bookDB.description %></p>
 				</div>
 			</div>
 		</div>
 		<div class="thumbnail-half">
 			<div class="buz">
 				<div class="">
-					<img src="<%= book.coverPicture[0].url%>" crossorigin="anonymous" class="img-fluid rounded shadow-lg" alt="" srcset="" />
+					<img src="<%= bookDB.coverPicture[0].url%>" crossorigin="anonymous" class="img-fluid rounded shadow-lg" alt="" srcset="" />
 					<div class="bookmark1">
 						<form action="">
 							<button class="bk1-butn">Bookmark</button>
@@ -80,25 +80,25 @@
 		<div class="right-box">
 			<div class="release">
 				<div class="title">
-					<% if(currentUser && book.author.equals(currentUser.id)) {%>
-					<a href="/uploads/<%= book.id%>/edit">
-						<h4><%= book.title %></h4>
+					<% if(currentUser && bookDB.author.equals(currentUser.id)) {%>
+					<a href="/uploads/<%= bookDB.id%>/edit">
+						<h4><%= bookDB.title %></h4>
 					</a>
 					<% } else { %>
-					<h4><%= book.title%></h4>
+					<h4><%= bookDB.title%></h4>
 					<% } %>
 				</div>
 				<div class="first-last">
 					<div class="select">
 						<!-- selecting the first chapter -->
-						<a class="fricking" href="/uploads/<%= book.id%>/chapterss-1">
+						<a class="fricking" href="/uploads/<%= bookDB.id%>/chapterss-1">
 							<span>First Chapter</span>
 							<span class="episoded">Chapter 1</span>
 						</a>
 					</div>
 					<div class="select">
 						<!-- selection the last chapter -->
-						<a class="fricking" href="/uploads/<%= book.id %>/chapterss-<%= lastValue %>">
+						<a class="fricking" href="/uploads/<%= bookDB.id %>/chapterss-<%= lastValue %>">
 							<span>New Chapter</span>
 							<span class="episoded">Chapter <% lastIdx %></span>
 						</a>
@@ -108,7 +108,7 @@
 					<ul class="lister">
 						<% revOrder.forEach( el => { %>
 						<li class="li-lis" data-num="<%= el.number %>">
-							<a href="/uploads/<%= book.id%>/chapterss-<%= el.number %>">
+							<a href="/uploads/<%= bookDB.id%>/chapterss-<%= el.number %>">
 								<div class="box">
 									<div class="episodeNUM">
 										<span class="chapternum">Chapter <%=el.number %></span>
@@ -134,7 +134,7 @@
 				<% if(currentUser) { %>
 				<h3>Leave a Review</h3>
 				<div class="form">
-					<form action="/uploads/<%= book.id%>/reviews" method="POST" class="" novalidate>
+					<form action="/uploads/<%= bookDB.id%>/reviews" method="POST" class="" novalidate>
 						<div>
 							<label for="rating">Rating</label>
 							<input type="number" name="rating" id="rating" required />
@@ -148,14 +148,14 @@
 				</div>
 				<% } %>
 				<div class="allreviews">
-					<% for(let review of book.reviews) { %>
+					<% for(let review of bookDB.reviews) { %>
 					<div class="card mb-3 cards">
 						<div class="card-body">
 							<h5><%= review.author.username%></h5>
 							<p>Review: <%= review.body %></p>
 						</div>
 						<% if(currentUser && review.author.equals(currentUser._id)) {%>
-						<form action="/uploads/<%= book.id%>/reviews/<%= review._id%>?_method=DELETE" method="POST">
+						<form action="/uploads/<%= bookDB.id%>/reviews/<%= review._id%>?_method=DELETE" method="POST">
 							<button class="btn search-butn">Delete</button>
 						</form>
 						<% } %>

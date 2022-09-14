@@ -3,13 +3,13 @@
 <div class="row">
 	<h1 class="text-center">Edit the Books Info</h1>
 	<div class="col-md-6 offset-md-3 dbg">
-		<form action="/uploads/<%=book.id%>?_method=PUT" method="POST" class="needs-validation" enctype="multipart/form-data" novalidate>
+		<form action="/uploads/<%=bookDB.id%>?_method=PUT" method="POST" class="needs-validation" enctype="multipart/form-data" novalidate>
 			<div class="input-group mb-3">
 				<!-- <span class="input-group-text" id="inputGroup-sizing-default">Title: </span> -->
 				<label for="book[title]" class="col-sm-2 col-form-label">Title</label>
 				<input
 					type="text"
-					value="<%= book.title%>"
+					value="<%= bookDB.title%>"
 					id="title"
 					name="book[title]"
 					class="form-control"
@@ -27,7 +27,7 @@
 			<div class="input-group mb-3">
 				<!-- <label for="book[genres]" class="form-label">Datalist example: </label> -->
 				<label for="book[genres]" class="col-sm-2 col-form-label">Genres</label>
-				<input class="form-control" list="datalistOptions" id="genres" name="book[genres]" value="<%= book.genres%>" placeholder="Type to search..." />
+				<input class="form-control" list="datalistOptions" id="genres" name="book[genres]" value="<%= bookDB.genres%>" placeholder="Type to search..." />
 				<datalist id="datalistOptions">
 					<% for (let keys of genre) {%>
 					<option value="<%= keys%>"></option>
@@ -49,7 +49,7 @@
 			</div> -->
 
 			<div class="mb-3">
-				<% book.coverPicture.forEach((img, i) => { %>
+				<% bookDB.coverPicture.forEach((img, i) => { %>
 					<p><%= img.filename %></p>
 					<div class="form-check-inline">
 						<input type="checkbox" name="deleteImages" id="image-<%= i%>" value="<%= img.filename%>"/>

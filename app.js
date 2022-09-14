@@ -22,8 +22,6 @@ const { document } = new JSDOM("").window;
 global.document = document;
 const $ = require("jquery")(window);
 
-const { cloudinary } = require("./cloudinary");
-
 const ExpressError = require("./utils/ExpressError");
 
 const uploadRoutes = require("./routes/uploads");
@@ -31,11 +29,12 @@ const reviewRoutes = require("./routes/reviews");
 const userRoutes = require("./routes/users");
 
 const MongoDBStore = require("connect-mongo");
+
+const DB_URL = process.env.DB_ATLAS_URL || process.env.MONGO_URL ;
 // connect to mongo and sends back error if something goes wrong
 
-
 mongoose
-	.connect(process.env.DB_ATLAS_URL)
+	.connect(DB_URL)
 	.then(() => {
 		console.log("DataBase connected!!!");
 	})
@@ -61,7 +60,7 @@ app.use(mongoSanitize());
 // CONFIGURING COOKIES
 
 const store = new MongoDBStore({
-	mongoUrl: process.env.DB_ATLAS_URL,
+	mongoUrl: DB_URL,
 	secret: process.env.SESSION_SECRET,
 	touchAfter: 24 * 60 * 60,
 });
@@ -89,13 +88,7 @@ app.use(session(sessionConfig));
 // helmet helps prevent injecting anything unintended to the page
 app.use(helmet());
 
-const scriptSrcUrls = [
-	"https://stackpath.bootstrapcdn.com/",
-	"https://kit.fontawesome.com/",
-	"https://cdnjs.cloudflare.com/",
-	"https://cdn.jsdelivr.net/",
-	"https://res.cloudinary.com/dqdaf6ffk/"
-];
+const scriptSrcUrls = ["https://stackpath.bootstrapcdn.com/", "https://kit.fontawesome.com/", "https://cdnjs.cloudflare.com/", "https://cdn.jsdelivr.net/", "https://res.cloudinary.com/dqdaf6ffk/"];
 const styleSrcUrls = [
 	"https://kit-free.fontawesome.com/",
 	"https://stackpath.bootstrapcdn.com/",
@@ -105,7 +98,6 @@ const styleSrcUrls = [
 	"https://cdnjs.cloudflare.com",
 	"https://res.cloudinary.com/dqdaf6ffk/",
 ];
-
 
 app.use(
 	helmet({
@@ -176,7 +168,8 @@ app.use((err, req, res, next) => {
 });
 
 // CONNECTING TO THE DATA BASE
-const port = process.env.PORT;
+// const port = process.env.PORT || 3000;
+const port = 3000;
 app.listen(port, () => {
 	console.log(`Serving on port ${port}`);
 });
