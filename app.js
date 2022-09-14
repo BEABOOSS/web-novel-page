@@ -9,7 +9,6 @@ const path = require("path");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const mongoSanitize = require("express-mongo-sanitize");
-const Upload = require("./models/upload");
 const User = require("./models/user");
 const methodOverride = require("method-override");
 const helmet = require("helmet");
@@ -24,7 +23,7 @@ global.document = document;
 const $ = require("jquery")(window);
 
 const { cloudinary } = require("./cloudinary");
-const catchAsync = require("./utils/catchAsync");
+
 const ExpressError = require("./utils/ExpressError");
 
 const uploadRoutes = require("./routes/uploads");
@@ -32,11 +31,9 @@ const reviewRoutes = require("./routes/reviews");
 const userRoutes = require("./routes/users");
 
 const MongoDBStore = require("connect-mongo");
-const { isLoggedIn } = require("./middleware");
 // connect to mongo and sends back error if something goes wrong
 
-// **** DO NOT FORGET TO SWITCH TO DB_ATLAS_URL *****
-// **** DO NOT FORGET TO SWITCH TO DB_ATLAS_URL *****
+
 mongoose
 	.connect(process.env.DB_ATLAS_URL)
 	.then(() => {
@@ -62,8 +59,7 @@ app.use(express.json({ extended: true, limit: "1mb" }));
 app.use(mongoSanitize());
 
 // CONFIGURING COOKIES
-// **** DO NOT FORGET TO SWITCH TO DB_ATLAS_URL *****
-// **** DO NOT FORGET TO SWITCH TO DB_ATLAS_URL *****
+
 const store = new MongoDBStore({
 	mongoUrl: process.env.DB_ATLAS_URL,
 	secret: process.env.SESSION_SECRET,
@@ -180,7 +176,7 @@ app.use((err, req, res, next) => {
 });
 
 // CONNECTING TO THE DATA BASE
-// const port = process.env.PORT || "3000";
-app.listen(3000, () => {
-	console.log(`Serving on port ${3000}`);
+const port = process.env.PORT;
+app.listen(port, () => {
+	console.log(`Serving on port ${port}`);
 });
