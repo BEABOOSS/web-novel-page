@@ -38,8 +38,20 @@ module.exports.allBook = async (req, res) => {
 	const book = await Upload.find({});
 	// const lastIdx = book.chapterss[book.chapterss.length - 1]
 
-	// console.log()
-	res.render("books/browse", { book });
+
+	const timeElapsed = (x) => {
+		const now = Date.now() - x;
+		const hourNow = Math.floor(now / 3600000);
+		const dayNow = Math.floor(now / 86400000);
+		const weekNow = Math.floor(now / 604800000);
+		const monthNow = Math.floor(now / 2629800000);
+
+		return hourNow <= 24 ? `${hourNow} Hours`
+				: dayNow <= 6 ? `${dayNow} Days`
+				: weekNow <= 4 ? `${weekNow} Week`
+				: `${monthNow} Months`;
+	};
+	res.render("books/browse", { book, timeElapsed });
 };
 
 //
@@ -57,8 +69,7 @@ module.exports.pageOfBook = async (req, res) => {
 	const lastIdx = book.chapterss[lastValue - 1];
 	const revOrder = book.chapterss.slice().reverse();
 
-		
-	res.cookie("bookmarks", `${book.title}`)	
+	res.cookie("bookmarks", `${book.title}`);
 	res.render("books/show", { book, lastIdx, revOrder, lastValue });
 };
 

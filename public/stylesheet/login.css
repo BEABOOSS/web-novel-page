@@ -27,3 +27,6 @@
     border: 1px solid var(--light-purple);
     background-color: var(--lighBg);
 }
+.footer {
+	bottom: 0px;
+}

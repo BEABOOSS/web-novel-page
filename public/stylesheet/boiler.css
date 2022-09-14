@@ -67,9 +67,10 @@ $cyan: #0dcaf0 */
 
 .footer{
 	box-sizing: border-box;
+	width: 100%;
 	display: block;
-	bottom: 0px;
 	background-color: #000;
+	position: absolute;
 }
 .sfooter {
 	box-sizing: border-box;

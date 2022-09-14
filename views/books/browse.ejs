@@ -24,6 +24,7 @@
 					</div>
 				</div>
 				<br />
+				<!-- the first one is the example and the rest are just filler content -->
 				<div class="sliders">
 					<div class="item-wrap">
 						<div class="slide">
@@ -149,26 +150,25 @@
 						<a href="/uploads/<%=el._id%>">
 							<div class="adds round">
 								<div class="chLin">Chapter <%= el.chapterss.slice().reverse()[0].number%></div>
-								<div class="chDate">2 Hours</div>
+								<div class="chDate"><%= timeElapsed(el.chapterss.slice().reverse()[0].uploadTime) %></div>
 							</div>
 						</a>
 						<a href="/uploads/<%=el._id%>">
 							<div class="adds round">
 								<div class="chLin">Chapter <%= el.chapterss.slice().reverse()[1].number%></div>
-								<div class="chDate">2 Hours</div>
+								<div class="chDate"><%= timeElapsed(el.chapterss.slice().reverse()[1].uploadTime) %></div>
 							</div>
 						</a>
 						<a href="/uploads/<%=el._id%>">
 							<div class="adds round">
 								<div class="chLin">Chapter <%= el.chapterss.slice().reverse()[2].number%></div>
-								<div class="chDate">2 Hours</div>
+								<div class="chDate"><%= timeElapsed(el.chapterss.slice().reverse()[2].uploadTime) %></div>
 							</div>
 						</a>
 						<a href="/uploads/<%=el._id%>">
 							<div class="adds allChap">All chapters</div>
 						</a>
 					</div>
-					<!-- <p class="card-text"><small class="text-muted"><%= el.uploadTime %> </small></p> -->
 				</div>
 			</div>
 		</div>
