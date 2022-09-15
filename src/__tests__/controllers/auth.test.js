@@ -11,12 +11,13 @@ const req = {
 		username: "fake_username",
 		password: "fake_password",
 	},
+    login: jest.fn((x) => x),
 };
 
 const res = {
-    status: jest.fn((x) => x),
-    send: jest.fn((x) => x),
-}
+	status: jest.fn((x) => x),
+	send: jest.fn((x) => x),
+};
 it("should send a status of 400 if user exists", async () => {
 	User.findOne.mockImplementationOnce(() => ({
 		id: 1,
@@ -25,6 +26,14 @@ it("should send a status of 400 if user exists", async () => {
 		username: "username",
 	}));
 	await userController.register(req, res);
-    expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.send).toHaveBeenCalledTimes(1); 
+	expect(res.status).toHaveBeenCalledWith(400);
+	expect(res.send).toHaveBeenCalledTimes(1);
+});
+
+it("should send a status code of 201 when new user is registered", async () => {
+	User.findOne.mockResolvedValueOnce(undefined);
+
+	await userController.register(req, res);
+
+	expect(res.send).toHaveBeenCalledWith(201);
 });

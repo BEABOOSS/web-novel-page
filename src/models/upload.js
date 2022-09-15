@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-// const { array } = require("joi");
+const { array } = require("joi");
 const { Schema } = mongoose;
 const Review = require("./review");
 const Chapter = require("./chapter");
@@ -8,9 +8,11 @@ const ImageSchema = new Schema({
 	url: String,
 	filename: String,
 });
-const GenresSchema = new Schema({
-	name: String,
-});
+
+// TBH will remove this 
+// const GenresSchema = new Schema({
+// 	name: String,
+// });
 
 ImageSchema.virtual("thumbnail").get(function () {
 	return this.url.replace("/upload", "/upload/w_200");

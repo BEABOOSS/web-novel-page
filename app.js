@@ -7,7 +7,6 @@ const express = require("express");
 const ejsMate = require("ejs-mate");
 const path = require("path");
 const mongoose = require("mongoose");
-const multer = require("multer");
 const mongoSanitize = require("express-mongo-sanitize");
 const User = require("./src/models/user");
 const methodOverride = require("method-override");
@@ -22,11 +21,11 @@ const { document } = new JSDOM("").window;
 global.document = document;
 const $ = require("jquery")(window);
 
-const ExpressError = require("./utils/ExpressError");
+const ExpressError = require("./src/utils/ExpressError");
 
-const uploadRoutes = require("./routes/uploads");
-const reviewRoutes = require("./routes/reviews");
-const userRoutes = require("./routes/users");
+const uploadRoutes = require("./src/routes/uploads");
+const reviewRoutes = require("./src/routes/reviews");
+const userRoutes = require("./src/routes/users");
 
 const MongoDBStore = require("connect-mongo");
 
@@ -48,7 +47,7 @@ const app = express();
 // Setting templating engine to EJS
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "/views"));
+app.set("views", path.join(__dirname, "/src/views"));
 
 // *
 app.use(express.urlencoded({ extended: true }));

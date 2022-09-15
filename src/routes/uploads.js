@@ -3,10 +3,10 @@ const router = express.Router();
 const catchAsync = require("../utils/catchAsync");
 const uploads = require("../controllers/uploads");
 const multer = require("multer");
-const { storage } = require("../cloudinary");
+const { storage } = require("../../cloudinary");
 const { array } = require("joi");
 const upload = multer({ storage });
-const { isLoggedIn, isAuthor, validateBook } = require("../middleware");
+const { isLoggedIn, isAuthor, validateBook } = require("../../middleware");
 
 router.route("/")
     .get(catchAsync(uploads.allBook))

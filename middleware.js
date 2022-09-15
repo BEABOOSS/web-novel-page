@@ -1,4 +1,4 @@
-const ExpressError = require("./utils/ExpressError");
+const ExpressError = require("./src/utils/ExpressError");
 const Upload = require("./src/models/upload");
 const Review = require("./src/models/review");
 const User = require("./src/models/user");

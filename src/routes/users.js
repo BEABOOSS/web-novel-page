@@ -4,7 +4,7 @@ const passport = require("passport");
 const catchAsync = require("../utils/catchAsync");
 const users = require("../controllers/users");
 const searching = require("../controllers/search");
-const { isLoggedIn } = require("../middleware");
+const { isLoggedIn } = require("../../middleware");
 
 // Search in the navbar
 router.post("/books/show", catchAsync(searching.searchBar));
