@@ -1,6 +1,6 @@
-const Upload = require("../src/models/upload");
-const { cloudinary } = require("../cloudinary");
-const { genre } = require("../seeds/genres");
+const Upload = require("../models/upload");
+const { cloudinary } = require("../../cloudinary");
+const { genre } = require("../../seeds/genres");
 
 //
 //Render new form
