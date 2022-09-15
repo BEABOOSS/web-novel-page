@@ -1,4 +1,4 @@
-const Upload = require("../models/upload");
+const Upload = require("../database/models/upload");
 
 module.exports.searchBar = async(req, res, next) => {
     const searchTerm = req.body.searchTerm;

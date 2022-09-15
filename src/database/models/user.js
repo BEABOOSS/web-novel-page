@@ -13,12 +13,15 @@ const UserSchema = new Schema({
 		required: true,
 		unique: true,
 	},
-	bookmarks: [
-		{
-			type: Schema.Types.ObjectId,
-			ref: "Upload",
-		},
-	],
+	password: {
+		type: String,
+		required: true,
+	},
+	createAt: {
+		type: Date,
+		required: true,
+		default: new Date(),
+	},
 });
 
 UserSchema.plugin(passportLocalMongoose);

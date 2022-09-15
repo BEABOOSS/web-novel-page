@@ -1,5 +1,5 @@
-const Review = require("../models/review");
-const Upload = require("../models/upload");
+const Review = require("../database/models/review");
+const Upload = require("../database/models/upload");
 
 module.exports.createReview = async (req, res, next) => {
 	const { id } = req.params;

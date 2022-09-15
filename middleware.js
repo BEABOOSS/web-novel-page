@@ -1,11 +1,12 @@
 const ExpressError = require("./src/utils/ExpressError");
-const Upload = require("./src/models/upload");
-const Review = require("./src/models/review");
-const User = require("./src/models/user");
+const Upload = require("./src/database/models/upload");
+const Review = require("./src/database/models/review");
+const User = require("./src/database/models/user");
 const { uploadSchema, reviewSchema} = require("./schemas");
+const passport = require("passport");
 
 module.exports.isLoggedIn = (req, res, next) => {
-	if (!req.isAuthenticated()) {
+	if (!passport.authenticate()) {
 		req.session.returnTo = req.originalUrl
 		return res.redirect("/login");
 	}

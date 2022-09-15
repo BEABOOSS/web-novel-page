@@ -6,41 +6,34 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const ejsMate = require("ejs-mate");
 const path = require("path");
-const mongoose = require("mongoose");
 const mongoSanitize = require("express-mongo-sanitize");
-const User = require("./src/models/user");
+const User = require("./src/database/models/user");
 const methodOverride = require("method-override");
 const helmet = require("helmet");
 const passport = require("passport");
 const session = require("express-session");
-const LocalStrategy = require("passport-local");
+// const LocalStrategy = require("passport-local");
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const { window } = new JSDOM();
 const { document } = new JSDOM("").window;
 global.document = document;
 const $ = require("jquery")(window);
+require("./src/strategies/local");
 
 const ExpressError = require("./src/utils/ExpressError");
 
 const uploadRoutes = require("./src/routes/uploads");
 const reviewRoutes = require("./src/routes/reviews");
+// user routes will become auth routes less of a headache
 const userRoutes = require("./src/routes/users");
+const authRoutes = require("./src/routes/auth");
 
 const MongoDBStore = require("connect-mongo");
 
-const DB_URL = process.env.DB_ATLAS_URL || process.env.MONGO_URL ;
+const DB_URL = process.env.DB_ATLAS_URL || process.env.MONGO_URL;
 // connect to mongo and sends back error if something goes wrong
-
-mongoose
-	.connect(DB_URL)
-	.then(() => {
-		console.log("DataBase connected!!!");
-	})
-	.catch((err) => {
-		console.log("OHHH NOO MONGO CONNECTION ERROR!!!");
-		console.log(err);
-	});
+require("./src/database/index");
 
 const app = express();
 
@@ -73,18 +66,17 @@ const sessionConfig = {
 	name: "session",
 	secret: process.env.SESSION_SECRET,
 	resave: false,
-	saveUninitialized: true,
+	saveUninitialized: false,
 	cookie: {
 		httpOnly: true,
 		// ENABLE BEFORE PUTTING IT IN PRODUCTION MODE
-		secure: true,
+		// secure: true,
 		expire: Date.now() + 1000 * 60 * 60 * 24 * 7,
 		maxAge: 1000 * 60 * 60 * 24 * 7,
 	},
 };
 
 app.use(session(sessionConfig));
-// helmet helps prevent injecting anything unintended to the page
 app.use(helmet());
 
 const scriptSrcUrls = ["https://stackpath.bootstrapcdn.com/", "https://kit.fontawesome.com/", "https://cdnjs.cloudflare.com/", "https://cdn.jsdelivr.net/", "https://res.cloudinary.com/dqdaf6ffk/"];
@@ -121,13 +113,16 @@ app.use(
 		crossOriginEmbedderPolicy: false,
 	})
 );
+app.use((req, res, next) => {
+	console.log(`${req.method}:${req.url}`);
+	next();
+});
 
 // CONFIGURING PASSPORT
 // .session will keep you login on every route
 // IMPORTANT to use session() before passport.session()
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
 
 // V how to store a user in a session V
 passport.serializeUser(User.serializeUser());
@@ -142,6 +137,7 @@ app.use((req, res, next) => {
 });
 
 // IMPORTING ROUTES
+app.use("/auth/", authRoutes);
 app.use("/", userRoutes);
 // app.use("/", searchRoute)
 app.use("/uploads", uploadRoutes);

@@ -8,6 +8,12 @@ const { array } = require("joi");
 const upload = multer({ storage });
 const { isLoggedIn, isAuthor, validateBook } = require("../../middleware");
 
+
+router.use((req, res, next) => {
+	if (req.session.user) next();
+	else res.send(401); 
+});
+
 router.route("/")
     .get(catchAsync(uploads.allBook))
     .post( upload.array("coverPicture"), validateBook, catchAsync(uploads.createBook));

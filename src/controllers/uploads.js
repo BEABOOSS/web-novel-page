@@ -1,4 +1,4 @@
-const Upload = require("../models/upload");
+const Upload = require("../database/models/upload");
 const { cloudinary } = require("../../cloudinary");
 const { genre } = require("../../seeds/genres");
 
