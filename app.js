@@ -129,19 +129,22 @@ passport.serializeUser(User.serializeUser());
 // V how do you get a user out of that session V
 passport.deserializeUser(User.deserializeUser());
 
-// making the user info available on the req
-app.use((req, res, next) => {
-	res.locals.currentUser = req.user;
 
-	next();
-});
+
+
+// making the user info available on the req
+// app.use((req, res, next) => {
+// 	res.locals.currentUser = req.user;
+
+// 	next();
+// });
 
 // IMPORTING ROUTES
-app.use("/auth/", authRoutes);
 app.use("/", userRoutes);
 // app.use("/", searchRoute)
 app.use("/uploads", uploadRoutes);
 app.use("/uploads/:id/reviews", reviewRoutes);
+app.use("/auth", authRoutes);
 
 // getting a home routes
 app.get("/", (req, res) => {

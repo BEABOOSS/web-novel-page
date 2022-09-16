@@ -21,8 +21,8 @@ passport.use(
 					console.log("Authenticated Successfully");
 					done(null, userDB);
 				} else {
-					console.log("Failed to Authenticate");
-					return res.send(401);
+					console.log("Invalid to Authenticate");
+					return res.send(null, null);
 				}
 			} catch (err) {
 				console.log(err);
