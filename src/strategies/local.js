@@ -3,6 +3,24 @@ const { Strategy } = require("passport-local");
 const User = require("../database/models/user");
 const { comparePassword } = require("../utils/helpers");
 
+passport.serializeUser((user, done) => {
+	console.log("serializing user...");
+	console.log(user);
+	done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+	console.log(id);
+	try {
+		const user = await User.findById(id);
+		if (!user) throw new Error("user not found");
+		done(null, user);
+	} catch (err) {
+		console.log(err);
+		done(err, null);
+	}
+});
+
 passport.use(
 	new Strategy(
 		{

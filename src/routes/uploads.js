@@ -4,16 +4,8 @@ const catchAsync = require("../utils/catchAsync");
 const uploads = require("../controllers/uploads");
 const multer = require("multer");
 const { storage } = require("../../cloudinary");
-const { array } = require("joi");
 const upload = multer({ storage });
 const { isLoggedIn, isAuthor, validateBook } = require("../../middleware");
-
-
-router.use((req, res, next) => {
-	if (req.session.user) next();
-	else res.send(401);
-});
-
 
 
 router.route("/").get(catchAsync(uploads.allBook)).post(upload.array("coverPicture"), validateBook, catchAsync(uploads.createBook));
@@ -21,8 +13,6 @@ router.route("/").get(catchAsync(uploads.allBook)).post(upload.array("coverPictu
 //-------- IMPORTANT--------
 // must put the new route before the show page or else it thinks that new is an ID
 router.get("/new", isLoggedIn, uploads.renderNewForm);
-
-
 
 router
 	.route("/:id")

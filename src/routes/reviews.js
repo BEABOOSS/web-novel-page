@@ -5,7 +5,6 @@ const router = express.Router({mergeParams: true});
 const reviews = require("../controllers/reviews");
 
 
-
 // New Review
 router.post("/", isLoggedIn, validateReview, catchAsync(reviews.createReview))
 

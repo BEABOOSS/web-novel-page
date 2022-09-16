@@ -5,8 +5,14 @@ const auth = require("../controllers/auth");
 // const User = require("../database/models/user");
 // const helpers = require("../utils/helpers");
 
-router.post("/login", passport.authenticate("local"), auth.login);
+router.route("/login")
+    .get(auth.renderLogin)
+    .post(passport.authenticate("local"), auth.login);
 
-router.post("/register", auth.register);
+router.route("/register")
+    .get(auth.renderRegister)
+    .post(auth.register);
+
+router.get("/logout", auth.logout);
 
 module.exports = router;

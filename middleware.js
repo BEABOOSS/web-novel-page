@@ -6,7 +6,7 @@ const { uploadSchema, reviewSchema} = require("./schemas");
 const passport = require("passport");
 
 module.exports.isLoggedIn = (req, res, next) => {
-	if (!passport.authenticate()) {
+	if (passport.authenticate("local")) {
 		req.session.returnTo = req.originalUrl
 		return res.redirect("/login");
 	}

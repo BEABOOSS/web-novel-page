@@ -13,24 +13,25 @@
 					<a class="nav-link" href="/uploads">Browse</a>
 				</li>
 			</ul>
-			<form action="/books/show" method="POST" class="d-flex ms-auto" role="search" >
+			<form action="/books/show" method="POST" class="d-flex ms-auto" role="search">
 				<input class="form-control me-2" name="searchTerm" type="search" placeholder="Search" aria-label="Search" />
 				<button class="btn search-butn" type="submit">Search</button>
 			</form>
 
 			<ul class="navbar-nav ms-3">
-		
+				<% if(!currentUser) {%>
 					<li class="nav-item">
 						<a class="nav-link" href="/register">Register</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="/login">Login</a>
 					</li>
+				<% } else { %>
 
 					<li class="nav-item">
 						<a class="nav-link" href="/logout">Logout</a>
 					</li>
-
+				<% } %>
 			</ul>
 		</div>
 	</div>

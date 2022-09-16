@@ -12,27 +12,25 @@ const methodOverride = require("method-override");
 const helmet = require("helmet");
 const passport = require("passport");
 const session = require("express-session");
-// const LocalStrategy = require("passport-local");
+const ExpressError = require("./src/utils/ExpressError");
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const { window } = new JSDOM();
 const { document } = new JSDOM("").window;
+const MongoDBStore = require("connect-mongo");
 global.document = document;
 const $ = require("jquery")(window);
 require("./src/strategies/local");
 
-const ExpressError = require("./src/utils/ExpressError");
-
+// Routes
 const uploadRoutes = require("./src/routes/uploads");
 const reviewRoutes = require("./src/routes/reviews");
-// user routes will become auth routes less of a headache
-const userRoutes = require("./src/routes/users");
 const authRoutes = require("./src/routes/auth");
 
-const MongoDBStore = require("connect-mongo");
 
-const DB_URL = process.env.DB_ATLAS_URL || process.env.MONGO_URL;
-// connect to mongo and sends back error if something goes wrong
+// const DB_URL = process.env.DB_ATLAS_URL || process.env.MONGO_URL;
+const DB_URL = process.env.MONGO_URL;
+
 require("./src/database/index");
 
 const app = express();
@@ -49,8 +47,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.json({ extended: true, limit: "1mb" }));
 app.use(mongoSanitize());
 
-// CONFIGURING COOKIES
-
+// CONFIGURING COOKIES/session 
 const store = new MongoDBStore({
 	mongoUrl: DB_URL,
 	secret: process.env.SESSION_SECRET,
@@ -124,27 +121,19 @@ app.use((req, res, next) => {
 app.use(passport.initialize());
 app.use(passport.session());
 
-// V how to store a user in a session V
-passport.serializeUser(User.serializeUser());
-// V how do you get a user out of that session V
-passport.deserializeUser(User.deserializeUser());
-
-
-
 
 // making the user info available on the req
-// app.use((req, res, next) => {
-// 	res.locals.currentUser = req.user;
+app.use((req, res, next) => {
+	res.locals.currentUser = req.user;
+	console.log(req.user);
 
-// 	next();
-// });
+	next();
+});
 
 // IMPORTING ROUTES
-app.use("/", userRoutes);
-// app.use("/", searchRoute)
+app.use("/", authRoutes);
 app.use("/uploads", uploadRoutes);
 app.use("/uploads/:id/reviews", reviewRoutes);
-app.use("/auth", authRoutes);
 
 // getting a home routes
 app.get("/", (req, res) => {

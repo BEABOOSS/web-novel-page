@@ -32,8 +32,6 @@ it("should send a status of 400 if user exists", async () => {
 	expect(res.send).toHaveBeenCalledTimes(1);
 });
 
-
-// the culprit 
 it("should send a status code of 201 when new user is registered", async () => {
 	User.findOne.mockResolvedValueOnce(undefined);
 	User.create.mockResolvedValueOnce({ 
@@ -49,3 +47,9 @@ it("should send a status code of 201 when new user is registered", async () => {
 	});
 	expect(res.send).toHaveBeenCalledWith(201);
 });
+
+
+
+
+
+
