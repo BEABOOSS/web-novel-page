@@ -9,6 +9,7 @@ module.exports.renderRegister = (req, res) => {
 module.exports.register = async (req, res, next) => {
 	const { email } = req.body;
 	const userDB = await User.findOne({ email });
+	try {
 	if (userDB) {
 		// instead of sending you I'll just flash a message on the screen
 		res.status(400);
@@ -17,8 +18,11 @@ module.exports.register = async (req, res, next) => {
 		const password = hashPassword(req.body.password);
 		const newUser = await User.create({ email, password });
 
+
 		res.redirect("/uploads");
 		res.send(201);
+	} } catch (err) {
+		console.log(err)
 	}
 };
 

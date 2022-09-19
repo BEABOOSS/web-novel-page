@@ -2,12 +2,12 @@ const ExpressError = require("./src/utils/ExpressError");
 const Upload = require("./src/database/models/upload");
 const Review = require("./src/database/models/review");
 const User = require("./src/database/models/user");
-const { uploadSchema, reviewSchema} = require("./schemas");
+const { uploadSchema, reviewSchema } = require("./schemas");
 const passport = require("passport");
 
 module.exports.isLoggedIn = (req, res, next) => {
 	if (passport.authenticate("local")) {
-		req.session.returnTo = req.originalUrl
+		req.session.returnTo = req.originalUrl;
 		return res.redirect("/login");
 	}
 	next();
@@ -49,8 +49,8 @@ module.exports.isReviewAuthor = async (req, res, next) => {
 module.exports.validateReview = (req, res, next) => {
 	const { error } = reviewSchema.validate(req.body);
 	if (error) {
-		const msg = error.details.map(el => el.message).join(",")
-		throw new ExpressError(msg, 400)
+		const msg = error.details.map((el) => el.message).join(",");
+		throw new ExpressError(msg, 400);
 	} else {
 		next();
 	}

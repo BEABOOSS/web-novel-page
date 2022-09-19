@@ -40,10 +40,6 @@ const verifyUser = async (email, password, done) => {
 	}
 };
 
-passport.use(
-	new Strategy(
-		verifyUser
-	)
-);
+passport.use(new Strategy(verifyUser));
 
 module.exports = { verifyUser };
