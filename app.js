@@ -125,7 +125,7 @@ app.use(passport.session());
 // making the user info available on the req
 app.use((req, res, next) => {
 	res.locals.currentUser = req.user;
-	console.log(req.user);
+	console.log(res.locals.currentUser);
 
 	next();
 });

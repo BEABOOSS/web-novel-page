@@ -7,8 +7,14 @@ const Schema = mongoose.Schema;
 // passportLocalMongoose adds the userName, hash and salt field to store the username,
 // the hashed password and the salt value.
 // to the schema
+
 const UserSchema = new Schema({
 	email: {
+		type: String,
+		required: true,
+		unique: true,
+	},
+	username: {
 		type: String,
 		required: true,
 		unique: true,

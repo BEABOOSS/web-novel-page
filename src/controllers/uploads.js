@@ -37,8 +37,6 @@ module.exports.navbarSearch = async (req, res, next) => {
 module.exports.allBook = async (req, res) => {
 	const bookDB = await Upload.find({});
 	// const lastIdx = book.chapterss[book.chapterss.length - 1]
-
-
 	const timeElapsed = (x) => {
 		const now = Date.now() - x;
 		const hourNow = Math.floor(now / 3600000);

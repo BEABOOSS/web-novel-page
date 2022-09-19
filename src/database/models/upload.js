@@ -9,11 +9,6 @@ const ImageSchema = new Schema({
 	filename: String,
 });
 
-// TBH will remove this 
-// const GenresSchema = new Schema({
-// 	name: String,
-// });
-
 ImageSchema.virtual("thumbnail").get(function () {
 	return this.url.replace("/upload", "/upload/w_200");
 });
