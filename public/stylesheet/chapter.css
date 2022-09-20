@@ -10,6 +10,12 @@
 	--purple-4: #1f1d2c;
 	--lighBg: var(--purple-2);
 	--darkBg: var(--purple-3);
+	--gray-100: #f8f9fa;
+	--gray-500: #adb5bd;
+	--gray-600: #6c757d;
+	--gray-700: #495057;
+	--gray-800: #343a40;
+	--gray-900: #212529;
 }
 a {
 	color: var(--white);
@@ -60,18 +66,31 @@ a:hover {
 	justify-content: center;
 	align-items: center;
 }
+
 .prev {
 	padding: 3px 15px 3px 15px;
-	border: 1px solid var(--light-purple);
+	border: 2px solid var(--light-purple);
 	border-radius: 20px;
 	margin: 0px 5px 0px 5px;
 }
 .prev:hover {
 	color: var(--white);
 	background: var(--light-purple);
-	border: 1px solid var(--purple-4);
+	border: 2px solid var(--light-purple);
 }
 
+.disabled {
+	color: var(--gray-500);
+	background-color: var(--gray-800);
+	border: 2px solid var(--gray-700);
+	cursor: default;
+}
+.disabled:hover {
+	color: var(--gray-500);
+	background-color: var(--gray-700);
+	border: 2px solid var(--gray-700);
+	cursor: default;
+}
 
 .reading {
 	box-sizing: border-box;

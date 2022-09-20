@@ -17,8 +17,6 @@ module.exports.register = async (req, res, next) => {
 	} else {
 		const password = hashPassword(req.body.password);
 		const newUser = await User.create({ email, password });
-
-
 		res.redirect("/uploads");
 		res.send(201);
 	} } catch (err) {

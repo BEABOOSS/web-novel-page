@@ -5,7 +5,7 @@
 	<div class="area">
 		<div class="post-id" id="<%= bookDB.id%>">
 			<div class="topPost">
-				<h1 class="title"><%= bookDB.title %> Chapter <%= number2%></h1>
+				<h1 class="title"><%= bookDB.title %> -- Chapter <%= number %></h1>
 				<p>Return To<a class="allchap" href="/uploads/<%= bookDB.id%>"> All Chapters</a></p>
 			</div>
 			<div class="maincontent">
@@ -14,16 +14,19 @@
 					<span class="nav-r">
 						<div class="nextprev">
 							<% if(lastIdx === undefined) { %>
-							<a class="disabled">
-								<div class="adds">Prev</div>
-							</a>
+								<a class="">
+									<div class="prev disabled">Prev</div>
+								</a>
 							<% } else { %>
-							<a href="/uploads/<%= bookDB.id%>/chapterss-<%= lastIdx.number %>">
-								<div class="prev">Prev</div>
-							</a>
-							<% } %> <% if (nextIdx == undefined) { %>
-							<a class="disabled">
-								<div class="prev">Next</div>
+								<a href="/uploads/<%= bookDB.id%>/chapterss-<%= lastIdx.number %>">
+									<div class="prev">Prev</div>
+								</a>
+							<% } %> 
+
+							<!--  -->
+							<% if(nextIdx === undefined) { %>
+							<a class="disable">
+								<div class="prev disabled">Next </div>
 							</a>
 							<% } else { %>
 							<a href="/uploads/<%= bookDB.id%>/chapterss-<%= nextIdx.number %>">
@@ -34,7 +37,7 @@
 					</span>
 				</div>
 				<div class="reading">
-					<% bookDB.chapterss[number2].images.forEach(el => { %>
+					<% bookDB.chapterss[number].images.forEach(el => { %>
 					<p>
 						<img src="<%= el.url%>" crossorigin="anonymous" width="800" height="1000" alt />
 					</p>
@@ -45,16 +48,19 @@
 					<span class="nav-r">
 						<div class="nextprev">
 							<% if(lastIdx === undefined) { %>
-							<a class="disabled">
-								<div class="adds">Prev</div>
-							</a>
+								<a class="">
+									<div class="prev disabled">Prev</div>
+								</a>
 							<% } else { %>
-							<a href="/uploads/<%= bookDB.id%>/chapterss-<%= lastIdx.number %>">
-								<div class="prev">Prev</div>
-							</a>
-							<% } %> <% if (nextIdx == undefined) { %>
-							<a class="disabled">
-								<div class="prev">Next</div>
+								<a href="/uploads/<%= bookDB.id%>/chapterss-<%= lastIdx.number %>">
+									<div class="prev">Prev</div>
+								</a>
+							<% } %> 
+
+							<!--  -->
+							<% if(nextIdx === undefined) { %>
+							<a class="disable">
+								<div class="prev disabled">Next </div>
 							</a>
 							<% } else { %>
 							<a href="/uploads/<%= bookDB.id%>/chapterss-<%= nextIdx.number %>">

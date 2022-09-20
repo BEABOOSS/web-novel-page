@@ -36,7 +36,6 @@ module.exports.navbarSearch = async (req, res, next) => {
 // still need to add proper logic for the chapters that show up on the browse page
 module.exports.allBook = async (req, res) => {
 	const bookDB = await Upload.find({});
-	// const lastIdx = book.chapterss[book.chapterss.length - 1]
 	const timeElapsed = (x) => {
 		const now = Date.now() - x;
 		const hourNow = Math.floor(now / 3600000);
@@ -44,12 +43,10 @@ module.exports.allBook = async (req, res) => {
 		const weekNow = Math.floor(now / 604800000);
 		const monthNow = Math.floor(now / 2629800000);
 
-		return hourNow <= 24 ? `${hourNow} Hours`
-				: dayNow <= 6 ? `${dayNow} Days`
-				: weekNow <= 4 ? `${weekNow} Week`
-				: `${monthNow} Months`;
+		return hourNow <= 24 ? `${hourNow} Hours` : dayNow <= 6 ? `${dayNow} Days` : weekNow <= 4 ? `${weekNow} Week` : `${monthNow} Months`;
 	};
-	res.render("books/browse", { bookDB, timeElapsed });
+
+	res.render("books/browse", { bookDB, timeElapsed,  });
 };
 
 //
@@ -66,8 +63,6 @@ module.exports.pageOfBook = async (req, res) => {
 	const lastValue = bookDB.chapterss.length;
 	const lastIdx = bookDB.chapterss[lastValue - 1];
 	const revOrder = bookDB.chapterss.slice().reverse();
-
-	res.cookie("bookmarks", `${bookDB.title}`);
 	res.render("books/show", { bookDB, lastIdx, revOrder, lastValue });
 };
 
@@ -76,11 +71,9 @@ module.exports.pageOfBook = async (req, res) => {
 module.exports.chapterOfBook = async (req, res) => {
 	const bookDB = await Upload.findById(req.params.id);
 	const number = req.params.number - 0;
-	const number2 = req.params.number;
 	const lastIdx = bookDB.chapterss[number - 1];
 	const nextIdx = bookDB.chapterss[number + 1];
-
-	res.render("books/chapter", { bookDB, lastIdx, nextIdx, number2 });
+	res.render("books/chapter", { bookDB, lastIdx, nextIdx, number });
 };
 
 //

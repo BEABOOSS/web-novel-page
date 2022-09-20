@@ -79,27 +79,21 @@
 		<div class="right-box">
 			<div class="release">
 				<div class="title">
-					<% if(currentUser && bookDB.author.equals(currentUser.id)) {%>
-					<a href="/uploads/<%= bookDB.id%>/edit">
-						<h4><%= bookDB.title %></h4>
-					</a>
-					<% } else { %>
 					<h4><%= bookDB.title%></h4>
-					<% } %>
 				</div>
 				<div class="first-last">
 					<div class="select">
 						<!-- selecting the first chapter -->
-						<a class="fricking" href="/uploads/<%= bookDB.id%>/chapterss-1">
+						<a class="fricking" href="/uploads/<%= bookDB.id%>/chapterss-<%=  bookDB.chapterss[0].number%>">
 							<span>First Chapter</span>
-							<span class="episoded">Chapter 1</span>
+							<span class="episoded">Chapter <%= bookDB.chapterss[0].number %></span>
 						</a>
 					</div>
 					<div class="select">
 						<!-- selection the last chapter -->
-						<a class="fricking" href="/uploads/<%= bookDB.id %>/chapterss-<%= lastValue %>">
+						<a class="fricking" href="/uploads/<%= bookDB.id %>/chapterss-<%= lastIdx.number %>">
 							<span>New Chapter</span>
-							<span class="episoded">Chapter <% lastIdx %></span>
+							<span class="episoded">Chapter <%= lastIdx.number %></span>
 						</a>
 					</div>
 				</div>
