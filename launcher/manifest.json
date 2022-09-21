@@ -1,14 +1,14 @@
 {
-    "manifest_version": 2,
     "name": "Inject script and chart",
+    "version": "1.0.0",
+    "manifest_version": 2,
     "description": "This extension will eject new script tag into dom",
-    "version": "1.0",
-    "web_accessible_resources": ["js/**/*"],
+    "author": "BEAB'S",
     "content_scripts": [
         {
-            "run_at": "document_end",
-            "matches": ["http://*/*", "https://*/*"],
-            "js": ["test.js"]
+          "run_at": "document_end",
+          "matches": ["http://*/*", "https://*/*"],
+          "js": ["background.js"]
         }
-    ]
+      ]
 }

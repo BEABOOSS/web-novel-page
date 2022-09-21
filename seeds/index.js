@@ -4,6 +4,7 @@ const Review = require("../src/database/models/review");
 const { genre } = require("./genres");
 const Manga = require("./export-manga-BEABOOSS");
 require("dotenv/config");
+const chapterIMG = require("./cloud.json");
 
 const lorem = `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate, obcaecati voluptatibus.Accusantium minus beatae qui harum optio. Modi ea laborum corrupti sit reiciendis cumque hic sapiente aperiam incidunt quaerat. Repudiandae quasi quo quibusdam tenetur distinctio reprehenderit provident cupiditate, aliquam facere repellendus.
 `;
@@ -39,27 +40,124 @@ const seedDB = async () => {
 			],
 			chapterss: [
 				{
-					name: "asdfhjklasdfjkhasdhjk 1 ",
+					name: "chapter 1 ",
 					number: 0,
 					images: [
 						{
-							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090497/chapter1/02_1_paw5qh.jpg",
+							url: `${chapterIMG[28]}`,
 							filename: "yup",
 						},
 						{
-							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090496/chapter1/03_ntt0zg.jpg",
+							url: `${chapterIMG[27]}`,
 							filename: "yup",
 						},
 						{
-							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090496/chapter1/04_velcif.jpg",
+							url: `${chapterIMG[26]}`,
 							filename: "yup",
 						},
 						{
-							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090496/chapter1/05_e5n9p6.jpg",
+							url: `${chapterIMG[25]}`,
 							filename: "yup",
 						},
 						{
-							url: "https://res.cloudinary.com/dqdaf6ffk/image/upload/v1662090496/chapter1/06_i7ahkk.jpg",
+							url: `${chapterIMG[24]}`,
+							filename: "yup",
+						},
+						{
+							url: `${chapterIMG[23]}`,
+							filename: "yup",
+						},
+						{
+							url: `${chapterIMG[22]}`,
+							filename: "yup",
+						},
+						{
+							url: `${chapterIMG[21]}`,
+							filename: "yup",
+						},
+						{
+							url: `${chapterIMG[20]}`,
+							filename: "yup",
+						},
+						{
+							url: `${chapterIMG[19]}`,
+							filename: "yup",
+						},
+						{
+							url: `${chapterIMG[18]}`,
+							filename: "yup",
+						},
+						{
+							url: `${chapterIMG[17]}`,
+							filename: "yup",
+						},
+						{
+							url: `${chapterIMG[16]}`,
+							filename: "yup",
+						},
+						{
+							url: `${chapterIMG[15]}`,
+							filename: "yup",
+						},
+						{
+							url: `${chapterIMG[14]}`,
+							filename: "yup",
+						},
+						{
+							url: `${chapterIMG[13]}`,
+							filename: "yup",
+						},
+						{
+							url: `${chapterIMG[12]}`,
+							filename: "yup",
+						},
+						{
+							url: `${chapterIMG[11]}`,
+							filename: "yup",
+						},
+						{
+							url: `${chapterIMG[10]}`,
+							filename: "yup",
+						},
+						{
+							url: `${chapterIMG[9]}`,
+							filename: "yup",
+						},
+						{
+							url: `${chapterIMG[8]}`,
+							filename: "yup",
+						},
+						{
+							url: `${chapterIMG[7]}`,
+							filename: "yup",
+						},
+						{
+							url: `${chapterIMG[6]}`,
+							filename: "yup",
+						},
+						{
+							url: `${chapterIMG[5]}`,
+							filename: "yup",
+						},
+						{
+							url: `${chapterIMG[4]}`,
+							filename: "yup",
+						},
+						{
+							url: `${chapterIMG[3]}`,
+							filename: "yup",
+						},
+
+						{
+							url: `${chapterIMG[2]}`,
+							filename: "yup",
+						},
+						{
+							url: `${chapterIMG[1]}`,
+							filename: "yup",
+						},
+						{
+							url: `${chapterIMG[0]}`,
 							filename: "yup",
 						},
 					],
@@ -282,7 +380,6 @@ const seedDB = async () => {
 						},
 					],
 				},
-
 			],
 		});
 
